@@ -8,21 +8,23 @@
 
     @foreach (goods curent in ViewBag.Goods)
     {
-        <div class="goods">
-            <div class="goods-field goods-intro">
+        <a href="/Home/Goods/@curent.id">
+            <div class="goods">
+                <div class="goods-field goods-intro">
+                </div>
+                <div class="goods-right">
+                    <div class="goods-info goods-field">
+                        @curent.title
+                    </div>
+                    <div class="goods-price goods-field">
+                        Цена: @curent.price
+                    </div>
+                    <div class="goods-seller goods-field">
+                        Продавец: @curent.id_seller
+                    </div>
+                </div>
             </div>
-            <div class="goods-right">
-                <div class="goods-info goods-field">
-                    @curent.title
-                </div>
-                <div class="goods-price goods-field">
-                    Цена: @curent.price
-                </div>
-                <div class="goods-seller goods-field">
-                    Продавец: @curent.id_seller
-                </div>
-            </div>
-        </div>
+        </a>
     }
 
 </div>

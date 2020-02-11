@@ -17,6 +17,11 @@ namespace Kenguru_four_.Controllers
             ViewBag.Goods = good;
             return View();
         }
+        
+        public ActionResult Goods(int id)
+        {
+            return View(dataBase.goods.Find(id));
+        }
 
         public ActionResult About()
         {

@@ -1,0 +1,26 @@
+﻿@model goods
+@{
+    ViewBag.Title = "Goods";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Goods</h2>
+<div class="glass-case">
+
+    <div class="goods">
+        <div class="goods-field goods-intro">
+        </div>
+        <div class="goods-right">
+            <div class="goods-info goods-field">
+                @Model.title
+            </div>
+            <div class="goods-price goods-field">
+                Цена: @Model.price
+            </div>
+            <div class="goods-seller goods-field">
+                Продавец: @Model.id_seller
+            </div>
+        </div>
+    </div>
+</div>
