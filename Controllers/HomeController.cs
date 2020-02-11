@@ -8,8 +8,13 @@ namespace Kenguru_four_.Controllers
 {
     public class HomeController : Controller
     {
+
+        kenguru dataBase = new kenguru();
         public ActionResult Index()
         {
+            IEnumerable<goods> good = dataBase.goods;
+
+            ViewBag.Goods = good;
             return View();
         }
 
