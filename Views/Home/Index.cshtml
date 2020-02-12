@@ -39,23 +39,25 @@
                     <div class="goods-info goods-field">
                         <div class="goods-info-title">
                             @curent.title
-                            <div class="goods-price goods-field">
-                                Цена: @curent.price
-                            </div>
-                            <div class="goods-info-short">
-                                @curent.short_discribe
-                            </div>
-                            <div class="goods-seller goods-field">
-                                @if (curent.seller != null)
-                                {
-                                Продавец:<a> @curent.seller.name </a>
-                            }
-                            </div>
+
+
                         </div>
-                        <a href="/Home/Goods/@curent.id" class="button-main button-sell">
-                            подробнее
-                        </a>
+                        <div class="goods-info-short">
+                            @curent.short_discribe
+                        </div>
                     </div>
+                    <div class="goods-price goods-field">
+                        Цена: @curent.price
+                    </div>
+                    <div class="goods-seller goods-field">
+                        @if (curent.seller != null)
+                        {
+                        Продавец:<a> @curent.seller.name </a>
+                    }
+                    </div>
+                    <a href="/Home/Goods/@curent.id" class="button-main button-sell">
+                        подробнее
+                    </a>
                 </div>
 
 
