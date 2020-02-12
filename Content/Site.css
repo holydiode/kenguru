@@ -3,9 +3,27 @@
     src: url(../fonts/galaxy.ttf);
 }
 
+@font-face {
+    font-family: montserrat;
+    src: url(../fonts/Montserrat-MediumItalic.otf);
+}
+
+@font-face {
+    font-family: Vollkorn;
+    src: url(../fonts/Vollkorn-Black.ttf);
+}
+
+
 body {
     background-color: #fedc9e;
     margin: 0;
+    font-family: montserrat;
+}
+
+a{
+    text-decoration: underline;
+    color: rgb(83, 39, 9);
+    cursor: pointer;
 }
 
 .header {
@@ -73,11 +91,18 @@ body {
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
+
+    font-size: 120%;
+    padding: 1%;
+
+    text-decoration: none;
+    font-family: Vollkorn;
+    color: #ffeea3;
 }
 
-    .button-main:hover {
-        box-shadow: 1px 1px 10px 1px #222 inset;
-    }
+.button-main:hover {
+    box-shadow: 1px 1px 10px 1px #222 inset;
+}
 
 
 .search-field {
@@ -99,17 +124,22 @@ body {
     border-style: none;
     outline: none;
     padding: 0;
-    background-image: url(../img/search.png);
-    background-repeat: no-repeat;
-    background-position: 80% 50%;
     cursor: pointer;
+
+    font-size: 150%;
+    color: rgba(128,86,55);
+    
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-color: rgba(128,86,55);
+
 }
 
 .bascet {
     vertical-align: top;
     display: inline-block;
+    padding: 0.5%;
     width: 19%;
-    height: 100%;
 }
 
 
@@ -137,13 +167,15 @@ body {
 .glass-case {
     background: rgba(128,86,55);
     width: 100%;
+    max-width: 1850px;
+    min-width: 1000px;
     border-radius: 20px;
     padding-bottom: 1%;
 }
 
 .goods {
     display: inline-block;
-    height: 150px;
+    height: 200px;
     width: 96.5%;
     margin-top: 10px;
     margin-left: 1%;
@@ -168,6 +200,9 @@ body {
     display: inline-block;
     width: 16%;
     height: 92%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0.5%;
 }
 
 .goods-info {
@@ -177,21 +212,34 @@ body {
     display: inline-block;
 }
 
+
+.goods-info-title {
+    font-weight: bold;
+    display: block;
+    font-size: 120%;
+}
+
+.goods-info-short {
+    display: block;
+    font-size: 90%;
+    margin-top: 0.5%;
+}
+
 .goods-price {
     vertical-align: top;
     display: inline-block;
     width: 24%;
-    height: 22%;
     margin-top: 0.5%;
+    padding:  1.4%;
 }
 
 .goods-seller {
     vertical-align: top;
     display: inline-block;
-    width: 50%;
-    height: 22%;
+    width: 40%;
     margin-top: 0.5%;
-    margin-left: 5%;
+    padding:  1.4%;
+    color: black;
 }
 
 .goods-right {
@@ -200,4 +248,23 @@ body {
     height: 92%;
     display: inline-block;
     margin-left: 0.5%;
+}
+
+
+.button-sell{
+    vertical-align: top;
+    margin-top: 0.75%;
+    width: 22%;
+    display: inline-block;
+    margin-left: 0.5%;
+}
+
+.prioritet{
+    background: rgba(128,86,55);
+    width: 100%;
+    max-width: 1850px;
+    min-width: 1000px;
+    height: 5%;
+
+    border-radius: 20px;
 }
