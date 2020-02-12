@@ -12,14 +12,10 @@ namespace Kenguru_four_.Controllers
         kenguru dataBase = new kenguru();
         public ActionResult Index()
         {
-            List <goods> good = dataBase.goods.ToList().GetRange(0, 20);
-            ViewBag.Goods = good;
+            
+            
+            ViewBag.Goods = dataBase.goods;
             return View();
-        }
-        
-        public ActionResult Goods(int id)
-        {
-            return View(dataBase.goods.Find(id));
         }
 
         public ActionResult About()
