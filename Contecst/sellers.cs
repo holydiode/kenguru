@@ -34,5 +34,7 @@ namespace Kenguru_four_
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string description { get; set; }
+
+        public int? reiting { get; set; }
     }
 }
