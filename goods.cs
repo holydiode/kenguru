@@ -12,8 +12,7 @@ namespace Kenguru_four_
         public int id { get; set; }
 
         [Column("id-seller")]
-        public int? sellerID { get; set; }
-        public virtual sellers seller { get; set; }
+        public int? id_seller { get; set; }
 
         [StringLength(50)]
         public string title { get; set; }
@@ -23,7 +22,7 @@ namespace Kenguru_four_
         public int? price { get; set; }
 
         [Column("id-category")]
-        public int? id_category { get; set; }
+        public int id_category { get; set; }
 
         public int? seles { get; set; }
 

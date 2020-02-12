@@ -2,15 +2,13 @@ namespace Kenguru_four_
 {
     using System;
     using System.Data.Entity;
-    using MySql.Data.EntityFramework;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    public partial class kenguru : DbContext
+    public partial class kengu : DbContext
     {
-        public kenguru()
-            : base("name=kenguru")
+        public kengu()
+            : base("name=kengu")
         {
         }
 
@@ -21,10 +19,6 @@ namespace Kenguru_four_
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<goods>().HasRequired(a => a.seller).WithMany(g => g.good);
-            modelBuilder.Entity<goods>().MapToStoredProcedures();
-
             modelBuilder.Entity<catigories>()
                 .Property(e => e.name)
                 .IsUnicode(false);
