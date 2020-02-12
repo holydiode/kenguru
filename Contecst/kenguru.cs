@@ -53,6 +53,7 @@ namespace Kenguru_four_
                 .Property(e => e.phone)
                 .IsUnicode(false);
 
+
             modelBuilder.Entity<orders>()
                 .Property(e => e.email)
                 .IsUnicode(false);
