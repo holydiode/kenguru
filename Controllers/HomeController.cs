@@ -11,6 +11,7 @@ namespace Kenguru_four_.Controllers
         public int pageSize = 50;
      
         kenguru dataBase = new kenguru();
+
         public ActionResult Index(int page = 1)
         {
             Models.IndexViewModel ivm = null;
@@ -24,6 +25,7 @@ namespace Kenguru_four_.Controllers
                  ivm = new Models.IndexViewModel { PageInfo = pageInfo, Goods = good };
             }
             return View(ivm);
+
         }
         
         public ActionResult Goods(int id)

@@ -7,37 +7,53 @@
 
 }
 
+<div class="prioritet">
+
+</div>
+
+
 <div class="glass-case">
     @if (Model != null)
     {
         foreach (goods curent in Model.Goods)
-
         {
-            <a href="/Home/Goods/@curent.id">
-                <div class="goods">
-                    <div class="goods-field goods-intro">
-                    </div>
-                    <div class="goods-right">
-                        <div class="goods-info goods-field">
+            <div class="goods">
+
+                @{
+                    string filePath = Url.Content("~/upload/" + curent.id + "/main.png");
+                }
+                <div class="goods-field goods-intro" style="background-image: url(@filePath); ">
+                </div>
+                <div class="goods-right">
+                    <div class="goods-info goods-field">
+                        <div class="goods-info-title">
                             @curent.title
+                            <div class="goods-price goods-field">
+                                Цена: @curent.price
+                            </div>
+                            <div class="goods-info-short">
+                                @curent.short_discribe
+                            </div>
+                            <div class="goods-seller goods-field">
+                                @if (curent.seller != null)
+                                {
+                                    @curent.seller.name
+                                }
+                            </div>
                         </div>
-                        <div class="goods-price goods-field">
-                            Цена: @curent.price
-                        </div>
-                        <div class="goods-seller goods-field">
-                            @if (curent.seller != null)
-                            {
-                                @curent.seller.name
-                            }
-                        </div>
+                        <a href="/Home/Goods/@curent.id" class="button-main button-sell">
+                            подробнее
+                        </a>
                     </div>
                 </div>
-            </a>
+
+
+            </div>
+
         }
-
-
         <div class="btn-group">
             @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
         </div>
     }
 </div>
+            

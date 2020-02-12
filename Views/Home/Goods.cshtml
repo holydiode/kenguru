@@ -2,25 +2,26 @@
 @{
     ViewBag.Title = "Goods";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
 
-<h2>Goods</h2>
-<div class="glass-case">
+@section links{
+    <link rel="stylesheet" href="~/Content/Good.css">
+}
 
-    <div class="goods">
-        <div class="goods-field goods-intro">
+
+<div class="content">
+    @{
+        string imgUrl = Url.Content("~/upload/" + Model.id + "/main.png");
+    }
+    <div class="image" style="background-image:url(@imgUrl)"></div>
+    <div class="info">
+        <div class="title">@Model.title</div>
+        <div class="price">@Model.price <label style="font-size:30px">ГРiВеНъ</label></div>
+        <div class="desc">
+            <div>Описание:</div>
+            <div>@Model.description</div>
+
         </div>
-        <div class="goods-right">
-            <div class="goods-info goods-field">
-                @Model.title
-            </div>
-            <div class="goods-price goods-field">
-                Цена: @Model.price
-            </div>
-            <div class="goods-seller goods-field">
-                Продавец: @Model.sellerID
-            </div>
-        </div>
+        <button class="addToCartBtn">Добавить в корзину</button>
     </div>
 </div>
