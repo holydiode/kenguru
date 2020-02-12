@@ -6,8 +6,9 @@
 }
 
 <div class="glass-case">
+    @if (ViewBag.Goods != null) { 
+    foreach (goods curent in ViewBag.Goods)
 
-    @foreach (goods curent in ViewBag.Goods)
     {
         <a href="/Home/Goods/@curent.id">
             <div class="goods">
@@ -29,7 +30,8 @@
                 </div>
             </div>
         </a>
-    }
+            }
+        }
 
 </div>
 
