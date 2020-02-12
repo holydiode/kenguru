@@ -12,7 +12,7 @@ namespace Kenguru_four_.Controllers
         kenguru dataBase = new kenguru();
         public ActionResult Index()
         {
-            List<goods> good = dataBase.goods.ToList();//.GetRange(0, 20);
+            List<goods> good = dataBase.goods.ToList().GetRange(0, 20);
             ViewBag.Goods = good;
             return View();
         }
