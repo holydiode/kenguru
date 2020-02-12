@@ -9,10 +9,12 @@
 }
 
 
-<<<<<<< HEAD
 <div class="content">
     <div>
-        <div class="image"></div>
+        @{ 
+            string imgUrl = Url.Content("~/upload/" + Model.id + "/main.png");
+        }
+        <div class="image" style="background-image:url(@imgUrl)"></div>
         <div class="info">
             <div class="title">@Model.title</div>
             <div class="price">@Model.price</div>
