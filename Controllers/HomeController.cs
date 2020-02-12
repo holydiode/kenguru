@@ -8,21 +8,22 @@ namespace Kenguru_four_.Controllers
 {
     public class HomeController : Controller
     {
-        public int PageSize = 5;
-        public int PageNumber = 2;
+        public int pageSize = 50;
      
         kenguru dataBase = new kenguru();
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            int startInd = (PageNumber - 1) * PageSize;
+            Models.IndexViewModel ivm = null;
+            Models.PageInfo pageInfo = new Models.PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = dataBase.goods.Count() };
+            int startInd = (page - 1) * pageSize;
             if (startInd <= dataBase.goods.Count())
             {
-                int count = (startInd + PageSize) < dataBase.goods.Count() ?  PageSize : dataBase.goods.Count() - startInd;
+                int count = (startInd + pageSize) < dataBase.goods.Count() ? pageSize : dataBase.goods.Count() - startInd;
                 List<goods> good = dataBase.goods.ToList().GetRange(startInd, count);
                 ViewBag.Goods = good;
+                 ivm = new Models.IndexViewModel { PageInfo = pageInfo, Goods = good };
             }
-
-            return View();
+            return View(ivm);
         }
         
         public ActionResult Goods(int id)

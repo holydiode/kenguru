@@ -1,4 +1,6 @@
-﻿@model List<goods>
+﻿@model Kenguru_four_.Models.IndexViewModel
+@using Kenguru_four_.Models
+@using Kenguru_four_.htmlHelpers
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,32 +8,36 @@
 }
 
 <div class="glass-case">
-    @if (ViewBag.Goods != null) { 
-    foreach (goods curent in ViewBag.Goods)
-
+    @if (Model != null)
     {
-        <a href="/Home/Goods/@curent.id">
-            <div class="goods">
-                <div class="goods-field goods-intro">
+        foreach (goods curent in Model.Goods)
+
+        {
+            <a href="/Home/Goods/@curent.id">
+                <div class="goods">
+                    <div class="goods-field goods-intro">
+                    </div>
+                    <div class="goods-right">
+                        <div class="goods-info goods-field">
+                            @curent.title
+                        </div>
+                        <div class="goods-price goods-field">
+                            Цена: @curent.price
+                        </div>
+                        <div class="goods-seller goods-field">
+                            @if (curent.seller != null)
+                            {
+                                @curent.seller.name
+                            }
+                        </div>
+                    </div>
                 </div>
-                <div class="goods-right">
-                    <div class="goods-info goods-field">
-                        @curent.title
-                    </div>
-                    <div class="goods-price goods-field">
-                        Цена: @curent.price
-                    </div>
-                    <div class="goods-seller goods-field">
-                        @if (curent.seller != null)
-                        {
-                            @curent.seller.name
-                        }
-                    </div>
-                </div>
-            </div>
-        </a>
-            }
+            </a>
         }
 
-</div>
 
+        <div class="btn-group">
+            @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+        </div>
+    }
+</div>
