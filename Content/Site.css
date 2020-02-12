@@ -24,7 +24,6 @@ a{
     text-decoration: underline;
     color: rgb(83, 39, 9);
     cursor: pointer;
-}
 
 .header {
     position: fixed;
@@ -34,7 +33,7 @@ a{
     height: 100px;
     width: 100%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.5);
-    ;
+    z-index:10;
 }
 
 .header-content {
