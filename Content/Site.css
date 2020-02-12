@@ -20,11 +20,11 @@ body {
     font-family: montserrat;
 }
 
-a{
+a {
     text-decoration: underline;
     color: rgb(83, 39, 9);
     cursor: pointer;
-
+}
 .header {
     position: fixed;
     top: 0;

@@ -10,20 +10,18 @@
 
 
 <div class="content">
-    <div>
-        @{ 
-            string imgUrl = Url.Content("~/upload/" + Model.id + "/main.png");
-        }
-        <div class="image" style="background-image:url(@imgUrl)"></div>
-        <div class="info">
-            <div class="title">@Model.title</div>
-            <div class="price">@Model.price</div>
-            <div class="desc">
-                <div>Описание:</div>
-                <div>@Model.description</div>
+    @{
+        string imgUrl = Url.Content("~/upload/" + Model.id + "/main.png");
+    }
+    <div class="image" style="background-image:url(@imgUrl)"></div>
+    <div class="info">
+        <div class="title">@Model.title</div>
+        <div class="price">@Model.price <label style="font-size:30px">ГРiВеНъ</label></div>
+        <div class="desc">
+            <div>Описание:</div>
+            <div>@Model.description</div>
 
-            </div>
-            <button class="addToCartBtn">Добавить в корзину</button>
         </div>
+        <button class="addToCartBtn">Добавить в корзину</button>
     </div>
 </div>
