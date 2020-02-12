@@ -1,4 +1,6 @@
-﻿@model List<goods>
+﻿@model Kenguru_four_.Models.IndexViewModel
+@using Kenguru_four_.Models
+@using Kenguru_four_.htmlHelpers
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,43 +8,63 @@
 }
 
 <div class="prioritet">
-
+    <a class="porametr porametr-first">
+        наименование ▼
+    </a>
+    <a class="porametr">
+        стоймость –
+    </a>
+    <a class="porametr">
+        кол-во продаж –
+    </a>
+    <a class="porametr">
+        рейтинг продавца –
+    </a>
 </div>
 
 
 <div class="glass-case">
-
-    @foreach (goods curent in ViewBag.Goods)
+    @if (Model != null)
     {
+        foreach (goods curent in Model.Goods)
+        {
             <div class="goods">
+
                 @{
                     string filePath = Url.Content("~/upload/" + curent.id + "/main.png");
-                } 
+                }
                 <div class="goods-field goods-intro" style="background-image: url(@filePath); ">
                 </div>
                 <div class="goods-right">
                     <div class="goods-info goods-field">
-                        <div class ="goods-info-title" >
+                        <div class="goods-info-title">
                             @curent.title
+                            <div class="goods-price goods-field">
+                                Цена: @curent.price
+                            </div>
+                            <div class="goods-info-short">
+                                @curent.short_discribe
+                            </div>
+                            <div class="goods-seller goods-field">
+                                @if (curent.seller != null)
+                                {
+                                Продавец:<a> @curent.seller.name </a>
+                            }
+                            </div>
                         </div>
-                        <div class ="goods-info-short">
-                            @curent.short_discribe
-                        </div>
+                        <a href="/Home/Goods/@curent.id" class="button-main button-sell">
+                            подробнее
+                        </a>
                     </div>
-                    <div class="goods-price goods-field" >
-                        Цена: @curent.price Грн.
-                    </div>
-                    <div class="goods-seller goods-field">
-                        Продавец: <a> @curent.seller.name </a>
-                    </div>
-                    
-                    <a href="/Home/Goods/@curent.id" class="button-main button-sell">
-                        подробнее
-                    </a>
-
                 </div>
+
+
             </div>
+
+        }
+        <div class="btn-group">
+            @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+        </div>
     }
-
 </div>
-
+            
