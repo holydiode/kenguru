@@ -21,7 +21,10 @@
                         Цена: @curent.price
                     </div>
                     <div class="goods-seller goods-field">
-                        Продавец: @curent.id_seller
+                        @if (curent.seller != null)
+                        {
+                            @curent.seller.name
+                        }
                     </div>
                 </div>
             </div>
