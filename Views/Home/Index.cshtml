@@ -5,30 +5,43 @@
 
 }
 
+<div class="prioritet">
+
+</div>
+
+
 <div class="glass-case">
 
     @foreach (goods curent in ViewBag.Goods)
     {
-        <a href="/Home/Goods/@curent.id">
             <div class="goods">
-                <div class="goods-field goods-intro">
+                @{
+                    string filePath = Url.Content("~/upload/" + curent.id + "/main.png");
+                } 
+                <div class="goods-field goods-intro" style="background-image: url(@filePath); ">
                 </div>
                 <div class="goods-right">
                     <div class="goods-info goods-field">
-                        @curent.title
+                        <div class ="goods-info-title" >
+                            @curent.title
+                        </div>
+                        <div class ="goods-info-short">
+                            @curent.short_discribe
+                        </div>
                     </div>
-                    <div class="goods-price goods-field">
-                        Цена: @curent.price
+                    <div class="goods-price goods-field" >
+                        Цена: @curent.price Грн.
                     </div>
                     <div class="goods-seller goods-field">
-                        @if (curent.seller != null)
-                        {
-                            @curent.seller.name
-                        }
+                        Продавец: <a> @curent.seller.name </a>
                     </div>
+                    
+                    <a href="/Home/Goods/@curent.id" class="button-main button-sell">
+                        подробнее
+                    </a>
+
                 </div>
             </div>
-        </a>
     }
 
 </div>
