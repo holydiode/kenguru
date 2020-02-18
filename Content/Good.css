@@ -12,20 +12,20 @@
     border-radius: 10px;
     border-width: 2px;
     border-style: solid;
-    border-color: rgba(128,86,55);
+    border-color: rgb(128,86,55);
 }
 
 .info {
     border-radius: 10px;
     border-width: 2px;
     border-style: solid;
-    border-color: rgba(128,86,55);
+    border-color: rgb(128,86,55);
     display: inline-block;
     width: 50%;
     vertical-align: top;
     padding-left: 20px;
     padding-right: 10px;
-    background-color: rgba(251,235,166);
+    background-color: rgb(251,235,166);
 }
 
     .info .title {
