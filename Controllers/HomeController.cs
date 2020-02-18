@@ -8,7 +8,7 @@ namespace Kenguru_four_.Controllers
 {
     public class HomeController : Controller
     {
-        public int pageSize = 50;
+        public int pageSize = 111;
      
         kenguru dataBase = new kenguru();
 
@@ -17,8 +17,13 @@ namespace Kenguru_four_.Controllers
             Models.IndexViewModel ivm = null;
             Models.PageInfo pageInfo = new Models.PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = dataBase.goods.Count() };
             int startInd = (page - 1) * pageSize;
-            if (startInd <= dataBase.goods.Count())
+            if(dataBase.goods.Count() != 0)
             {
+                if (startInd > dataBase.goods.Count())
+                {
+                    page = 1;
+                    startInd = 0;
+                }
                 int count = (startInd + pageSize) < dataBase.goods.Count() ? pageSize : dataBase.goods.Count() - startInd;
                 List<goods> good = dataBase.goods.ToList().GetRange(startInd, count);
                 ViewBag.Goods = good;
