@@ -14,8 +14,10 @@ namespace Kenguru_four_
 
         [Key]
         public int id { get; set; }
-
-        [StringLength(30)]
+       [Required(ErrorMessage = "���� ������ ���� �����������")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "����� ������ ������ ���� �� 3 �� 30 ��������")]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "����������� �����")]
         public string email { get; set; }
 
         [StringLength(30)]
@@ -23,9 +25,14 @@ namespace Kenguru_four_
 
         [StringLength(100)]
         public string name { get; set; }
+        [Required(ErrorMessage = "���� ������ ���� �����������")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "����� ������ ������ ���� �� 3 �� 50 ��������")]
 
-        [StringLength(100)]
+        [Display(Name = "������")]
+        [DataType(DataType.Password)]
+
         public string password { get; set; }
+
 
         [StringLength(15)]
         public string phone { get; set; }
