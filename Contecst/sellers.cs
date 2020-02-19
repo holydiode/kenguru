@@ -1,5 +1,6 @@
 namespace Kenguru_four_
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -7,10 +8,11 @@ namespace Kenguru_four_
     using System.Data.Entity.Spatial;
 
     [Table("kengu.sellers")]
-    public partial class sellers
+    public partial class sellers 
     {
         public virtual ICollection<goods> good { get;set; } 
 
+        [Key]
         public int id { get; set; }
 
         [StringLength(30)]
@@ -36,5 +38,15 @@ namespace Kenguru_four_
         public string description { get; set; }
 
         public int? reiting { get; set; }
+
+        public sellers()
+        {
+
+        }
+        public sellers(string email, string pasword)
+        {
+            this.email = email;
+            this.pasword = pasword;
+        }
     }
 }
