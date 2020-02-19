@@ -8,29 +8,45 @@ namespace Kenguru_four_.Controllers
 {
     public class HomeController : Controller
     {
-        public int pageSize = 50;
-     
         kenguru dataBase = new kenguru();
 
-        public ActionResult Index(int page = 1)
-        {
-            Models.IndexViewModel ivm = null;
-            Models.PageInfo pageInfo = new Models.PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = dataBase.goods.Count() };
-            int startInd = (page - 1) * pageSize;
-            if (startInd <= dataBase.goods.Count())
-            {
-                int count = (startInd + pageSize) < dataBase.goods.Count() ? pageSize : dataBase.goods.Count() - startInd;
-                List<goods> good = dataBase.goods.ToList().GetRange(startInd, count);
-                ViewBag.Goods = good;
-                 ivm = new Models.IndexViewModel { PageInfo = pageInfo, Goods = good };
-            }
-            return View(ivm);
+        private int pageSize = 2;
+        private static string currSearch = "";
+        private static List<goods> currGoods = null;
 
+
+        public ActionResult Index(int page = 1, string search = null)
+        {
+            if (currGoods == null)
+                currGoods = dataBase.goods.ToList();
+            if (search != null)
+            {
+                currGoods = dataBase.goods.ToList().Where(t => t.title.ToLower().Contains(search.Trim().ToLower())).ToList();
+                currSearch = search;
+            }
+
+            Models.IndexViewModel ivm = null;
+            Models.PageInfo pageInfo = new Models.PageInfo { PageNumber = page, PageSize = pageSize, 
+                TotalItems = currGoods.Count(), Search = currSearch };
+            
+            int startInd = (page - 1) * pageSize;
+
+            List<goods> good = currGoods;
+
+            int count = (startInd + pageSize) < good.Count() ? pageSize : good.Count() - startInd;
+
+            if (startInd <= good.Count)
+            {
+                good = good.GetRange(startInd, count);
+                ivm = new Models.IndexViewModel { PageInfo = pageInfo, Goods = good };
+            }
+
+            return View(ivm);
         }
-        
+       
         public ActionResult Goods(int id)
         {
-            return View(dataBase.goods.Find(id));
+            return View(currGoods.Find((good)=>good.id == id));
         }
 
         public ActionResult About()

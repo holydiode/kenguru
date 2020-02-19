@@ -4,7 +4,9 @@
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+}
+@section search{
+@Model.PageInfo.Search
 }
 
 <div class="prioritet">
@@ -55,7 +57,7 @@
                         Продавец:<a> @curent.seller.name </a>
                     }
                     </div>
-                    <a href="/Home/Goods/@curent.id" class="button-main button-sell">
+                    <a href="/Home/Goods/?id=@curent.id" class="button-main button-sell">
                         подробнее
                     </a>
                 </div>
@@ -65,8 +67,7 @@
 
         }
         <div class="btn-group">
-            @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+            @Html.PageLinks(Model.PageInfo, (x) => Url.Action("Index", new { page = x }))
         </div>
     }
 </div>
-            

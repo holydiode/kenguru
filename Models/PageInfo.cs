@@ -14,6 +14,7 @@ namespace Kenguru_four_.Models
             {
                 get { return (int)(TotalItems / PageSize); }
             }
+            public string Search { get; set; }
         }
     public class IndexViewModel
     {

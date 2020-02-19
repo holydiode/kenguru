@@ -21,8 +21,10 @@
                     </div>
                 </a>
                 <div class="search-block">
-                    <input type="text" class="search-field" name="search" placeholder="Поиск по сайту">
-                    <button class="serch-button" type="submit" >🔎</button>
+                    <form method="get">
+                        <input type="text" class="search-field" name="search" placeholder="Поиск по сайту" value="@RenderSection("search", false)">
+                        <button class="serch-button" type="submit">🔎</button>
+                    </form>
                 </div>
                 <a class="button-main bascet">
                     корзина
