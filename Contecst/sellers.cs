@@ -14,10 +14,10 @@ namespace Kenguru_four_
 
         [Key]
         public int id { get; set; }
-       [Required(ErrorMessage = "Поле должно быть установлено")]
-        [StringLength(30, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 30 символов")]
+       [Required(ErrorMessage = "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ 3 пїЅпїЅ 30 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
         [DataType(DataType.EmailAddress)]
-        [Display(Name = "Электронный адрес")]
+        [Display(Name = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")]
         public string email { get; set; }
 
         [StringLength(30)]
@@ -25,10 +25,10 @@ namespace Kenguru_four_
 
         [StringLength(100)]
         public string name { get; set; }
-        [Required(ErrorMessage = "Поле должно быть установлено")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 50 символов")]
+        [Required(ErrorMessage = "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ 3 пїЅпїЅ 50 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
 
-        [Display(Name = "Пароль")]
+        [Display(Name = "пїЅпїЅпїЅпїЅпїЅпїЅ")]
         [DataType(DataType.Password)]
 
         public string password { get; set; }

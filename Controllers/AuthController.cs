@@ -13,13 +13,58 @@ using System.Net;
 using Xunit.Sdk;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace Kenguru_four_.Controllers
 {
     public class AuthController : Controller
     {
         // GET: Auth
 
-        public ActionResult Index(sellers seller)
+        [HttpPost]
+        public RedirectResult ControlEnter(string email, string password)
+        {
+            string hash = hashed(hashed(password));
+
+            if (ControlUser(email, hash)) {
+                return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "/seller");
+            }
+            else
+            {
+                return RedirectPermanent(Url.Action("/Enter", new {warning = true}));
+            }
+        }
+
+        public bool ControlUser(string email, string hash)
+        {
+            kenguru database = new kenguru();
+            List<sellers> users = database.sellers.Where(t => string.Compare(t.email, email) == 0).ToList();
+            if (users.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                sellers user = users[0];
+                if (string.Compare(user.password, hash) == 0)
+                {
+                    Session["user"] = new User(user.id, hash);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public ActionResult Enter(bool worning = false)
+        {
+            ViewBag.worning = worning;
+            return View();
+        }
+
+
+        public ActionResult Index()
         {
             if (ModelState.IsValid)
             {
@@ -38,7 +83,8 @@ namespace Kenguru_four_.Controllers
 
         }
 
-        //поменять алгоритм шифрования на адекватный
+
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         private string PrepareVereficationLink(string email, string hash)
         {
             string verefi = hashed(email + hash);
@@ -47,20 +93,19 @@ namespace Kenguru_four_.Controllers
             return link;
         }
 
-
         [HttpPost]
         public void PrepareVereficationEmail(string email, string password)
         {
-            string message = "Добрый день, для подтверждение вашего аккаунта пройдите по сылке:";
+            string message = "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ:";
             string hash = hashed(hashed(password));
             message += PrepareVereficationLink(email, hash);
-            SendEmail(email, "Подтверждение почтового адреса", message);
+            SendEmail(email, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", message);
         }
 
         public void SendEmail(string receiver, string subject, string message)
         {
 
-            MailAddress senderEmail = new MailAddress("sadar.kengu@mail.ru", "Садар");
+            MailAddress senderEmail = new MailAddress("sadar.kengu@mail.ru", "пїЅпїЅпїЅпїЅпїЅ");
             MailAddress receiverEmail = new MailAddress(receiver, "Receiver");
             string password = "adminadminadminadmin";
             string sub = subject;
@@ -98,6 +143,5 @@ namespace Kenguru_four_.Controllers
             var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(pasword));
             return Convert.ToBase64String(hash);
         }
-
     }
 }

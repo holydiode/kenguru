@@ -40,8 +40,6 @@ namespace Kenguru_four_.Models
             addedLines.Clear();
         }
         public IEnumerable<CartLine> Lines { get { return addedLines; } }
-
-
     }
     //определеят выбранный товар и его количество для каждой позиции в корзине
     public class CartLine

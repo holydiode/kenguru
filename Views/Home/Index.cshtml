@@ -4,22 +4,69 @@
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+}
+@section search{
+@Model.PageInfo.Search
 }
 
-<div class="prioritet">
-    <a class="porametr porametr-first">
-        наименование ▼
-    </a>
-    <a class="porametr">
-        стоймость –
-    </a>
-    <a class="porametr">
-        кол-во продаж –
-    </a>
-    <a class="porametr">
-        рейтинг продавца –
-    </a>
+<div class="sorting">
+    <div class="parametr parametr-first">
+        @if (Model.PageInfo.sortBy == 1)
+        {
+            @Html.ActionLink("Наименование ▼", "Index", new { sortBy = 2 })
+        }
+        else if (Model.PageInfo.sortBy == 2)
+        {
+            @Html.ActionLink("Наименование ▲", "Index", new { sortBy = 1 })
+        }
+        else
+        {
+            @Html.ActionLink("Наименование", "Index", new { sortBy = 1 })
+        }
+    </div>
+    <div class="parametr">
+        @if (Model.PageInfo.sortBy == 11)
+        {
+            @Html.ActionLink("Стоимость ▼", "Index", new { sortBy = 12 })
+        }
+        else if (Model.PageInfo.sortBy == 12)
+        {
+            @Html.ActionLink("Стоимость ▲", "Index", new { sortBy = 11 })
+        }
+        else
+        {
+            @Html.ActionLink("Стоимость", "Index", new { sortBy = 11 })
+        }
+    </div>
+    <div class="parametr">
+        @if (Model.PageInfo.sortBy == 21)
+        {
+            @Html.ActionLink("Количество товара ▼", "Index", new { sortBy = 22 })
+        }
+        else if (Model.PageInfo.sortBy == 22)
+        {
+            @Html.ActionLink("Количество товара ▲", "Index", new { sortBy = 21 })
+        }
+        else
+        {
+            @Html.ActionLink("Количество товара", "Index", new { sortBy = 21 })
+        }
+    </div>
+    <div class="parametr">
+        @if (Model.PageInfo.sortBy == 31)
+        {
+            @Html.ActionLink("Рейтинг продавца ▼", "Index", new { sortBy = 32 })
+        }
+        else if (Model.PageInfo.sortBy == 32)
+        {
+            @Html.ActionLink("Рейтинг продавца ▲", "Index", new { sortBy = 31 })
+        }
+        else
+        {
+            @Html.ActionLink("Рейтинг продавца", "Index", new { sortBy = 31 })
+        }
+    </div>
+
 </div>
 
 
@@ -40,7 +87,7 @@
                         <div class="goods-info-title">
                             @curent.title
 
-
+                            
                         </div>
                         <div class="goods-info-short">
                             @curent.short_discribe
@@ -55,7 +102,7 @@
                         Продавец:<a> @curent.seller.name </a>
                     }
                     </div>
-                   
+
                 </div>
                 <div class="goods-buttons">
                     <a href="/Home/Goods/@curent.id" class="button-main button-sell">
@@ -67,7 +114,7 @@
                         @Html.Hidden("id", curent.id)
                         @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
                         <input type="submit" class="button-main button-sell" value="В корзину">
-                 
+
                     }
                 </div>
 
@@ -75,10 +122,9 @@
             </div>
 
         }
-<div class="btn-group text-center">
+        <div class="btn-group text-center">
 
-        @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
-</div>
+            @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+        </div>
     }
 </div>
-            
