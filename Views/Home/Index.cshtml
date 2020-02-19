@@ -58,6 +58,16 @@
                     <a href="/Home/Goods/@curent.id" class="button-main button-sell">
                         подробнее
                     </a>
+                    <!--создает форму, отправка которой добавляет список в корзину-->
+                    @using (Html.BeginForm("AddToCart", "Cart"))
+                    {
+                        @Html.HiddenFor(x => curent.id)
+                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                        <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+                        <a href="/Cart/AddToCart/@curent.id" class="button-main button-sell">
+                            В корзину
+                        </a>
+                    }
                 </div>
 
 

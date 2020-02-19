@@ -8,7 +8,7 @@ namespace Kenguru_four_.Controllers
 {
     public class HomeController : Controller
     {
-        public int pageSize = 111;
+        public int pageSize = 10;
      
         kenguru dataBase = new kenguru();
 
