@@ -25,7 +25,7 @@ namespace Kenguru_four_
         public string name { get; set; }
 
         [StringLength(100)]
-        public string pasword { get; set; }
+        public string password { get; set; }
 
         [StringLength(15)]
         public string phone { get; set; }
@@ -46,7 +46,7 @@ namespace Kenguru_four_
         public sellers(string email, string pasword)
         {
             this.email = email;
-            this.pasword = pasword;
+            this.password = pasword;
         }
     }
 }

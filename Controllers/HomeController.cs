@@ -15,7 +15,7 @@ namespace Kenguru_four_.Controllers
         private static List<goods> currGoods = null;
 
 
-        public ActionResult Index(int page = 1, string search = null)
+        public ActionResult Index(int page = 1, string search = null, int sortBy = 1)
         {
             if (currGoods == null)
                 currGoods = dataBase.goods.ToList();
@@ -24,10 +24,11 @@ namespace Kenguru_four_.Controllers
                 currGoods = dataBase.goods.ToList().Where(t => t.title.ToLower().Contains(search.Trim().ToLower())).ToList();
                 currSearch = search;
             }
+            SortCurrGoods(sortBy);
 
             Models.IndexViewModel ivm = null;
             Models.PageInfo pageInfo = new Models.PageInfo { PageNumber = page, PageSize = pageSize, 
-                TotalItems = currGoods.Count(), Search = currSearch };
+                TotalItems = currGoods.Count(), Search = currSearch, sortBy = sortBy };
             
             int startInd = (page - 1) * pageSize;
 
@@ -43,7 +44,37 @@ namespace Kenguru_four_.Controllers
 
             return View(ivm);
         }
-       
+       private void SortCurrGoods(int sortBy)
+        {
+            switch (sortBy)
+            {
+                case 1:
+                    currGoods.Sort((x, y) => String.Compare(x.title, y.title));
+                    break;
+                case 2:
+                    currGoods.Sort((x, y) => -String.Compare(x.title, y.title));
+                    break;
+                case 11:
+                    currGoods.Sort((x, y) => (int)(x.price - y.price));
+                    break;
+                case 12:
+                    currGoods.Sort((x, y) => (int)(y.price - x.price));
+                    break;
+                case 21:
+                    currGoods.Sort((x, y) => (int)(x.seles - y.seles));
+                    break;
+                case 22:
+                    currGoods.Sort((x, y) => (int)(y.seles - x.seles));
+                    break;
+                case 31:
+                    currGoods.Sort((x, y) => (int)(x.seller.reiting - y.seller.reiting));
+                    break;
+                case 32:
+                    currGoods.Sort((x, y) => (int)(y.seller.reiting - x.seller.reiting));
+                    break;
+            }
+        }
+
         public ActionResult Goods(int id)
         {
             return View(currGoods.Find((good)=>good.id == id));

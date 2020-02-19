@@ -5,22 +5,23 @@ using System.Web;
 
 namespace Kenguru_four_.Models
 {
-        public class PageInfo
+    public class PageInfo
+    {
+        public int PageNumber { get; set; } // номер текущей страницы
+        public int PageSize { get; set; } // кол-во объектов на странице
+        public int TotalItems { get; set; } // всего объектов
+        public int TotalPages   // всего страниц
         {
-            public int PageNumber { get; set; } // номер текущей страницы
-            public int PageSize { get; set; } // кол-во объектов на странице
-            public int TotalItems { get; set; } // всего объектов
-            public int TotalPages   // всего страниц
-            {
-                get { 
+            get {
                 float res = (TotalItems) / PageSize;
                 if (TotalItems % PageSize != 0)
                     res += 1;
                 return (int)res;
             }
-            }
-            public string Search { get; set; }
         }
+        public string Search { get; set; }
+        public int sortBy { get; set; }
+    }
     public class IndexViewModel
     {
         public PageInfo PageInfo { get; set; }
