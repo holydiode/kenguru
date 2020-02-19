@@ -12,7 +12,12 @@ namespace Kenguru_four_.Models
             public int TotalItems { get; set; } // всего объектов
             public int TotalPages   // всего страниц
             {
-                get { return (int)(TotalItems / PageSize); }
+                get { 
+                float res = (TotalItems) / PageSize;
+                if (TotalItems % PageSize != 0)
+                    res += 1;
+                return (int)res;
+            }
             }
         }
     public class IndexViewModel

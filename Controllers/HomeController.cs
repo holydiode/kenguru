@@ -4,35 +4,35 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-
 namespace Kenguru_four_.Controllers
 {
     public class HomeController : Controller
     {
-        public int pageSize = 50;
+        public int pageSize = 10;
      
         kenguru dataBase = new kenguru();
 
-        public ActionResult Index(int page = 1, string search = "")
+        public ActionResult Index(int page = 1)
         {
-
             Models.IndexViewModel ivm = null;
             Models.PageInfo pageInfo = new Models.PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = dataBase.goods.Count() };
-
             int startInd = (page - 1) * pageSize;
-            List<goods> good = dataBase.goods.ToList();
-            int count = (startInd + pageSize) < good.Count() ? pageSize : good.Count() - startInd;
-
-            if (startInd <= good.Count)
+            if(dataBase.goods.Count() != 0)
             {
+                if (startInd > dataBase.goods.Count())
+                {
+                    page = 1;
+                    startInd = 0;
+                }
+                int count = (startInd + pageSize) < dataBase.goods.Count() ? pageSize : dataBase.goods.Count() - startInd;
+                List<goods> good = dataBase.goods.ToList().GetRange(startInd, count);
                 ViewBag.Goods = good;
-                ivm = new Models.IndexViewModel { PageInfo = pageInfo, Goods = good };
+                 ivm = new Models.IndexViewModel { PageInfo = pageInfo, Goods = good };
             }
-
             return View(ivm);
+
         }
-
-
+        
         public ActionResult Goods(int id)
         {
             return View(dataBase.goods.Find(id));

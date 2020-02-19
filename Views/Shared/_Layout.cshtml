@@ -4,7 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!-- Подключаем Bootstrap CSS -->
+  <link rel="stylesheet" href="~/Content/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/Site.css">
     <link rel="stylesheet" href="~/Content/Auth.css">
     @RenderSection("links", false)
@@ -16,19 +17,20 @@
         <div>
             <div class="header-content">
                 <a href="/Home/Index" class="logo">
-                    <div class="logo-title">
-                        Садар
-                    </div>
+                    <div class="logo-title">Садар</div>
                 </a>
                 <div class="search-block">
                     <input type="text" class="search-field" name="search" placeholder="Поиск по сайту">
-                    <button class="serch-button" type="submit" >🔎</button>
+                    <button class="serch-button" type="submit">🔎</button>
                 </div>
-                <a class="button-main bascet">
-                    корзина
+
+            
+                <a class="button-main bascet" href="/Cart/Index">
+                    Корзина
                 </a>
             </div>
         </div>
+      
     </div>
 
     <div class="wriper">
