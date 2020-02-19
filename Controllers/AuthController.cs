@@ -64,7 +64,7 @@ namespace Kenguru_four_.Controllers
         }
 
 
-        public ActionResult Index()
+        public ActionResult Index(sellers seller)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,6 @@ namespace Kenguru_four_.Controllers
         }
 
 
-        //�������� �������� ���������� �� ����������
         private string PrepareVereficationLink(string email, string hash)
         {
             string verefi = hashed(email + hash);
@@ -96,16 +95,16 @@ namespace Kenguru_four_.Controllers
         [HttpPost]
         public void PrepareVereficationEmail(string email, string password)
         {
-            string message = "������ ����, ��� ������������� ������ �������� �������� �� �����:";
+            string message = "Добрый день, для подтверждение вашего аккаунта пройдите по сcылке:";
             string hash = hashed(hashed(password));
             message += PrepareVereficationLink(email, hash);
-            SendEmail(email, "������������� ��������� ������", message);
+            SendEmail(email, "Подтверждение почтового адреса", message);
         }
 
         public void SendEmail(string receiver, string subject, string message)
         {
 
-            MailAddress senderEmail = new MailAddress("sadar.kengu@mail.ru", "�����");
+            MailAddress senderEmail = new MailAddress("sadar.kengu@mail.ru", "Садар");
             MailAddress receiverEmail = new MailAddress(receiver, "Receiver");
             string password = "adminadminadminadmin";
             string sub = subject;
