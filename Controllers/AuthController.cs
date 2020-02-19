@@ -22,8 +22,9 @@ namespace Kenguru_four_.Controllers
         public RedirectResult ControlEnter(string email, string password)
         {
             string hash = hashed(hashed(password));
+
             if (ControlUser(email, hash)) {
-                return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "Seller");
+                return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "/seller");
             }
             else
             {
@@ -85,7 +86,7 @@ namespace Kenguru_four_.Controllers
         [HttpPost]
         public void PrepareVereficationEmail(string email, string password)
         {
-            string message = "Добрый день, для подтверждение вашего аккаунта пройдите по cсылке:";
+            string message = "Добрый день, для подтверждение вашего аккаунта пройдите по сылке:";
             string hash = hashed(hashed(password));
             message += PrepareVereficationLink(email, hash);
             SendEmail(email, "Подтверждение почтового адреса", message);
@@ -93,12 +94,12 @@ namespace Kenguru_four_.Controllers
 
         public void SendEmail(string receiver, string subject, string message)
         {
-           try{
+           //try{
                 if (ModelState.IsValid)
                 {
-                    MailAddress senderEmail = new MailAddress("oleg.soukov@mail.ru", "Садар");
+                    MailAddress senderEmail = new MailAddress("sadar.kengu@mail.ru", "Садар");
                     MailAddress receiverEmail = new MailAddress(receiver, "Receiver");
-                    string password = "1491625abc";
+                    string password = "adminadminadminadmin";
                     string sub = subject;
                     string body = message;
                     SmtpClient smtp = new SmtpClient
@@ -120,11 +121,11 @@ namespace Kenguru_four_.Controllers
                         smtp.Send(mess);
                     }
                 }
-            }
-            catch (Exception)
-            {
-                ViewBag.Error = "Some Error";
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    ViewBag.Error = "Some Error";
+            //}
         }
 
         public void Made_seller(string email, string hash)

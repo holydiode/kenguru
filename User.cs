@@ -10,7 +10,7 @@ namespace Kenguru_four_
         public int id { set; get; }
         public string hash { set; get;}
 
-        public User(int id, string hasah) {
+        public User(int id, string hash) {
             this.id = id;
             this.hash = hash; 
         }
