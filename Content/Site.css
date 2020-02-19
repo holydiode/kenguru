@@ -25,6 +25,9 @@ a {
     color: rgb(83, 39, 9);
     cursor: pointer;
 }
+a:any-link{
+    text-decoration:none;
+}
 
 .header {
     position: fixed;
@@ -60,7 +63,7 @@ a {
 
 
 .logo-title {
-    margin-top: -12%;
+    margin-top: -22%;
     color: white;
     font-family: galaxy;
     font-size: 5em;
