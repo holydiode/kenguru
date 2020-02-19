@@ -11,12 +11,56 @@ using Microsoft.AspNet.Identity;
 using System.Net.Mail;
 using System.Net;
 
+
 namespace Kenguru_four_.Controllers
 {
     public class AuthController : Controller
     {
         // GET: Auth
-        
+
+        [HttpPost]
+        public RedirectResult ControlEnter(string email, string password)
+        {
+            string hash = hashed(hashed(password));
+            if (ControlUser(email, hash)) {
+                return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "Seller");
+            }
+            else
+            {
+                return RedirectPermanent(Url.Action("/Enter", new {warning = true}));
+            }
+        }
+
+        public bool ControlUser(string email, string hash)
+        {
+            kenguru database = new kenguru();
+            List<sellers> users = database.sellers.Where(t => string.Compare(t.email, email) == 0).ToList();
+            if (users.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                sellers user = users[0];
+                if (string.Compare(user.password, hash) == 0)
+                {
+                    Session["user"] = new User(user.id, hash);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public ActionResult Enter(bool worning = false)
+        {
+            ViewBag.worning = worning;
+            return View();
+        }
+
+
         public ActionResult Index()
         {
             return View();
@@ -28,6 +72,7 @@ namespace Kenguru_four_.Controllers
             }
         }
 
+
         //поменять алгоритм шифрования на адекватный
         private string PrepareVereficationLink(string email, string hash)
         {
@@ -36,7 +81,6 @@ namespace Kenguru_four_.Controllers
             link += Url.Action("/ControlVerefication", new {email, hash, verefi} );
             return link;
         }
-
 
         [HttpPost]
         public void PrepareVereficationEmail(string email, string password)
@@ -49,7 +93,6 @@ namespace Kenguru_four_.Controllers
 
         public void SendEmail(string receiver, string subject, string message)
         {
-           
            try{
                 if (ModelState.IsValid)
                 {
@@ -97,6 +140,5 @@ namespace Kenguru_four_.Controllers
             var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(pasword));
             return Convert.ToBase64String(hash);
         }
-
     }
 }

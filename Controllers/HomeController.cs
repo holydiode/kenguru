@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Kenguru_four_.Controllers
 {
-    public class HomeController : Controller
+    public class CabinetController : Controller
     {
         public int pageSize = 10;
      
@@ -30,7 +30,6 @@ namespace Kenguru_four_.Controllers
                  ivm = new Models.IndexViewModel { PageInfo = pageInfo, Goods = good };
             }
             return View(ivm);
-
         }
         
         public ActionResult Goods(int id)
