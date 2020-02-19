@@ -10,22 +10,32 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using System.Net.Mail;
 using System.Net;
+using Xunit.Sdk;
+using System.ComponentModel.DataAnnotations;
 
 namespace Kenguru_four_.Controllers
 {
     public class AuthController : Controller
     {
         // GET: Auth
-        
-        public ActionResult Index()
-        {
-            return View();
-        }
 
-        public void ControlVerefication(string email, string hash, string verefi) { 
-            if( string.Compare( hashed(email + hash) , verefi) == 0   ){
-                Made_seller(email, verefi);
+        public ActionResult Index(sellers seller)
+        {
+            if (ModelState.IsValid)
+            {
+                PrepareVereficationEmail(seller.email, seller.password);
+                return View("GoToMail");
             }
+            return View(seller);
+
+        }
+        public ActionResult ControlVerefication(string email, string hash, string verefi)
+        {
+
+            if (string.Compare(hashed(email + hash), verefi) == 0)
+                Made_seller(email, verefi);
+            return View("Index", "Home");
+
         }
 
         //поменять алгоритм шифрования на адекватный
@@ -33,7 +43,7 @@ namespace Kenguru_four_.Controllers
         {
             string verefi = hashed(email + hash);
             string link = Request.Url.GetLeftPart(UriPartial.Authority);
-            link += Url.Action("/ControlVerefication", new {email, hash, verefi} );
+            link += Url.Action("/ControlVerefication", new { email, hash, verefi });
             return link;
         }
 
@@ -49,49 +59,40 @@ namespace Kenguru_four_.Controllers
 
         public void SendEmail(string receiver, string subject, string message)
         {
-           
-           try{
-                if (ModelState.IsValid)
-                {
-                    MailAddress senderEmail = new MailAddress("oleg.soukov@mail.ru", "Садар");
-                    MailAddress receiverEmail = new MailAddress(receiver, "Receiver");
-                    string password = "1491625abc";
-                    string sub = subject;
-                    string body = message;
-                    SmtpClient smtp = new SmtpClient
-                    {
-                        Host = "smtp.mail.ru",
-                        Port = 2525,
-                        EnableSsl = true,
-                        DeliveryMethod = SmtpDeliveryMethod.Network,
-                        UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential(senderEmail.Address, password)
-                    };
 
-                    using (var mess = new MailMessage(senderEmail, receiverEmail)
-                    {
-                        Subject = subject,
-                        Body = body
-                    })
-                    {
-                        smtp.Send(mess);
-                    }
-                }
-            }
-            catch (Exception)
+            MailAddress senderEmail = new MailAddress("sadar.kengu@mail.ru", "Садар");
+            MailAddress receiverEmail = new MailAddress(receiver, "Receiver");
+            string password = "adminadminadminadmin";
+            string sub = subject;
+            string body = message;
+            SmtpClient smtp = new SmtpClient
             {
-                ViewBag.Error = "Some Error";
+                Host = "smtp.mail.ru",
+                Port = 2525,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(senderEmail.Address, password)
+            };
+
+            using (var mess = new MailMessage(senderEmail, receiverEmail)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(mess);
             }
         }
 
         public void Made_seller(string email, string hash)
         {
             kenguru dataBase = new kenguru();
-            dataBase.sellers.Add(new sellers(email,  hash ));
+            dataBase.sellers.Add(new sellers(email, hash));
             dataBase.SaveChanges();
         }
 
-        private string hashed (string pasword)
+        private string hashed(string pasword)
         {
             var md5 = MD5.Create();
             var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(pasword));

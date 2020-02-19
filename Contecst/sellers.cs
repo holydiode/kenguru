@@ -14,8 +14,10 @@ namespace Kenguru_four_
 
         [Key]
         public int id { get; set; }
-
-        [StringLength(30)]
+       [Required(ErrorMessage = "Поле должно быть установлено")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 30 символов")]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Электронный адрес")]
         public string email { get; set; }
 
         [StringLength(30)]
@@ -23,9 +25,14 @@ namespace Kenguru_four_
 
         [StringLength(100)]
         public string name { get; set; }
+        [Required(ErrorMessage = "Поле должно быть установлено")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 50 символов")]
 
-        [StringLength(100)]
-        public string pasword { get; set; }
+        [Display(Name = "Пароль")]
+        [DataType(DataType.Password)]
+
+        public string password { get; set; }
+
 
         [StringLength(15)]
         public string phone { get; set; }
@@ -46,7 +53,7 @@ namespace Kenguru_four_
         public sellers(string email, string pasword)
         {
             this.email = email;
-            this.pasword = pasword;
+            this.password = pasword;
         }
     }
 }

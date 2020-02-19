@@ -70,7 +70,7 @@ namespace Kenguru_four_
                 .IsUnicode(false);
 
             modelBuilder.Entity<sellers>()
-                .Property(e => e.pasword)
+                .Property(e => e.password)
                 .IsUnicode(false);
 
             modelBuilder.Entity<sellers>()

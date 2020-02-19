@@ -1,29 +1,50 @@
+﻿<meta charset="utf-8" />
+@model sellers
 @{
     ViewBag.Title = "Авторизация";
 }
 <div class="pazmiv"></div>
-    <div class="authWindow">
-        <form method="post"  action= "/Auth/PrepareVereficationEmail" >
-            <div class="authHeader">
-                <div class="title">
-                    <label>Авторизация</label>
-                </div>
-                <div class="close">x</div>
+<div class="authWindow">
+    <form method="post">
+        <div class="authHeader">
+            <div class="title">
+                <label>Авторизация</label>
             </div>
-            <div class="login" >
-                <div class="desc-auth">
-                    <label>Номер телефона или e-mail</label>
+            <div class="close">x</div>
+        </div>
+        <div class="login">
+            <div class="desc-auth">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.email)
                 </div>
-                <input name ="email" class="textbox"  />
+                <div name="email" class=" editor-field textbox" required>
+                    @Html.EditorFor(model => model.email, new { @class = "form-control", @required = "required" })
+
+                    @Html.ValidationMessageFor(model => model.email)
+                </div>
             </div>
-            <div class="password" >
-                <div class="desc-auth">
-                    <label>Пароль</label>
+
+        </div>
+        <div class="password">
+            <div class="desc-auth">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.password)
                 </div>
-                <input name ="password" class="textbox" />
+                <div name="password" class=" editor-field textbox" input required>
+
+                    @Html.EditorFor(model => model.password)
+                    @Html.ValidationMessageFor(model => model.password)
+                </div>
+            </div>
+        </div>
+        <div class="second password">
+            <div class="desc-auth">
+                <label>Повторите пароль</label>
+                <input name=" secPass" class="editor-field textbox" />
             </div>
             <div class="submitDiv">
                 <button type="submit" class="submitBtn">Войти</button>
             </div>
-        </form>
+        </div>
+    </form>
 </div>
