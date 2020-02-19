@@ -22,6 +22,12 @@
             <div>@Model.description</div>
 
         </div>
-        <button class="addToCartBtn">Добавить в корзину</button>
+        @using (Html.BeginForm("AddToCart", "Cart"))
+        {
+            @Html.Hidden("id", Model.id)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" class="button-main addToCartBtn" value="В корзину">
+
+        }
     </div>
 </div>
