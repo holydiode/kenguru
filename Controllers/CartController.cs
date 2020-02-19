@@ -20,10 +20,10 @@ namespace Kenguru_four_.Controllers
                 ReturnUrl = returnUrl
             });
         }
-     
-        public RedirectToRouteResult AddToCart(int godId, string returnUrl)
+     [HttpPost]
+        public RedirectToRouteResult AddToCart(int id, string returnUrl)
         {
-            goods god = dataBase.goods.FirstOrDefault(g => g.id == godId);
+            goods god = dataBase.goods.FirstOrDefault(g => g.id == id);
             if(god != null) {
                 GetCart().AddItem(god, 1);
             }

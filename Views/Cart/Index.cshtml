@@ -14,14 +14,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var line in Model.Cart.Lines)
+        @foreach (var line in Model.cart.Lines)
         {
             <tr>
                 <td class="text-center">@line.Quantity</td>
-                <td class="text-left">@line.Game.Name</td>
-                <td class="text-right">@line.Game.Price.ToString("# гривень")</td>
+                <td class="text-left">@line.good.title</td>
+                <td class="text-right">@line.good.price.ToString() + гривень</td>
                 <td class="text-right">
-                    @((line.Quantity * line.Game.Price).ToString("# гривень"))
+                    @((line.Quantity * line.good.price).ToString() + "гривень");
                 </td>
             </tr>
         }
@@ -30,7 +30,7 @@
         <tr>
             <td colspan="3" class="text-right">Итого:</td>
             <td class="text-right">
-                @Model.Cart.ComputeTotalValue().ToString("# гривень")
+                @Model.cart.ComputeTotalValue().ToString("# гривень")
             </td>
         </tr>
     </tfoot>
