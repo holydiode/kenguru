@@ -57,17 +57,29 @@
                         Продавец:<a> @curent.seller.name </a>
                     }
                     </div>
-                    <a href="/Home/Goods/?id=@curent.id" class="button-main button-sell">
-                        подробнее
+                   
+                </div>
+                <div class="goods-buttons">
+                    <a href="/Home/Goods/@curent.id" class="button-main button-sell">
+                        Подробнее
                     </a>
+                    <!--создает форму, отправка которой добавляет список в корзину-->
+                    @using (Html.BeginForm("AddToCart", "Cart"))
+                    {
+                        @Html.Hidden("id", curent.id)
+                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                        <input type="submit" class="button-main button-sell" value="В корзину">
+                 
+                    }
                 </div>
 
 
             </div>
 
         }
-        <div class="btn-group">
-            @Html.PageLinks(Model.PageInfo, (x) => Url.Action("Index", new { page = x }))
-        </div>
+<div class="btn-group text-center">
+
+        @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+</div>
     }
 </div>

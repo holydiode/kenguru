@@ -8,9 +8,9 @@ namespace Kenguru_four_.Controllers
 {
     public class HomeController : Controller
     {
+        public int pageSize = 10;
+     
         kenguru dataBase = new kenguru();
-
-        private int pageSize = 2;
         private static string currSearch = "";
         private static List<goods> currGoods = null;
 
