@@ -43,10 +43,10 @@ namespace Kenguru_four_
         {
 
         }
-        public sellers(string email, string password)
+        public sellers(string email, string pasword)
         {
             this.email = email;
-            this.password = password;
+            this.password = pasword;
         }
     }
 }

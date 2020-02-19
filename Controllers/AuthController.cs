@@ -85,7 +85,7 @@ namespace Kenguru_four_.Controllers
         [HttpPost]
         public void PrepareVereficationEmail(string email, string password)
         {
-            string message = "Добрый день, для подтверждение вашего аккаунта пройдите по сылке:";
+            string message = "Добрый день, для подтверждение вашего аккаунта пройдите по cсылке:";
             string hash = hashed(hashed(password));
             message += PrepareVereficationLink(email, hash);
             SendEmail(email, "Подтверждение почтового адреса", message);
