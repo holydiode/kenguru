@@ -20,8 +20,11 @@
         <div class="desc">
             <div>Описание:</div>
             <div>@Model.description</div>
-
         </div>
+        <div class="category">
+            <div>Категория @Model.category.name</div>
+        </div>
+
         @using (Html.BeginForm("AddToCart", "Cart"))
         {
             @Html.Hidden("id", Model.id)

@@ -17,11 +17,16 @@ namespace Kenguru_four_.Controllers
 
         public ActionResult Index(int page = 1, string search = null, int sortBy = 1)
         {
+            foreach(Good god in dataBase.goods)
+            {
+                god.categoryID = 1;
+            }
+            dataBase.SaveChanges();
             if (currGoods == null)
-                currGoods = dataBase.Goods.ToList();
+                currGoods = dataBase.goods.ToList();
             if (search != null)
             {
-                currGoods = dataBase.Goods.ToList().Where(t => t.title.ToLower().Contains(search.Trim().ToLower())).ToList();
+                currGoods = dataBase.goods.ToList().Where(t => t.title.ToLower().Contains(search.Trim().ToLower())).ToList();
                 currSearch = search;
             }
             SortCurrGoods(sortBy);
