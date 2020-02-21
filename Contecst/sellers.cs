@@ -14,10 +14,10 @@ namespace Kenguru_four_
 
         [Key]
         public int id { get; set; }
-       [Required(ErrorMessage = "���� ������ ���� �����������")]
-        [StringLength(30, MinimumLength = 3, ErrorMessage = "����� ������ ������ ���� �� 3 �� 30 ��������")]
+       [Required(ErrorMessage = "Поле должно быть заполнено")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "Длина email должна быть от 3 до 30 символов")]
         [DataType(DataType.EmailAddress)]
-        [Display(Name = "����������� �����")]
+        [Display(Name = "Введите почту")]
         public string email { get; set; }
 
         [StringLength(30)]
@@ -25,10 +25,10 @@ namespace Kenguru_four_
 
         [StringLength(100)]
         public string name { get; set; }
-        [Required(ErrorMessage = "���� ������ ���� �����������")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "����� ������ ������ ���� �� 3 �� 50 ��������")]
+        [Required(ErrorMessage = "Поле должно быть заполнено")]
+        [StringLength(50, MinimumLength = 8, ErrorMessage = "Длина пароля должна быть от 8 до 30 символов")]
 
-        [Display(Name = "������")]
+        [Display(Name = "Пароль")]
         [DataType(DataType.Password)]
 
         public string password { get; set; }
