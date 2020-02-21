@@ -104,7 +104,7 @@ namespace Kenguru_four_.Controllers
         public void SendEmail(string receiver, string subject, string message)
         {
 
-            MailAddress senderEmail = new MailAddress("sadar.kengu@mail.ru", "Садар");
+            MailAddress senderEmail = new MailAddress("hel.lo1999@inbox.ru", "Садар");
             MailAddress receiverEmail = new MailAddress(receiver, "Receiver");
             string password = "adminadminadminadmin";
             string sub = subject;
