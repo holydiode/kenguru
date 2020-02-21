@@ -36,15 +36,15 @@ namespace Kenguru_four_.Controllers
 
         public bool ControlUser(string email, string hash)
         {
-            kenguru database = new kenguru();
-            List<sellers> users = database.sellers.Where(t => string.Compare(t.email, email) == 0).ToList();
+            KenguruDB database = new KenguruDB();
+            List<Seller> users = database.Sellers.Where(t => string.Compare(t.email, email) == 0).ToList();
             if (users.Count == 0)
             {
                 return false;
             }
             else
             {
-                sellers user = users[0];
+                Seller user = users[0];
                 if (string.Compare(user.password, hash) == 0)
                 {
                     Session["user"] = new User(user.id, hash);
@@ -64,7 +64,7 @@ namespace Kenguru_four_.Controllers
         }
 
 
-        public ActionResult Index(sellers seller)
+        public ActionResult Index(Seller seller)
         {
             if (ModelState.IsValid)
             {
@@ -131,8 +131,8 @@ namespace Kenguru_four_.Controllers
 
         public void Made_seller(string email, string hash)
         {
-            kenguru dataBase = new kenguru();
-            dataBase.sellers.Add(new sellers(email, hash));
+            KenguruDB dataBase = new KenguruDB();
+            dataBase.Sellers.Add(new Seller(email, hash));
             dataBase.SaveChanges();
         }
 

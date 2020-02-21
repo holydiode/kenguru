@@ -7,81 +7,80 @@ namespace Kenguru_four_
     using System.Linq;
 
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    public partial class kenguru : DbContext
+    public partial class KenguruDB : DbContext
     {
-        public kenguru()
+        public KenguruDB()
             : base("name=kenguru")
         {
         }
 
-        public virtual DbSet<catigories> catigories { get; set; }
-        public virtual DbSet<goods> goods { get; set; }
-        public virtual DbSet<orders> orders { get; set; }
-        public virtual DbSet<sellers> sellers { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Good> Goods { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Seller> Sellers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<goods>().HasRequired(a => a.seller).WithMany(g => g.good);
-            modelBuilder.Entity<goods>().MapToStoredProcedures();
-
-            modelBuilder.Entity<catigories>()
+            modelBuilder.Entity<Good>().HasRequired(a => a.seller).WithMany(g => g.good);
+            modelBuilder.Entity<Good>().MapToStoredProcedures();
+            modelBuilder.Entity<Category>()
                 .Property(e => e.name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<goods>()
+            modelBuilder.Entity<Good>()
                 .Property(e => e.title)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<goods>()
+            modelBuilder.Entity<Good>()
                 .Property(e => e.description)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<goods>()
+            modelBuilder.Entity<Good>()
                 .Property(e => e.short_discribe)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<orders>()
+            modelBuilder.Entity<Order>()
                 .Property(e => e.track)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<orders>()
+            modelBuilder.Entity<Order>()
                 .Property(e => e.adres)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<orders>()
+            modelBuilder.Entity<Order>()
                 .Property(e => e.phone)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<orders>()
+            modelBuilder.Entity<Order>()
                 .Property(e => e.email)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<sellers>()
+            modelBuilder.Entity<Seller>()
                 .Property(e => e.email)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<sellers>()
+            modelBuilder.Entity<Seller>()
                 .Property(e => e.username)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<sellers>()
+            modelBuilder.Entity<Seller>()
                 .Property(e => e.name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<sellers>()
+            modelBuilder.Entity<Seller>()
                 .Property(e => e.password)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<sellers>()
+            modelBuilder.Entity<Seller>()
                 .Property(e => e.phone)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<sellers>()
+            modelBuilder.Entity<Seller>()
                 .Property(e => e.adress)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<sellers>()
+            modelBuilder.Entity<Seller>()
                 .Property(e => e.description)
                 .IsUnicode(false);
         }
