@@ -23,7 +23,7 @@ namespace Kenguru_four_.Controllers
      [HttpPost]
         public RedirectToRouteResult AddToCart(int id, string returnUrl)
         {
-            Good god = dataBase.Goods.FirstOrDefault(g => g.id == id);
+            Good god = dataBase.goods.FirstOrDefault(g => g.id == id);
             if(god != null) {
                 GetCart().AddItem(god, 1);
             }
@@ -31,7 +31,7 @@ namespace Kenguru_four_.Controllers
         }
         public RedirectToRouteResult RemoveFromCart(int godId, string returnUrl)
         {
-            Good god = dataBase.Goods.FirstOrDefault(g => g.id == godId);
+            Good god = dataBase.goods.FirstOrDefault(g => g.id == godId);
             if (god != null)
             {
                 GetCart().RemoveLine(god);

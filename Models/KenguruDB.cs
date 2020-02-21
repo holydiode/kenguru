@@ -15,7 +15,7 @@ namespace Kenguru_four_
         }
 
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Good> Goods { get; set; }
+        public virtual DbSet<Good> goods { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Seller> Sellers { get; set; }
 
@@ -23,7 +23,8 @@ namespace Kenguru_four_
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Good>().HasRequired(a => a.seller).WithMany(g => g.good);
-            modelBuilder.Entity<Good>().MapToStoredProcedures();
+            modelBuilder.Entity<Good>().HasRequired(g => g.category).WithMany(c => c.goods);
+
             modelBuilder.Entity<Category>()
                 .Property(e => e.name)
                 .IsUnicode(false);

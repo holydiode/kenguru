@@ -23,13 +23,16 @@ namespace Kenguru_four_
         public int? price { get; set; }
 
         [Column("id-category")]
-        public int? id_category { get; set; }
+        public int? categoryID { get; set; }
+        public virtual Category category { get; set; }
 
         public int? seles { get; set; }
+
 
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string description { get; set; }
+
 
         [Column("short-discribe", TypeName = "text")]
         [StringLength(65535)]
