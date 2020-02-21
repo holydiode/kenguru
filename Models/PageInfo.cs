@@ -25,6 +25,6 @@ namespace Kenguru_four_.Models
     public class IndexViewModel
     {
         public PageInfo PageInfo { get; set; }
-        public List<goods> Goods { get; set; }
+        public List<Good> Goods { get; set; }
     }
 }

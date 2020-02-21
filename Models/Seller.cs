@@ -8,9 +8,9 @@ namespace Kenguru_four_
     using System.Data.Entity.Spatial;
 
     [Table("kengu.sellers")]
-    public partial class sellers 
+    public partial class Seller 
     {
-        public virtual ICollection<goods> good { get;set; } 
+        public virtual ICollection<Good> good { get;set; } 
 
         [Key]
         public int id { get; set; }
@@ -46,11 +46,11 @@ namespace Kenguru_four_
 
         public int? reiting { get; set; }
 
-        public sellers()
+        public Seller()
         {
 
         }
-        public sellers(string email, string pasword)
+        public Seller(string email, string pasword)
         {
             this.email = email;
             this.password = pasword;

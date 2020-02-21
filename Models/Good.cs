@@ -7,13 +7,13 @@ namespace Kenguru_four_
     using System.Data.Entity.Spatial;
 
     [Table("kengu.goods")]
-    public partial class goods
+    public partial class Good
     {
         public int id { get; set; }
 
         [Column("id-seller")]
         public int? sellerID { get; set; }
-        public virtual sellers seller { get; set; }
+        public virtual Seller seller { get; set; }
 
         [StringLength(50)]
         public string title { get; set; }

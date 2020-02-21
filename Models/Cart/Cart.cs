@@ -10,7 +10,7 @@ namespace Kenguru_four_.Models
     {
         public List<CartLine> addedLines = new List<CartLine>();
         //добавление товара в корзину
-        public void AddItem(goods god, int quantity)
+        public void AddItem(Good god, int quantity)
         {
             //ищем, есть ли сейчас этот товар в корзине
             CartLine line = addedLines.Where(g => g.good.id == god.id).FirstOrDefault();
@@ -25,7 +25,7 @@ namespace Kenguru_four_.Models
             }
         }
         //удаление товара из корзины
-        public void RemoveLine(goods god)
+        public void RemoveLine(Good god)
         {
             addedLines.RemoveAll(l => l.good.id == god.id);
         }
@@ -44,7 +44,7 @@ namespace Kenguru_four_.Models
     //определеят выбранный товар и его количество для каждой позиции в корзине
     public class CartLine
     {
-        public goods good { get; set; }
+        public Good good { get; set; }
         public int Quantity { get; set; }
     }
 }

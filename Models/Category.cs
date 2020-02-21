@@ -6,8 +6,8 @@ namespace Kenguru_four_
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("kengu.catigories")]
-    public partial class catigories
+    [Table("kengu.categories")]
+    public partial class Category
     {
         public int id { get; set; }
 

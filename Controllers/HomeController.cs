@@ -10,18 +10,18 @@ namespace Kenguru_four_.Controllers
     {
         public int pageSize = 10;
      
-        kenguru dataBase = new kenguru();
+        KenguruDB dataBase = new KenguruDB();
         private static string currSearch = "";
-        private static List<goods> currGoods = null;
+        private static List<Good> currGoods = null;
 
 
         public ActionResult Index(int page = 1, string search = null, int sortBy = 1)
         {
             if (currGoods == null)
-                currGoods = dataBase.goods.ToList();
+                currGoods = dataBase.Goods.ToList();
             if (search != null)
             {
-                currGoods = dataBase.goods.ToList().Where(t => t.title.ToLower().Contains(search.Trim().ToLower())).ToList();
+                currGoods = dataBase.Goods.ToList().Where(t => t.title.ToLower().Contains(search.Trim().ToLower())).ToList();
                 currSearch = search;
             }
             SortCurrGoods(sortBy);
@@ -32,7 +32,7 @@ namespace Kenguru_four_.Controllers
             
             int startInd = (page - 1) * pageSize;
 
-            List<goods> good = currGoods;
+            List<Good> good = currGoods;
 
             int count = (startInd + pageSize) < good.Count() ? pageSize : good.Count() - startInd;
 

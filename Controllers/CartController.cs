@@ -9,7 +9,7 @@ namespace Kenguru_four_.Controllers
 {
     public class CartController : Controller
     {
-        kenguru dataBase = new kenguru();
+        KenguruDB dataBase = new KenguruDB();
         
         // GET: Cart
         public ViewResult Index(string returnUrl)
@@ -23,7 +23,7 @@ namespace Kenguru_four_.Controllers
      [HttpPost]
         public RedirectToRouteResult AddToCart(int id, string returnUrl)
         {
-            goods god = dataBase.goods.FirstOrDefault(g => g.id == id);
+            Good god = dataBase.Goods.FirstOrDefault(g => g.id == id);
             if(god != null) {
                 GetCart().AddItem(god, 1);
             }
@@ -31,7 +31,7 @@ namespace Kenguru_four_.Controllers
         }
         public RedirectToRouteResult RemoveFromCart(int godId, string returnUrl)
         {
-            goods god = dataBase.goods.FirstOrDefault(g => g.id == godId);
+            Good god = dataBase.Goods.FirstOrDefault(g => g.id == godId);
             if (god != null)
             {
                 GetCart().RemoveLine(god);

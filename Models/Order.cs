@@ -7,7 +7,7 @@ namespace Kenguru_four_
     using System.Data.Entity.Spatial;
 
     [Table("kengu.orders")]
-    public partial class orders
+    public partial class Order
     {
         public int id { get; set; }
 

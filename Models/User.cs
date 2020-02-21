@@ -17,8 +17,8 @@ namespace Kenguru_four_
 
         public bool check()
         {
-            kenguru database = new kenguru();
-            sellers user = database.sellers.Find(id);
+            KenguruDB database = new KenguruDB();
+            Seller user = database.Sellers.Find(id);
 
             if (user == null)
             {

@@ -13,7 +13,7 @@ namespace Kenguru_four_
         public string email { get; set; }
 
         [Required]
-        public string pasword { get; set; }
+        public string password { get; set; }
 
     }
 }
