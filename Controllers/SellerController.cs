@@ -11,18 +11,29 @@ namespace Kenguru_four_.Controllers
         // GET: Seller
         public ActionResult Index()
         {
-            if (Session["User"] == null) {
+            if (Session["User"] == null || ((User)Session["User"]).check() == false) {
                 return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
             }
-            
-            if(!((User)Session["User"]).check())
+
+            KenguruDB dataBase = new KenguruDB();
+
+            ViewBag.User = dataBase.Sellers.Find(((User)Session["User"]).id);
+            return View();
+
+        }
+
+        public ActionResult Property()
+        {
+            if (Session["User"] == null || ((User)Session["User"]).check() == false)
             {
                 return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
             }
 
-            return View();
 
+
+            return View();
         }
+
 
         public ActionResult Orders()
         {
@@ -33,7 +44,9 @@ namespace Kenguru_four_.Controllers
 
             KenguruDB dataBase = new KenguruDB();
 
-            List<Good> goods = dataBase.Sellers.Find(((User)Session["User"]).id).good.ToList();
+            ViewBag.User = dataBase.Sellers.Find(((User)Session["User"]).id);
+
+            List<Good> goods = ViewBag.User.good.ToList();
 
             List<Order> orderses = dataBase.Orders.ToList();
 
@@ -48,7 +61,6 @@ namespace Kenguru_four_.Controllers
             }
 
             ViewBag.Orders = orders;
-
             return View();
         }
     }

@@ -284,7 +284,6 @@ a:any-link{
     color: rgb(251,235,166);
     font-size: 120%;
 
-
     margin-top: 0.1%;
     margin-bottom:  0.1%;
 
@@ -303,7 +302,6 @@ a:any-link{
 .parametr-first{
     border-left-style: none;
 }
-
 
 .parametr:hover{
     font-weight: bold;
