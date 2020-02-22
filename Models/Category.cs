@@ -12,10 +12,14 @@ namespace Kenguru_four_
         public int id { get; set; }
 
         [Column("parent-id")]
-        public int? parent_id { get; set; }
+        public int? parentID { get; set; }
+
+        public virtual Category parent { get; set; }
 
         [StringLength(20)]
         public string name { get; set; }
+
+        public virtual ICollection<Category> subCategories { get; set; }
 
         public virtual ICollection<Good> goods { get; set; }
     }
