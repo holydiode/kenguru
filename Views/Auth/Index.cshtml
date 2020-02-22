@@ -1,5 +1,5 @@
 ﻿<meta charset="utf-8" />
-@model Seller
+@model Kenguru_four_.Models.SellerIVM
 @{
     ViewBag.Title = "Авторизация";
 }
@@ -15,12 +15,12 @@
         <div class="login">
             <div class="desc-auth">
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.email)
+                    @Html.LabelFor(model =>model.seller.email)
                 </div>
                 <div name="email" class=" editor-field textbox" required>
-                    @Html.EditorFor(model => model.email, new { @class = "form-control", @required = "required" })
+                    @Html.EditorFor(model => model.seller.email, new { @class = "form-control", @required = "required" })
 
-                    @Html.ValidationMessageFor(model => model.email)
+                    @Html.ValidationMessageFor(model => model.seller.email)
                 </div>
             </div>
 
@@ -37,14 +37,21 @@
                 </div>
             </div>
         </div>
-        <div class="second password">
+         <div class="secPassword">
             <div class="desc-auth">
-                <label>Повторите пароль</label>
-                <input name=" secPass" class="editor-field textbox" />
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.secPassword)
+                </div>
+                <div name="secPassword" class=" editor-field textbox" input required>
+
+                    @Html.EditorFor(model => model.secPassword)
+                    @Html.ValidationMessageFor(model => model.secPassword)
+                </div>
             </div>
+        </div>
+
             <div class="submitDiv">
                 <button type="submit" class="submitBtn">Войти</button>
             </div>
-        </div>
     </form>
 </div>

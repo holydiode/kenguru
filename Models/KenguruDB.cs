@@ -15,7 +15,7 @@ namespace Kenguru_four_
         }
 
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Good> Goods { get; set; }
+        public virtual DbSet<Good> goods { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Seller> Sellers { get; set; }
 
@@ -25,7 +25,7 @@ namespace Kenguru_four_
 
             modelBuilder.Entity<Good>().HasRequired(a => a.seller).WithMany(g => g.good);
             modelBuilder.Entity<Order>().HasRequired(a => a.good).WithMany(g => g.orders);
-
+            modelBuilder.Entity<Good>().HasRequired(g => g.category).WithMany(c => c.goods);
 
 
             modelBuilder.Entity<Category>()

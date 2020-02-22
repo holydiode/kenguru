@@ -12,7 +12,9 @@ using System.Net.Mail;
 using System.Net;
 using Xunit.Sdk;
 using System.ComponentModel.DataAnnotations;
-
+using System.Threading.Tasks;
+using Kenguru_four_.HtmlHelpers;
+using Kenguru_four_.Models;
 
 namespace Kenguru_four_.Controllers
 {
@@ -63,24 +65,36 @@ namespace Kenguru_four_.Controllers
             return View();
         }
 
-        public ActionResult Index(Seller seller)
+
+        public ActionResult Index(SellerIVM ivm)
         {
-            if (ModelState.IsValid)
+            KenguruDB db = new KenguruDB();
+           
+            if (ModelState.IsValid )
             {
-                PrepareVereficationEmail(seller.email, seller.password);
+                var emails = db.Sellers.Select(x => x.email);
+                foreach(string email in emails)
+                    if(email == ivm.seller.email)
+                    {
+                        return View(ivm);
+                    }
+
+                PrepareVereficationEmail(ivm.seller.email, ivm.password);
                 return View("GoToMail");
             }
-            return View(seller);
-        }
+         
+            return View(ivm);
 
+        }
         public ActionResult ControlVerefication(string email, string hash, string verefi)
         {
-
             if (string.Compare(hashed(email + hash), verefi) == 0)
                 Made_seller(email, verefi);
-            return View("Index", "Home");
+            //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA its didn't work
+            return View("~/Home");
 
         }
+
 
         private string PrepareVereficationLink(string email, string hash)
         {
@@ -96,19 +110,22 @@ namespace Kenguru_four_.Controllers
             string message = "Добрый день, для подтверждение вашего аккаунта пройдите по сcылке:";
             string hash = hashed(hashed(password));
             message += PrepareVereficationLink(email, hash);
-            SendEmail(email, "Подтверждение почтового адреса", message);
+            EmailService emailService = new EmailService();
+            emailService.SendEmail(email, "Подтверждение почтового адреса(2)", message);
         }
 
+      
         public void SendEmail(string receiver, string subject, string message)
         {
-            MailAddress senderEmail = new MailAddress("sadar.kengu@mail.ru", "Садар");
+
+            MailAddress senderEmail = new MailAddress("sadar.kengu@yandex.ru", "Садар");
             MailAddress receiverEmail = new MailAddress(receiver, "Receiver");
-            string password = "adminadminadminadmin";
+            string password = "adminadminadmin";
             string sub = subject;
             string body = message;
             SmtpClient smtp = new SmtpClient
             {
-                Host = "smtp.mail.ru",
+                Host = "smtp.yandex.ru",
                 Port = 2525,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,

@@ -16,5 +16,7 @@ namespace Kenguru_four_
 
         [StringLength(20)]
         public string name { get; set; }
+
+        public virtual ICollection<Good> goods { get; set; }
     }
 }
