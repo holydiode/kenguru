@@ -142,8 +142,6 @@ a:any-link{
     width: 19%;
 }
 
-
-
 .wriper {
     width: 94%;
     min-width: 760px;
@@ -152,7 +150,6 @@ a:any-link{
     margin: 110px auto;
 }
 
-
 .footer {
     vertical-align: bottom;
     display: inline-block;
@@ -160,7 +157,7 @@ a:any-link{
     height: 100px;
     width: 100%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.5);
-    ;
+   
 }
 
 .glass-case {
@@ -296,3 +293,4 @@ a:any-link{
 .parametr:hover{
     font-weight: bold;
 }
+

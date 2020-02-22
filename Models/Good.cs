@@ -9,6 +9,9 @@ namespace Kenguru_four_
     [Table("kengu.goods")]
     public partial class Good
     {
+        public virtual ICollection<Order> orders { get; set; }
+
+        [Key]
         public int id { get; set; }
 
         [Column("id-seller")]

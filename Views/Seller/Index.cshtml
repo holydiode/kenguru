@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/ViewSeller.cshtml";
+
+}
+
+<div class="field avatar">
+    <img class="photo" src="https://i.pinimg.com/236x/b4/32/42/b432428d9fc277024eb5918f19b8cf35.jpg" width="400" height="500"/>
+</div>
+
+<div class="main-info">
+    <div class="field name">
+        @(((User)Session["User"]).id)
+    </div>
+    <div class="field info">
+    </div>
+</div>

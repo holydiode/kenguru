@@ -21,6 +21,35 @@ namespace Kenguru_four_.Controllers
             }
 
             return View();
+
+        }
+
+        public ActionResult Orders()
+        {
+            if( Session["User"] == null || ((User)Session["User"]).check() == false)
+            {
+                return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
+            }
+
+            KenguruDB dataBase = new KenguruDB();
+
+            List<Good> goods = dataBase.Sellers.Find(((User)Session["User"]).id).good.ToList();
+
+            List<Order> orderses = dataBase.Orders.ToList();
+
+            List<Order> orders = new List<Order>();
+
+            foreach( Good good in goods)
+            {
+                if (good.orders != null)
+                {
+                    orders.AddRange(good.orders);
+                }
+            }
+
+            ViewBag.Orders = orders;
+
+            return View();
         }
     }
 }

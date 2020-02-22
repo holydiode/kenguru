@@ -12,7 +12,9 @@ namespace Kenguru_four_
         public int id { get; set; }
 
         [Column("id-goods")]
-        public int? id_goods { get; set; }
+        public int? goodID { get; set; }
+
+        public virtual Good good { get; set; }
 
         public int? count { get; set; }
 
