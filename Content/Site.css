@@ -18,6 +18,7 @@ body {
     background-color: #fedc9e;
     margin: 0;
     font-family: montserrat;
+    min-width:800px;
 }
 
 a {
@@ -41,29 +42,25 @@ a:any-link{
 }
 
 .header-content {
-    position: relative;
-    display: inline-block;
-    height: 44px;
-    width: 82%;
+    height: 64px;
+    display:flex;
+    align-items:center;
+    position:relative;
+    width:80%;
     min-width: 760px;
-    margin-top: 26px;
-    margin-left: 9%;
-    margin-right: 9%;
+    max-width:1400px;
+    margin: 16px auto;
 }
 
 .logo {
     vertical-align: top;
-    display: inline-block;
-    width: 12%;
     min-width: 145px;
-    height: 100%;
-    margin-right: 0.5%;
+    margin-right: 10px;
     text-decoration: none;
 }
 
 
 .logo-title {
-    margin-top: -22%;
     color: white;
     font-family: galaxy;
     font-size: 5em;
@@ -76,20 +73,20 @@ a:any-link{
 
 .search-block {
     vertical-align: top;
-    display: inline-block;
     width: 58.6%;
-    height: 92%;
-    min-width: 400px;
     background-color: #ffeea3;
-    margin-right: 0.5%;
+    margin-right: 10px;
     border-radius: 10px;
     border-width: 2px;
     border-style: solid;
-    border-color: rgba(128,86,55);
+    border-color: rgb(128,86,55);
+}
+.search-block input{
+    font-size:120%;
 }
 
 .button-main {
-    background: rgba(128,86,55);
+    background: rgb(128,86,55);
     box-shadow: 1px 1px 20px 0.5px #222 inset;
     text-align: center;
     border-radius: 5px;
@@ -182,32 +179,39 @@ a:any-link{
     border-color: rgb(247, 197, 110);
     border-width: 2px;
     border-style: solid;
-    padding: 0.5%;
-}
+    padding: 5px;
 
+    display:flex;
+}
+.goods-col{
+    margin:0px 2px 0px 2px;
+}
+.goods-line{
+}
 .goods-field {
     background: rgb(251,235,166);
     border-color: rgb(247, 197, 110);
     border-width: 2px;
     border-style: solid;
-    padding: 0.5%;
+    margin:1px;
 }
 
 .goods-intro {
-    vertical-align: top;
-    display: inline-block;
-    width: 16%;
-    height: 92%;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 0.5%;
+    flex: 1 1 0px;
+}
+
+.goods-right {
+    flex: 3 1 0px;
+    display: flex;
+    flex-flow: column;
 }
 
 .goods-info {
-    height: 65%;
-    width:100%;
+    flex-grow:1;
+    padding:5px;
 }
-
 
 .goods-info-title {
     font-weight: bold;
@@ -218,38 +222,27 @@ a:any-link{
 .goods-info-short {
     display: block;
     font-size: 90%;
-    margin-top: 0.5%;
+    margin-top: 10px;
 }
 
 .goods-price {
-    vertical-align: top;
-    display: inline-block;
-    width: 44%;
     text-align:center;
     margin-top: 0.5%;
     padding:  1.4%;
+    flex:2 1 0px;
 }
 
 .goods-seller {
-    vertical-align: top;
-    width: 55%;
     margin-top: 0.5%;
-    padding:  1.4%;
+    padding: 1.4%;
     color: black;
-    float:right;
+    flex: 3 1 0px;
 }
 
-.goods-right {
-    vertical-align: top;
-    width: 65%;
-    height: 92%;
-    display: inline-block;
-    margin-left: 0.5%;
-}
-.goods-buttons{
-    display:inline-block;
-    height:100%;
-    width:17%;
+
+.goods-buttons {
+    flex: 1 1 0px;
+    padding-top:3px;
 }
 
 .button-sell {
@@ -263,20 +256,12 @@ a:any-link{
 
 .sorting{
     background: rgb(128,86,55);
-    min-width: 1100px;
-    height: 5%;
     border-radius: 10px;
     display: block;
-    width:88%;
     margin:0 auto;
-
-    margin-bottom: 1%;
-
-
-
-    padding-left: 10%;
-    padding-right: 10%;
-
+    min-width:950px;
+    text-align:center;
+    margin-bottom: 10px;
 }
 
 .parametr{
