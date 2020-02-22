@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Подключаем Bootstrap CSS -->
-  <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/Site.css">
     <link rel="stylesheet" href="~/Content/Auth.css">
     @RenderSection("links", false)
@@ -15,26 +15,24 @@
 <body>
 
     <div class="header">
-        <div>
-            <div class="header-content">
-                <a href="/Home/Index" class="logo">
-                    <div class="logo-title">Садар</div>
-                </a>
+        <div class="header-content">
+            <a href="/Home/Index" class="logo">
+                <div class="logo-title">Садар</div>
+            </a>
 
-                <div class="search-block">
-                    <form method="get">
-                        <input type="text" class="search-field" name="search" placeholder="Поиск по сайту" value="@RenderSection("search", false)">
-                        <button class="serch-button" type="submit">🔎</button>
-                    </form>
-                </div>
-            
-                <a class="button-main bascet" href="/Cart/Index">
-                    Корзина
-                </a>
+            <div class="search-block">
+                <form method="get" style="height:40px">
+                    <input type="text" class="search-field" name="search" placeholder="Поиск по сайту" value="@RenderSection("search", false)">
+                    <button class="serch-button" type="submit">🔎</button>
+                </form>
             </div>
+
+            <a class="button-main bascet" href="/Cart/Index">
+                Корзина
+            </a>
         </div>
-      
     </div>
+
 
     <div class="wriper">
         @RenderBody()

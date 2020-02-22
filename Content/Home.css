@@ -1,0 +1,21 @@
+﻿.categories {
+    width: 25%;
+    min-height: 500px;
+}
+
+.category {
+    margin-top: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: #ffeea3;
+    background: rgb(128,86,55);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+.wriper {
+    display: flex;
+    flex-flow:column;
+}
