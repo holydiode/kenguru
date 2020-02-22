@@ -63,7 +63,6 @@ namespace Kenguru_four_.Controllers
             return View();
         }
 
-
         public ActionResult Index(Seller seller)
         {
             if (ModelState.IsValid)
@@ -72,8 +71,8 @@ namespace Kenguru_four_.Controllers
                 return View("GoToMail");
             }
             return View(seller);
-
         }
+
         public ActionResult ControlVerefication(string email, string hash, string verefi)
         {
 
@@ -82,7 +81,6 @@ namespace Kenguru_four_.Controllers
             return View("Index", "Home");
 
         }
-
 
         private string PrepareVereficationLink(string email, string hash)
         {
@@ -103,7 +101,6 @@ namespace Kenguru_four_.Controllers
 
         public void SendEmail(string receiver, string subject, string message)
         {
-
             MailAddress senderEmail = new MailAddress("sadar.kengu@mail.ru", "Садар");
             MailAddress receiverEmail = new MailAddress(receiver, "Receiver");
             string password = "adminadminadminadmin";

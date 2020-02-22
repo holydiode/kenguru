@@ -1,17 +1,24 @@
-﻿<!DOCTYPE html>
-<html>
+﻿
+@{
+    ViewBag.Title = "ViewSeller";
+}
+
+<h2>ViewSeller</h2>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Подключаем Bootstrap CSS -->
-  <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/Site.css">
+    <link rel="stylesheet" href="~/Content/Seller.css">
     <link rel="stylesheet" href="~/Content/Auth.css">
     @RenderSection("links", false)
 
     <title>@ViewBag.Title - My ASP.NET Application</title>
 </head>
+
 <body>
     <div class="header">
         <div>
@@ -20,19 +27,30 @@
                     <div class="logo-title">Садар</div>
                 </a>
 
-                <div class="search-block">
-                    <form method="get">
-                        <input type="text" class="search-field" name="search" placeholder="Поиск по сайту" value="@RenderSection("search", false)">
-                        <button class="serch-button" type="submit">🔎</button>
-                    </form>
-                </div>
-            
-                <a class="button-main bascet" href="/Cart/Index">
-                    Корзина
+                <a class="seller-button">
+                    ветрина
                 </a>
+
+                <a class="seller-button">
+                    товары
+                </a>
+
+                <a class="seller-button">
+                    заказы
+                </a>
+
+                <a class="seller-button">
+                    продажи
+                </a>
+
+                <a class="seller-button last-button">
+                    настройки
+                </a>
+
+
             </div>
         </div>
-      
+
     </div>
 
     <div class="wriper">
@@ -42,4 +60,5 @@
     <div class="footer">
     </div>
 </body>
-</html>
+
+

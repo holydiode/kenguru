@@ -22,8 +22,12 @@ namespace Kenguru_four_
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Good>().HasRequired(a => a.seller).WithMany(g => g.good);
-            modelBuilder.Entity<Good>().MapToStoredProcedures();
+            modelBuilder.Entity<Order>().HasRequired(a => a.good).WithMany(g => g.orders);
+
+
+
             modelBuilder.Entity<Category>()
                 .Property(e => e.name)
                 .IsUnicode(false);

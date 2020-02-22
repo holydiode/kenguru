@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Orders";
+}
+
+<h2>Orders</h2>
+
+@foreach (Order order in ViewBag.Orders)
+{
+<h1>@order.good.title </h1>
+}
