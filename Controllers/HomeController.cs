@@ -11,7 +11,8 @@ namespace Kenguru_four_.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            KenguruDB db = new KenguruDB();
+            return View(db);
         }
     }
 }

@@ -1,21 +1,22 @@
-﻿
+﻿@model KenguruDB
 @{
     ViewBag.Title = "Index";
 }
 @section links{
     <link rel="stylesheet" href="~/Content/Home.css">
+    <script type="text/javascript" src="~/Content/js/AppearMenu.js"></script>
 }
 
 
-<div class="categories">
-    <ul>
+<div class="categories" >
         @{
-            KenguruDB db = new KenguruDB();
-            foreach (Category category in db.Categories)
+            foreach (Category category in Model.Categories.ToList())
             {
-                <li class="category">@category.name</li>
+                <div id="dropdown-item" class="category">
+                    <a class="category-link" href="#">@category.name</a>
+                    @Html.Partial("SubMenu", category.subCategories)
+                </div>
             }
         }
 
-    </ul>
 </div>
