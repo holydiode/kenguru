@@ -255,30 +255,25 @@ a:any-link{
 }
 
 .sorting{
+    width:87%;
     background: rgb(128,86,55);
     border-radius: 10px;
-    display: block;
-    margin:0 auto;
+    margin:10px auto 10px auto;
     min-width:950px;
     text-align:center;
-    margin-bottom: 10px;
 }
 
-.parametr{
+.parametr {
     display: inline-block;
     color: rgb(251,235,166);
     font-size: 120%;
-
     margin-top: 0.1%;
-    margin-bottom:  0.1%;
-
-
+    margin-bottom: 0.1%;
     text-decoration: none;
     font-family: Vollkorn;
     padding-right: 3.2%;
     padding-left: 3.2%;
     font-weight: normal;
-    
     border-left-style: solid;
     border-left-width: 1px;
     border-color: rgb(251,235,166);

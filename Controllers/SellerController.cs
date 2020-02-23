@@ -12,7 +12,7 @@ namespace Kenguru_four_.Controllers
         public ActionResult Index()
         {
             if (Session["User"] == null || ((User)Session["User"]).check() == false) {
-                return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
             }
 
             KenguruDB dataBase = new KenguruDB();
@@ -26,7 +26,7 @@ namespace Kenguru_four_.Controllers
         {
             if (Session["User"] == null || ((User)Session["User"]).check() == false)
             {
-                return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
             }
 
             return View();
@@ -37,7 +37,7 @@ namespace Kenguru_four_.Controllers
         {
             if( Session["User"] == null || ((User)Session["User"]).check() == false )
             {
-                return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
             }
 
             KenguruDB dataBase = new KenguruDB();
@@ -66,7 +66,7 @@ namespace Kenguru_four_.Controllers
         {
             Session["User"] = null;
             Session.Abandon();
-            return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority));
+            return Redirect(Request.Url.GetLeftPart(UriPartial.Authority));
         }
 
     }

@@ -1,0 +1,37 @@
+﻿.parent-name{
+    font-size:2em;
+    margin-left:20px;
+}
+.categories-container {
+    display:flex;
+    flex-flow:wrap;
+}
+.category-block {
+    display: flex;
+    flex-flow:column;
+    justify-items:center;
+    height: 300px;
+    width: 250px;
+    margin: 10px;
+    background: rgb(251,235,166);
+    border-color: rgb(247, 197, 110);
+    border-width: 2px;
+    border-style: solid;
+}
+.category-intro{
+    background-color:rebeccapurple;
+    flex:8 1 0px;
+}
+.category-name {
+    flex: 1 1 0px;
+    text-align:center;
+    font-size:1.4em;
+}
+
+
+.title-request{
+    font-size: 2em;
+    padding-left:30px;
+    margin-bottom:10px;
+    border-bottom:1px solid rgba(128, 128, 128, 0.6);
+}

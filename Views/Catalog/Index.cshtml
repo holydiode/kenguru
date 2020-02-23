@@ -1,0 +1,14 @@
+﻿@model IndexViewModel
+@using Kenguru_four_.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section links{
+    <link rel="stylesheet" href="~/Content/Catalog.css">
+}
+
+<div class="title-request">@ViewBag.InfoTitleLabel</div>
+
+@Html.Partial("~/Views/Partial/GoodsPages.cshtml", Model)
+
