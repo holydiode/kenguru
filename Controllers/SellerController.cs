@@ -29,15 +29,13 @@ namespace Kenguru_four_.Controllers
                 return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
             }
 
-
-
             return View();
         }
 
 
         public ActionResult Orders()
         {
-            if( Session["User"] == null || ((User)Session["User"]).check() == false)
+            if( Session["User"] == null || ((User)Session["User"]).check() == false )
             {
                 return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
             }
@@ -46,7 +44,7 @@ namespace Kenguru_four_.Controllers
 
             ViewBag.User = dataBase.Sellers.Find(((User)Session["User"]).id);
 
-            List<Good> goods = ViewBag.User.good.ToList();
+            List<Good> goods = dataBase.Sellers.Find(((User)Session["User"]).id).good.ToList();
 
             List<Order> orderses = dataBase.Orders.ToList();
 
@@ -63,5 +61,13 @@ namespace Kenguru_four_.Controllers
             ViewBag.Orders = orders;
             return View();
         }
+
+        public RedirectResult Exit()
+        {
+            Session["User"] = null;
+            Session.Abandon();
+            return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority));
+        }
+
     }
 }

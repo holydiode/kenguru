@@ -1,8 +1,18 @@
 ﻿@{
+    Layout = "~/Views/Shared/ViewSeller.cshtml";
     ViewBag.Title = "Orders";
 }
 
-<h2>Orders</h2>
+<div class="sorting">
+    <div class="parametr parametr-first">
+    </div>
+    <div class="parametr">
+    </div>
+    <div class="parametr">
+    </div>
+    <div class="parametr">
+    </div>
+</div>
 
 @foreach (Order order in ViewBag.Orders)
 {
