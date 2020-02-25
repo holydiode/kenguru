@@ -29,9 +29,9 @@ namespace Kenguru_four_.Controllers
 
                 ViewBag.Title = ViewBag.InfoTitleLabel =  category.name;
             }
-            currGoods = db.goods.Where(x => (categoryId == null || x.categoryID == categoryId)).ToList();     //запросим товары по категории или все
+            currGoods = db.goods.Where(x => categoryId == null || x.categoryID == categoryId).ToList();     //запросим товары по категории или все
             //обработка поискового запроса (если он есть)
-           /* if (search != null)
+            if (search != null)
             {
                 string[] searchQuery = search.Split(new char[] { ' ', '.', '/', ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -70,7 +70,7 @@ namespace Kenguru_four_.Controllers
                     currGoods.Add(item.good);
                 }
             }
-            */
+            
 
 
             //индекс самого верхнего элемента, отображаемого на текущей странице
