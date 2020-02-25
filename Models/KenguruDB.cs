@@ -50,7 +50,7 @@ namespace Kenguru_four_
                 .IsUnicode(false);
 
             modelBuilder.Entity<Order>()
-                .Property(e => e.adres)
+                .Property(e => e.adress)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Order>()

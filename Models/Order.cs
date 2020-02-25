@@ -26,12 +26,14 @@ namespace Kenguru_four_
         public string track { get; set; }
 
         [StringLength(200)]
-        public string adres { get; set; }
+        public string adress { get; set; }
 
         [StringLength(15)]
         public string phone { get; set; }
 
         [StringLength(30)]
         public string email { get; set; }
+
+        public string time { get; set; }
     }
 }
