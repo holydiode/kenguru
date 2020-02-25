@@ -1,0 +1,19 @@
+﻿@model  Category
+@{
+    ViewBag.Title = "Index";
+}
+@section links{
+    <link rel="stylesheet" href="~/Content/Catalog.css">
+}
+
+<div class="parent-name">@Model.name</div>
+
+<div class="categories-container">
+    @foreach(Category category in Model.subCategories)
+    {
+        <a href="@Url.Action("Index", new { categoryId = category.id })" class="category-block">
+            <div class="category-intro"></div>
+            <div class="category-name">@category.name</div>
+        </a>
+    }
+</div>

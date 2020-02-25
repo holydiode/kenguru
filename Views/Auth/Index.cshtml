@@ -15,11 +15,10 @@
         <div class="login">
             <div class="desc-auth">
                 <div class="editor-label">
-                    @Html.LabelFor(model =>model.seller.email)
+                    @Html.LabelFor(model => model.seller.email)
                 </div>
                 <div name="email" class=" editor-field textbox" required>
                     @Html.EditorFor(model => model.seller.email, new { @class = "form-control", @required = "required" })
-
                     @Html.ValidationMessageFor(model => model.seller.email)
                 </div>
             </div>
@@ -31,7 +30,6 @@
                     @Html.LabelFor(model => model.password)
                 </div>
                 <div name="password" class=" editor-field textbox" input required>
-
                     @Html.EditorFor(model => model.password)
                     @Html.ValidationMessageFor(model => model.password)
                 </div>
@@ -43,7 +41,6 @@
                     @Html.LabelFor(model => model.secPassword)
                 </div>
                 <div name="secPassword" class=" editor-field textbox" input required>
-
                     @Html.EditorFor(model => model.secPassword)
                     @Html.ValidationMessageFor(model => model.secPassword)
                 </div>

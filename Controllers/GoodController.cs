@@ -6,15 +6,13 @@ using System.Web.Mvc;
 
 namespace Kenguru_four_.Controllers
 {
-    public class HomeController : Controller
+    public class GoodController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
+        // GET: Good
+        public ActionResult Index(int id)
         {
             KenguruDB db = new KenguruDB();
-            return View(db);
+            return View(db.goods.Find(id));
         }
-
-     
     }
 }

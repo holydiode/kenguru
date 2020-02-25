@@ -19,12 +19,45 @@ namespace Kenguru_four_.Models
                 return (int)res;
             }
         }
-        public string Search { get; set; }
-        public int sortBy { get; set; }
+
     }
     public class IndexViewModel
     {
         public PageInfo PageInfo { get; set; }
         public List<Good> Goods { get; set; }
+        public int SortBy { get; set; }
+        public string Search { get; set; }
+        public int? CategoryId { get; set; }
+        public void SortGoods()
+        {
+            switch (SortBy)
+            {
+                case 1:
+                    Goods.Sort((x, y) => String.Compare(x.title, y.title));
+                    break;
+                case 2:
+                    Goods.Sort((x, y) => -String.Compare(x.title, y.title));
+                    break;
+                case 11:
+                    Goods.Sort((x, y) => (int)(x.price - y.price));
+                    break;
+                case 12:
+                    Goods.Sort((x, y) => (int)(y.price - x.price));
+                    break;
+                case 21:
+                    Goods.Sort((x, y) => (int)(x.seles - y.seles));
+                    break;
+                case 22:
+                    Goods.Sort((x, y) => (int)(y.seles - x.seles));
+                    break;
+                case 31:
+                    Goods.Sort((x, y) => (int)(x.seller.reiting - y.seller.reiting));
+                    break;
+                case 32:
+                    Goods.Sort((x, y) => (int)(y.seller.reiting - x.seller.reiting));
+                    break;
+            }
+        }
+
     }
 }
