@@ -28,11 +28,11 @@ namespace Kenguru_four_.Controllers
             string hash = hashed(hashed(password));
 
             if (ControlUser(email, hash)) {
-                return RedirectPermanent(Request.Url.GetLeftPart(UriPartial.Authority) + "/seller");
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/seller");
             }
             else
             {
-                return RedirectPermanent(Url.Action("/Enter", new {warning = true}));
+                return Redirect(Url.Action("/Enter", new {warning = true}));
             }
         }
 

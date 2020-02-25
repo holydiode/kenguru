@@ -3,16 +3,31 @@
     ViewBag.Title = "Orders";
 }
 
-<div class="sorting">
-    <div class="parametr parametr-first">
+    <div class="sorting">
+        <div class="parametr parametr-first">
+
+        </div>
+        <div class="parametr">
+            дата
+        </div>
+        <div class="parametr">
+            наименование
+        </div>
+        <div class="parametr">
+            количество
+        </div>
+        <div class="parametr">
+            стоймость
+        </div>
+
+        <div class="parametr">
+            адрес доставки
+        </div>
+
+        <div class="parametr">
+            статус
+        </div>
     </div>
-    <div class="parametr">
-    </div>
-    <div class="parametr">
-    </div>
-    <div class="parametr">
-    </div>
-</div>
 
 @foreach (Order order in ViewBag.Orders)
 {
