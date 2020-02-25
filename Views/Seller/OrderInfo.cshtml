@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "OrderInfo";
+    Layout = "~/Views/Shared/ViewSeller.cshtml";
+    Order order = ViewBag.Order;
+}
+    
+
+    <table>
+        <tr>
+            <td>Товар</td>
+            <td>@order.good.title</td>
+        </tr>
+
+        <tr>
+            <td>Количсество заказано</td>
+            <td>@order.count</td>
+        </tr>
+
+        <tr>
+            <td>Цена за еденицу</td>
+            <td>@order.good.price</td>
+        </tr>
+
+        <tr>
+            <td>Общая цена заказа</td>
+            <td>@order.price</td>
+        </tr>
+
+        <tr>
+            <td>Адрес доставки</td>
+            <td>@order.adress</td>
+        </tr>
+
+        <tr>
+            <td>Почтовый адрес получателя</td>
+            <td>@order.email</td>
+        </tr>
+
+        <tr>
+            <td>Телефон получателя</td>
+            <td>@order.phone</td>
+        </tr>
+
+    </table>
+

@@ -63,6 +63,28 @@ namespace Kenguru_four_.Controllers
             return View();
         }
 
+        public ActionResult OrderInfo(int IdOrder = -1)
+        {
+            if (Session["User"] == null || ((User)Session["User"]).check() == false)
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
+            }
+
+            KenguruDB dataBase = new KenguruDB();
+
+            Order order = dataBase.Orders.Find(IdOrder);
+
+            if (order == null || order.good.sellerID != ((User)Session["User"]).id) {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/seller/orders");
+            }
+
+            ViewBag.Order = order;
+
+            return View();
+        }
+
+
+
         public RedirectResult Exit()
         {
             Session["User"] = null;

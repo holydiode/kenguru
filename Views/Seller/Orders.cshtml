@@ -5,9 +5,6 @@
 
     <div class="sorting">
         <div class="parametr parametr-first">
-
-        </div>
-        <div class="parametr">
             дата
         </div>
         <div class="parametr">
@@ -19,17 +16,54 @@
         <div class="parametr">
             стоймость
         </div>
-
         <div class="parametr">
             адрес доставки
         </div>
-
         <div class="parametr">
             статус
         </div>
     </div>
 
-@foreach (Order order in ViewBag.Orders)
-{
-<h1>@order.good.title </h1>
-}
+    <div class="">
+        @foreach (Order order in ViewBag.Orders)
+        {
+        <div class="">
+
+            <div class="">
+                @order.time
+            </div>
+
+            <div class="">
+                @order.good.title
+            </div>
+
+            <div class="">
+                @order.count
+            </div>
+
+            <div class="">
+                @order.good.title
+            </div>
+
+            <div class="">
+                @order.good.price
+            </div>
+
+            <div class="">
+                @order.adress
+            </div>
+
+            <div class="">
+                @order.status
+            </div>
+
+            <div class="">
+                <a href="@Url.Action( Url.Content("~/orderinfo"), new {IdOrder = order.id} )">
+            </div>
+            
+        </div>
+        }
+    </div>
+        
+
+
