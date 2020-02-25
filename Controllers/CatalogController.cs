@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -37,7 +38,7 @@ namespace Kenguru_four_.Controllers
 
 
             currGoods = db.goods.Where(x => (categoryId == null || x.categoryID == categoryId)
-            && (search == null || isSearchable(x, search))).ToList();     //запросим товары по категории или по поиску или все
+            && (search == null || isSearchable(x, search) == true)).ToList();     //запросим товары по категории или по поиску или все
 
             int startIndex = (page - 1) * pageSize;
             int count = (startIndex + pageSize) < currGoods.Count ? pageSize : currGoods.Count - startIndex;
@@ -57,6 +58,7 @@ namespace Kenguru_four_.Controllers
 
         private bool isSearchable(Good good, string search)
         {
+            string[] searchQuery = search.Split(new char[] { ' ', '.', '/' , ',', '-'}, StringSplitOptions.RemoveEmptyEntries);
             return true;
         }
 
