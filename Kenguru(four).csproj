@@ -200,6 +200,7 @@
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\GoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="HtmlHelpers\CatalogHelper.cs" />
     <Compile Include="HtmlHelpers\EmailService.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Seller.cs" />

@@ -64,10 +64,21 @@ namespace Kenguru_four_.Models
     }
 
     //представление товара с коэффициентом его ролевантности запросу
-    public class ViewGood
+    public class ViewGood 
     {
-        ViewGood(Good god, double koeff = 1) { good = god; koef = koeff; }
+        public ViewGood(Good god) { 
+            good = god;
+            words = good.title.Split(new char[] { ' ', '.', '/', ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
+        }
         public Good good { get; set; }
-        public double koef { get; set; }
+    
+        //переопределение метода сравнения по совпалению товара запросу
+        //для того, чтобы можно было отсортировать 
+     
+        //количество соответсвий товара поисковым запросам
+        public int countMatches = 0;
+        public static int sizeQuer;
+        public string[] words;
+        
     }
 }
