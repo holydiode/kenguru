@@ -14,7 +14,7 @@ namespace Kenguru_four_.Controllers
 
         private int pageSize = 10;
 
-        public ActionResult Index(int? categoryId = null, int page = 1, int sortBy = 1, string search = null)
+        public ActionResult Index(int? categoryId = null, int page = 1, int sortBy = 0, string search = null)
         {
             if (categoryId != null)
             {
@@ -36,24 +36,28 @@ namespace Kenguru_four_.Controllers
             }
 
 
-            currGoods = db.goods.Where(x => categoryId == null || x.categoryID == categoryId).ToList();     //запросим товары по категории или все
+            currGoods = db.goods.Where(x => (categoryId == null || x.categoryID == categoryId)
+            && (search == null || isSearchable(x, search))).ToList();     //запросим товары по категории или по поиску или все
 
             int startIndex = (page - 1) * pageSize;
             int count = (startIndex + pageSize) < currGoods.Count ? pageSize : currGoods.Count - startIndex;
-            currGoods = currGoods.GetRange(startIndex, count);
 
             IndexViewModel viewModel = new IndexViewModel           //это все мы отправим в представление
             {
                 PageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = currGoods.Count },
                 SortBy = sortBy,
                 Search = search,
-                Goods = currGoods,
+                Goods = currGoods.GetRange(startIndex, count),
                 CategoryId = categoryId
             };
+            
             viewModel.SortGoods();      //сортируем товары
             return View(viewModel);
+        }
 
-
+        private bool isSearchable(Good good, string search)
+        {
+            return true;
         }
 
 

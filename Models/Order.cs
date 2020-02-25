@@ -35,5 +35,7 @@ namespace Kenguru_four_
 
         [StringLength(30)]
         public string email { get; set; }
+
+        public string time { get; set; }
     }
 }

@@ -69,13 +69,14 @@ namespace Kenguru_four_.Controllers
         public ActionResult Index(SellerIVM ivm)
         {
             KenguruDB db = new KenguruDB();
-           
+      
             if (ModelState.IsValid )
             {
                 var emails = db.Sellers.Select(x => x.email);
                 foreach(string email in emails)
                     if(email == ivm.seller.email)
                     {
+                        ModelState.AddModelError("ivm.seller.email", "Пользователь с таким именем уже зарегестрирован");
                         return View(ivm);
                     }
 
