@@ -32,6 +32,7 @@ namespace Kenguru_four_.Models
         {
             switch (SortBy)
             {
+                case 0: //сортировка по коефу
                 case 1:
                     Goods.Sort((x, y) => String.Compare(x.title, y.title));
                     break;
@@ -60,4 +61,8 @@ namespace Kenguru_four_.Models
         }
 
     }
-}
+
+    public class ViewGood : Good
+    {
+        public double koef { get; set; }
+    }
