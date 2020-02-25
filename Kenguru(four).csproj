@@ -197,9 +197,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\GoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="HtmlHelpers\EmailService.cs" />
+    <Compile Include="htmlHelpers\EmailService.cs" />
+    <Compile Include="htmlHelpers\CatalogHelper.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Seller.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -212,7 +214,7 @@
     <Compile Include="Models\Good.cs" />
     <Compile Include="Models\KenguruDB.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="HtmlHelpers\PagingHelpers.cs" />
+    <Compile Include="htmlHelpers\PagingHelpers.cs" />
     <Compile Include="Models\Cart\Cart.cs" />
     <Compile Include="Models\Cart\CartIndexViewModel.cs" />
     <Compile Include="Models\PageInfo.cs" />
@@ -227,9 +229,9 @@
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\Catalog.css" />
     <Content Include="Content\Good.css" />
     <Content Include="Content\Home.css" />
-    <Content Include="Content\js\AppearMenu.js" />
     <Content Include="Content\Seller.css" />
     <Content Include="favicon.ico" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
@@ -268,11 +270,14 @@
     <Content Include="Views\Seller\Index.cshtml" />
     <Content Include="Views\Seller\Orders.cshtml" />
     <Content Include="Views\Shared\ViewSeller.cshtml" />
-    <Content Include="Views\Home\SubMenu.cshtml" />
     <Content Include="Views\Seller\Property.cshtml" />
+    <Content Include="Views\Catalog\SubCategories.cshtml" />
+    <Content Include="Views\Partial\GoodsPages.cshtml" />
+    <Content Include="Views\Catalog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\js\" />
     <Folder Include="UploadFIles\3\" />
   </ItemGroup>
   <ItemGroup>
