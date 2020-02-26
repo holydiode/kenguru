@@ -29,9 +29,9 @@ namespace Kenguru_four_.Controllers
             }
             return RedirectToAction("index", new { returnUrl });
         }
-        public RedirectToRouteResult RemoveFromCart(int godId, string returnUrl)
+        public RedirectToRouteResult RemoveFromCart(int id, string returnUrl)
         {
-            Good god = dataBase.goods.FirstOrDefault(g => g.id == godId);
+            Good god = dataBase.goods.FirstOrDefault(g => g.id == id);
             if (god != null)
             {
                 GetCart().RemoveLine(god);
