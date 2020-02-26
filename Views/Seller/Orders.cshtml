@@ -23,46 +23,46 @@
         </div>
     </div>
 
-    <div class="">
+    <table class="">
         @foreach (Order order in ViewBag.Orders)
         {
-        <div class="">
+        <tr class="">
 
-            <div class="">
+            <td class="">
                 @order.time
-            </div>
+            </td>
 
-            <div class="">
+            <td class="">
                 @order.good.title
-            </div>
+            </td>
 
-            <div class="">
+            <td class="">
                 @order.count
-            </div>
+            </td>
 
-            <div class="">
+            <td class="">
                 @order.good.title
-            </div>
+            </td>
 
-            <div class="">
+            <td class="">
                 @order.good.price
-            </div>
+            </td>
 
-            <div class="">
+            <td class="">
                 @order.adress
-            </div>
+            </td>
 
-            <div class="">
+            <td class="">
                 @order.status
-            </div>
+            </td>
 
             <div class="">
                 <a href="@Url.Action( Url.Content("~/orderinfo"), new {IdOrder = order.id} )"> подробнее </a>
             </div>
             
-        </div>
+        </tr>
         }
-    </div>
+    </table>
         
 
 
