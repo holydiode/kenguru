@@ -5,6 +5,8 @@ using System.Web;
 
 namespace Kenguru_four_
 {
+    public enum StatusOrder{NotPai, Weit, Sent, Complit, Cancel}
+
     public class User
     {
         public int id { set; get; }

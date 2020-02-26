@@ -4,43 +4,65 @@
     Layout = "~/Views/Shared/ViewSeller.cshtml";
     Order order = ViewBag.Order;
 }
-    
 
-    <table>
-        <tr>
-            <td>Товар</td>
-            <td>@order.good.title</td>
-        </tr>
 
-        <tr>
-            <td>Количсество заказано</td>
-            <td>@order.count</td>
-        </tr>
+<table>
+    <tr>
+        <td>Товар</td>
+        <td>@order.good.title</td>
+    </tr>
 
-        <tr>
-            <td>Цена за еденицу</td>
-            <td>@order.good.price</td>
-        </tr>
+    <tr>
+        <td>Количсество заказано</td>
+        <td>@order.count</td>
+    </tr>
 
-        <tr>
-            <td>Общая цена заказа</td>
-            <td>@order.price</td>
-        </tr>
+    <tr>
+        <td>Цена за еденицу</td>
+        <td>@order.good.price</td>
+    </tr>
 
-        <tr>
-            <td>Адрес доставки</td>
-            <td>@order.adress</td>
-        </tr>
+    <tr>
+        <td>Общая цена заказа</td>
+        <td>@order.price</td>
+    </tr>
 
-        <tr>
-            <td>Почтовый адрес получателя</td>
-            <td>@order.email</td>
-        </tr>
+    <tr>
+        <td>Адрес доставки</td>
+        <td>@order.adress</td>
+    </tr>
 
-        <tr>
-            <td>Телефон получателя</td>
-            <td>@order.phone</td>
-        </tr>
+    <tr>
+        <td>Почтовый адрес получателя</td>
+        <td>@order.email</td>
+    </tr>
 
-    </table>
+    <tr>
+        <td>Телефон получателя</td>
+        <td>@order.phone</td>
+    </tr>
+
+</table>
+
+@if (order.status == (int)StatusOrder.Weit)
+{
+    <h1>Товар ождианет отправки</h1>
+    <a href=" @Url.Action(Url.Content("~/OrdederStatusChange"), new { IdOrder = order.id, newStatus = (int)StatusOrder.Cancel}) ">отменить заказ</a>
+    <a>отправить товар</a>
+    <a href=" @Url.Action(Url.Content("~/OrdederStatusChange"), new { IdOrder = order.id, newStatus = (int)StatusOrder.Sent}) ">отметить товар как отправленный</a>
+}
+
+
+@if (order.status == (int)StatusOrder.Sent)
+{
+    <h1>Товар ождианет доставки</h1>
+    <a href="@Url.Action(Url.Content("~/OrdederStatusChange"), new { IdOrder = order.id, newStatus = (int)StatusOrder.Weit})">отметить товар как не отправенный</a>
+}
+
+
+@if (order.status == (int)StatusOrder.Complit)
+{
+    <h1>Товар доставлен</h1>
+}
+
 

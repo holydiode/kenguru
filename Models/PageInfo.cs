@@ -12,7 +12,8 @@ namespace Kenguru_four_.Models
         public int TotalItems { get; set; } // всего объектов
         public int TotalPages   // всего страниц
         {
-            get {
+            get
+            {
                 float res = (TotalItems) / PageSize;
                 if (TotalItems % PageSize != 0)
                     res += 1;
@@ -59,10 +60,5 @@ namespace Kenguru_four_.Models
                     break;
             }
         }
-
     }
-
-    public class ViewGood : Good
-    {
-        public double koef { get; set; }
-    }
+}
