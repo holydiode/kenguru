@@ -8,6 +8,7 @@ namespace Kenguru_four_.Models
     public class CartIndexViewModel
     {
         public Cart cart { get; set; }
+        //ссылка, по которой "продолжают покупки"
         public String ReturnUrl { get; set; }
     }
 }

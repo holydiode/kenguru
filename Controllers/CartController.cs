@@ -51,5 +51,10 @@ namespace Kenguru_four_.Controllers
             }
             return cart;
         }
+        //рисует на всех страницах инфу о корзине
+        public PartialViewResult Summary()
+        {
+            return PartialView(GetCart());
+        }
     }
 }
