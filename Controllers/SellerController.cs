@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Kenguru_four_.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace Kenguru_four_.Controllers
 {
@@ -127,14 +129,72 @@ namespace Kenguru_four_.Controllers
         }
 
 
+        public ActionResult Report(bool showAll = false, string radius =  "")
+        {
 
+            if (Session["User"] == null || ((User)Session["User"]).check() == false)
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
+            }
+
+            DateTime TimeFrom;
+
+            if ( string.Compare(radius, "") == 0)
+            {
+                TimeFrom = DateTime.Today;
+            }
+            else
+            {
+                TimeFrom = DateTime.Today;
+
+            }
+
+            TimeFrom = new DateTime(TimeFrom.Year, TimeFrom.Month, 01);
+            DateTime TimeTo = new DateTime(TimeFrom.Year, TimeFrom.Month, 01);
+            TimeTo = TimeTo.AddMonths(1);
+
+            int CountOrders = 0;
+            int CountCash = 0;
+            int CountSelles = 0;
+
+            KenguruDB dataBase = new KenguruDB();
+            List <GoodReport> reports  = new List<GoodReport>();
+
+            List<Good> goods = dataBase.Sellers.Find(((User)Session["User"]).id).good.ToList();
+
+            foreach(Good good in goods)
+            {
+                DateTime boop;
+
+                List<Order> orders = good.orders.Where(t => TimeFrom <=  (boop = Convert.ToDateTime(t.time)) && Convert.ToDateTime(t.time) < TimeTo).ToList();
+
+                GoodReport goodReport = new GoodReport(good, 0, 0, 0);
+
+                foreach(Order order in orders)
+                {
+                    goodReport.orders += 1;
+                    goodReport.sell += (int)order.count;
+                    goodReport.money += (int)order.price;
+                }
+
+                CountOrders += goodReport.orders;
+                CountCash += goodReport.money;
+                CountSelles += goodReport.sell;
+
+                reports.Add(goodReport);
+
+            }
+            ViewBag.MainReport = new GoodReport(null, CountSelles, CountOrders, CountCash);
+            ViewBag.AllReport = reports;
+            return View();
+        }
 
 
         public RedirectResult Exit()
         {
             Session["User"] = null;
-            Session.Abandon();
             return Redirect(Request.Url.GetLeftPart(UriPartial.Authority));
         }
+
     }
 }
