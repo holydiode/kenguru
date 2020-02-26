@@ -59,6 +59,7 @@ namespace Kenguru_four_.Models
                     Goods.Sort((x, y) => (int)(y.seller.reiting - x.seller.reiting));
                     break;
             }
+
         }
 
     }
@@ -79,6 +80,6 @@ namespace Kenguru_four_.Models
         public int countMatches = 0;
         public static int sizeQuer;
         public string[] words;
-        
+
     }
 }

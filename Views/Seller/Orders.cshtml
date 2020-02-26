@@ -2,7 +2,6 @@
     Layout = "~/Views/Shared/ViewSeller.cshtml";
     ViewBag.Title = "Orders";
 }
-
     <div class="sorting">
         <div class="parametr parametr-first">
             дата
@@ -57,9 +56,9 @@
                 @order.status
             </td>
 
-            <td class="">
-                <a href="@Url.Action( Url.Content("~/orderinfo"), new {IdOrder = order.id} )">
-            </td>
+            <div class="">
+                <a href="@Url.Action( Url.Content("~/orderinfo"), new {IdOrder = order.id} )"> подробнее </a>
+            </div>
             
         </tr>
         }
