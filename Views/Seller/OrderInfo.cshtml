@@ -5,64 +5,68 @@
     Order order = ViewBag.Order;
 }
 
+    <div class="container-flex">
+        <table>
+            <tr>
+                <td>Товар</td>
+                <td>@order.good.title</td>
+            </tr>
 
-<table>
-    <tr>
-        <td>Товар</td>
-        <td>@order.good.title</td>
-    </tr>
+            <tr>
+                <td>Сколько заказано</td>
+                <td>@order.count</td>
+            </tr>
 
-    <tr>
-        <td>Количсество заказано</td>
-        <td>@order.count</td>
-    </tr>
+            <tr>
+                <td>Цена за единицу</td>
+                <td>@order.good.price</td>
+            </tr>
 
-    <tr>
-        <td>Цена за еденицу</td>
-        <td>@order.good.price</td>
-    </tr>
+            <tr>
+                <td>Общая цена заказа</td>
+                <td>@order.price</td>
+            </tr>
 
-    <tr>
-        <td>Общая цена заказа</td>
-        <td>@order.price</td>
-    </tr>
+            <tr>
+                <td>Адрес доставки</td>
+                <td>@order.adress</td>
+            </tr>
 
-    <tr>
-        <td>Адрес доставки</td>
-        <td>@order.adress</td>
-    </tr>
+            <tr>
+                <td>Почтовый адрес получателя</td>
+                <td>@order.email</td>
+            </tr>
 
-    <tr>
-        <td>Почтовый адрес получателя</td>
-        <td>@order.email</td>
-    </tr>
+            <tr>
+                <td>Телефон получателя</td>
+                <td>@order.phone</td>
+            </tr>
 
-    <tr>
-        <td>Телефон получателя</td>
-        <td>@order.phone</td>
-    </tr>
+        </table>
 
-</table>
-
-@if (order.status == (int)StatusOrder.Weit)
-{
-    <h1>Товар ождианет отправки</h1>
-    <a href=" @Url.Action(Url.Content("~/OrdederStatusChange"), new { IdOrder = order.id, newStatus = (int)StatusOrder.Cancel}) ">отменить заказ</a>
-    <a>отправить товар</a>
-    <a href=" @Url.Action(Url.Content("~/OrdederStatusChange"), new { IdOrder = order.id, newStatus = (int)StatusOrder.Sent}) ">отметить товар как отправленный</a>
-}
-
-
-@if (order.status == (int)StatusOrder.Sent)
-{
-    <h1>Товар ождианет доставки</h1>
-    <a href="@Url.Action(Url.Content("~/OrdederStatusChange"), new { IdOrder = order.id, newStatus = (int)StatusOrder.Weit})">отметить товар как не отправенный</a>
-}
-
-
-@if (order.status == (int)StatusOrder.Complit)
-{
-    <h1>Товар доставлен</h1>
-}
-
-
+        <div style="display:inline-block;">
+            <div class="status-order field">
+                <span>Статус заказа: </span>
+                @switch (order.status)
+                {
+                    case (int)StatusOrder.Weit:<span>Товар ожидает отправки</span>break;
+                    case (int)StatusOrder.Sent:<span>Товар ожидает доставки</span>break;
+                    case (int)StatusOrder.Complit:<span>Товар доставлен</span>break;
+                    default:<span>А хрен знает</span>break;
+                }
+            </div>
+            <div class="order-buttons">
+                @switch (order.status)
+                {
+                    case (int)StatusOrder.Weit:
+                        <a class="button-main" href=" @Url.Action(Url.Content("~/OrdederStatusChange"), new { IdOrder = order.id, newStatus = (int)StatusOrder.Cancel}) ">отменить заказ</a>
+                        <a class="button-main">отправить товар</a>
+                        <a class="button-main" href=" @Url.Action(Url.Content("~/OrdederStatusChange"), new { IdOrder = order.id, newStatus = (int)StatusOrder.Sent}) ">отметить товар как отправленный</a>
+                        break;
+                    case (int)StatusOrder.Sent:
+                        <a class="button-main" href="@Url.Action(Url.Content("~/OrdederStatusChange"), new { IdOrder = order.id, newStatus = (int)StatusOrder.Weit})">отметить товар как не отправенный</a>
+                        break;
+                }
+            </div>
+        </div>
+    </div>

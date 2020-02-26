@@ -4,43 +4,46 @@
     Layout = "~/Views/Shared/ViewSeller.cshtml";
 
 }
-
-<div class="field avatar">
-    <img class="photo" src="https://i.pinimg.com/236x/b4/32/42/b432428d9fc277024eb5918f19b8cf35.jpg" />
-</div>
-
-<div class="main-info">
-    <div class="field name">
-        @ViewBag.User.name
+<div class="container-flex">
+    <div class="column-flex field avatar">
+        <img class="photo" src="https://i.pinimg.com/236x/b4/32/42/b432428d9fc277024eb5918f19b8cf35.jpg" />
     </div>
-    <div class="field info">
-        @ViewBag.User.description
-    </div>
-</div>
 
-<div class="reit">
-    <div class="field star">
-        <div class="star-count">
-            @ViewBag.User.reiting / 88
+    <div class="column-flex main-info">
+        <div class="field name">
+            @ViewBag.User.name
         </div>
-        @for (int i = 0; i < ((int) (10 * ViewBag.User.reiting / 88 ) ); i++)
-        {
-            <div class="star-point-true">
-            </div>
-        }
-        
-        @for (int i = 0; i < 10 - ((int) (10 * ViewBag.User.reiting / 88 ) ); i++)
-        {
-            <div class="star-point-false">
-            </div>
-        }
+        <div class="field info">
+            @ViewBag.User.description
+        </div>
     </div>
-    <div class="field contact">
-        <h5 align = "center" >Контакты</h5>
-        <h5>телефон:</h5>
-        <h5>      @ViewBag.User.phone</h5>
-        <h5>Почта:</h5>
-        <h5>      @ViewBag.User.email</h5>
 
+    <div class="column-flex reit">
+        <div class="field star">
+            <div class="star-count">
+                @ViewBag.User.reiting / 100
+            </div>
+            <div class="stars-grid">
+                @for (int i = 0; i < ((int)(10 * ViewBag.User.reiting / 88)); i++)
+                {
+                    <div class="star-point star-point-true">
+                    </div>
+                }
+
+                @for (int i = 0; i < 10 - ((int)(10 * ViewBag.User.reiting / 88)); i++)
+                {
+                    <div class="star-point star-point-false">
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="field contact">
+            <h5 align="center">Контакты</h5>
+            <h5>телефон:</h5>
+            <h5>      @ViewBag.User.phone</h5>
+            <h5>Почта:</h5>
+            <h5>      @ViewBag.User.email</h5>
+
+        </div>
     </div>
 </div>

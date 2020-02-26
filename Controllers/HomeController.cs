@@ -12,9 +12,8 @@ namespace Kenguru_four_.Controllers
         public ActionResult Index()
         {
             KenguruDB db = new KenguruDB();
+            db.SaveChanges();
             return View(db);
         }
-
-     
     }
 }

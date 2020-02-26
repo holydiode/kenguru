@@ -1,29 +1,25 @@
 ﻿.header {
     background: linear-gradient(90deg, #4f7a5d, #3b6b4e, #4f7a5d);
-
     box-shadow: 0 6px 10px rgba(0,0,0,0.5);
-
     border-style: solid;
     border-width: 2px;
     border-color: #1c4f32;
 }
 
 .seller-button {
-    display: inline-block;
     color: #fae278;
     align-content: center;
     padding: 2%;
     border-left-style: solid;
     border-width: 2px;
     border-color: #1c4f32;
-    font-size: 200%;
-    margin: 0;
+    font-size: 1.5em;
 }
 
 
-.seller-button:hover {
-    color: #facb78 !important;
-}
+    .seller-button:hover {
+        color: #facb78 !important;
+    }
 
 
 .last-button {
@@ -34,8 +30,18 @@
 
 
 .wriper {
+    padding-top:5px;
     background: #93b8a2;
-    padding: 2%;
+}
+
+.container-flex {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.column-flex {
+    margin: 5px;
 }
 
 .field {
@@ -50,8 +56,8 @@
 }
 
 .avatar {
-    height: 52%;
-    width: 22.5%;
+    height: 300px;
+    width: 250px;
 }
 
 .photo {
@@ -63,13 +69,11 @@
 .main-info {
     vertical-align: top;
     display: inline-block;
-    height: 54.5%;
     width: 50%;
 }
 
 .name {
     display: block;
-    height: 10%;
     align-content: center;
     font-size: 200%;
     text-align: center;
@@ -77,62 +81,52 @@
 
 .info {
     display: block;
-    height: 83%;
     margin-top: 1%;
+    min-height: 200px;
+    white-space: pre-wrap;
 }
 
 .reit {
     vertical-align: top;
     display: inline-block;
-    height: 54.5%;
-    width: 23%;
+    width: 20%;
 }
 
 .star {
     display: block;
-    height: 20%;
-    align-content:center;
-    align-items:center;
+    align-content: center;
+    align-items: center;
 }
 
 .star-count {
-    display: block;
-    height: 30%;
     text-align: center;
 }
 
-.star-point-true {
-    width: 2em;
-    height: 2em;
-    margin: 1em 1em;
-    background: #02C986;
+.stars-grid {
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    height: 30px;
+}
+
+.star-point {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
     border-radius: 100% 0;
+    vertical-align: top;
 }
 
 .star-point-false {
-    display: inline-block;
-    width: 2em;
-    height: 2em;
-    vertical-align: top;
     background: #555;
-    border-radius: 100% 0;
-    margin: 0;
 }
 
 .star-point-true {
-    display: inline-block;
-    width: 2em;
-    height: 2em;
-    vertical-align: top;
     background: #02C986;
-    border-radius: 100% 0;
-    margin: 0;
 }
 
 
 .contact {
     display: block;
-    height: 75%;
     margin-top: 2%;
 }
 
@@ -141,4 +135,48 @@
     background: #378052;
     color: #fae278;
     text-align: initial;
+    min-width: 1100px;
 }
+
+.table{
+    width:92%;
+    margin:auto;
+    padding:10px;
+}
+
+.row-table {
+    display: grid;
+    width: 100%;
+    text-align: center;
+    grid-template-columns: 15% 17% 13% 12% 21% 7% 15%;
+    margin-bottom: 5px;
+    background: #e8d573;
+    border-radius: 10px;
+    font-size: 120%;
+}
+.row-first {
+    background: #378052;
+    margin-bottom: 10px;
+    color: rgb(251,235,166);
+    font-size:140%;
+}
+table {
+    background: #e8d573;
+    border-collapse:collapse;
+    font-size:120%;
+    display:inline-block;
+    margin-right:20px;
+}
+    table tr td {
+        border: 2px solid #378052;
+        padding:5px;
+    }
+    .button-main{
+        display:block;
+        margin-bottom:10px;
+    }
+    .status-order{
+        font-size:120%;
+        text-align:center;
+        margin-bottom:20px;
+    }
