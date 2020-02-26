@@ -59,6 +59,27 @@ namespace Kenguru_four_.Models
                     Goods.Sort((x, y) => (int)(y.seller.reiting - x.seller.reiting));
                     break;
             }
+
         }
+
+    }
+
+    //представление товара с коэффициентом его ролевантности запросу
+    public class ViewGood 
+    {
+        public ViewGood(Good god) { 
+            good = god;
+            words = good.title.Split(new char[] { ' ', '.', '/', ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
+        }
+        public Good good { get; set; }
+    
+        //переопределение метода сравнения по совпалению товара запросу
+        //для того, чтобы можно было отсортировать 
+     
+        //количество соответсвий товара поисковым запросам
+        public int countMatches = 0;
+        public static int sizeQuer;
+        public string[] words;
+
     }
 }

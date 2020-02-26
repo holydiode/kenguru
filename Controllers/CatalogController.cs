@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,7 +15,7 @@ namespace Kenguru_four_.Controllers
 
         private int pageSize = 10;
 
-        public ActionResult Index(int? categoryId = null, int page = 1, int sortBy = 0, string search = null)
+        public ActionResult Index(int? categoryId = null, int page = 1, int sortBy = 1, string search = null)
         {
             if (categoryId != null)
             {
@@ -28,21 +29,56 @@ namespace Kenguru_four_.Controllers
 
                 ViewBag.Title = ViewBag.InfoTitleLabel =  category.name;
             }
-
-            if(search != null)
+            currGoods = db.goods.Where(x => categoryId == null || x.categoryID == categoryId).ToList();     //запросим товары по категории или все
+            //обработка поискового запроса (если он есть)
+            if (search != null)
             {
+                string[] searchQuery = search.Split(new char[] { ' ', '.', '/', ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
+
+                List<ViewGood> curVGoods = new List<ViewGood>();
+                ViewGood.sizeQuer = searchQuery.Count();
+                foreach (var item in currGoods)
+                {
+                    curVGoods.Add(new ViewGood(item));
+                }
                 ViewBag.Title = search;
                 ViewBag.InfoTitleLabel = "Результаты по запросу: " + search;
+                //массив поисковых запросов
+                ViewGood cur;
+                for (int i = 0; i < curVGoods.Count; i++)
+                {
+                    cur = curVGoods.ElementAt(i);
+                    foreach (var word in cur.words)
+                    {
+                        foreach (var itemSQ in searchQuery)
+                        {
+                            if (word == itemSQ)
+                                cur.countMatches++;
+                        }
+                    }
+                    if (cur.countMatches == 0)
+                    {
+                        curVGoods.Remove(cur);
+                        i--;
+                    }
+                }
+
+                curVGoods.Sort((x, y) => y.countMatches - x.countMatches);
+                currGoods.Clear();
+                foreach (var item in curVGoods)
+                {
+                    currGoods.Add(item.good);
+                }
             }
+            
 
 
-            currGoods = db.goods.Where(x => (categoryId == null || x.categoryID == categoryId)
-            && (search == null || isSearchable(x, search))).ToList();     //запросим товары по категории или по поиску или все
-
+            //индекс самого верхнего элемента, отображаемого на текущей странице
             int startIndex = (page - 1) * pageSize;
+            //количество элементов на текущей странице
             int count = (startIndex + pageSize) < currGoods.Count ? pageSize : currGoods.Count - startIndex;
-
-            IndexViewModel viewModel = new IndexViewModel           //это все мы отправим в представление
+            //это все мы отправим в представление
+            IndexViewModel viewModel = new IndexViewModel           
             {
                 PageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = currGoods.Count },
                 SortBy = sortBy,
@@ -50,15 +86,11 @@ namespace Kenguru_four_.Controllers
                 Goods = currGoods.GetRange(startIndex, count),
                 CategoryId = categoryId
             };
-            
-            viewModel.SortGoods();      //сортируем товары
+            //сортируем товары
+            viewModel.SortGoods();      
             return View(viewModel);
         }
 
-        private bool isSearchable(Good good, string search)
-        {
-            return true;
-        }
 
 
 
