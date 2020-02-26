@@ -2,67 +2,64 @@
     Layout = "~/Views/Shared/ViewSeller.cshtml";
     ViewBag.Title = "Orders";
 }
-    <div class="sorting">
-        <div class="parametr parametr-first">
-            дата
+<div class="table">
+    <div class="row-table row-first">
+        <div class="">
+            Дата
         </div>
-        <div class="parametr">
-            наименование
+        <div class="">
+            Наименование
         </div>
-        <div class="parametr">
-            количество
+        <div class="">
+            Количество
         </div>
-        <div class="parametr">
-            стоймость
+        <div class="">
+            Стоимость
         </div>
-        <div class="parametr">
-            адрес доставки
+        <div class="">
+            Адрес доставки
         </div>
-        <div class="parametr">
-            статус
+        <div class="">
+            Статус
+        </div>
+        <div class="">
         </div>
     </div>
 
-    <table class="">
-        @foreach (Order order in ViewBag.Orders)
-        {
-        <tr class="">
+    @foreach (Order order in ViewBag.Orders)
+    {
+        <div class="row-table">
 
-            <td class="">
+            <div class="">
                 @order.time
-            </td>
+            </div>
 
-            <td class="">
+            <div class="">
                 @order.good.title
-            </td>
+            </div>
 
-            <td class="">
+            <div class="">
                 @order.count
-            </td>
+            </div>
 
-            <td class="">
-                @order.good.title
-            </td>
-
-            <td class="">
+            <div class="">
                 @order.good.price
-            </td>
+            </div>
 
-            <td class="">
+            <div class="">
                 @order.adress
-            </td>
+            </div>
 
-            <td class="">
+            <div class="">
                 @order.status
-            </td>
+            </div>
 
             <div class="">
                 <a href="@Url.Action( Url.Content("~/orderinfo"), new {IdOrder = order.id} )"> подробнее </a>
             </div>
-            
-        </tr>
-        }
-    </table>
-        
+
+        </div>
+    }
+</div>
 
 

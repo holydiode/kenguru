@@ -33,24 +33,22 @@ a:any-link{
 .header {
     position: fixed;
     top: 0;
-    display: inline-block;
+    display: flex;
+    justify-items:center;
     background-color: #fcde5b;
-    height: 100px;
     width: 100%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.5);
     z-index:10;
 }
 
 .header-content {
-    height: 64px;
     display:flex;
     align-items:center;
     justify-content:center;
-    position:relative;
     width:80%;
     min-width: 760px;
     max-width:1400px;
-    margin: 16px auto;
+    margin:auto;
 }
 
 .logo {
