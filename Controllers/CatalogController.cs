@@ -52,7 +52,7 @@ namespace Kenguru_four_.Controllers
                     {
                         foreach (var itemSQ in searchQuery)
                         {
-                            if (word == itemSQ)
+                            if (isEquals(word, itemSQ) == true)
                                 cur.countMatches++;
                         }
                     }
@@ -90,7 +90,15 @@ namespace Kenguru_four_.Controllers
             viewModel.SortGoods();      
             return View(viewModel);
         }
-
+        public bool isEquals(string a, string b)
+        {
+            Regex rg, rgRev;
+            rg = new Regex(@b, RegexOptions.IgnoreCase);
+            rgRev = new Regex(@a, RegexOptions.IgnoreCase);
+            if(rg.Match(a).Length > 1 || rgRev.Match(b).Length > 1)
+            return true;
+            return false;
+        }
 
 
 
