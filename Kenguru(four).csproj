@@ -202,6 +202,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="HtmlHelpers\CatalogHelper.cs" />
     <Compile Include="HtmlHelpers\EmailService.cs" />
+    <Compile Include="Infrastructure\Binders\CartModelBinder.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Seller.cs" />
     <Compile Include="Controllers\AuthController.cs" />
