@@ -202,8 +202,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="HtmlHelpers\CatalogHelper.cs" />
     <Compile Include="HtmlHelpers\EmailService.cs" />
-    <Compile Include="Infrastructure\Binders\CartModelBinder.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\GoodReport.cs" />
     <Compile Include="Models\Seller.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -272,7 +272,7 @@
     <Content Include="Views\Home\SubMenu.cshtml" />
     <Content Include="Views\Seller\Property.cshtml" />
     <Content Include="Views\Seller\OrderInfo.cshtml" />
-    <Content Include="Views\Cart\Summary.cshtml" />
+    <Content Include="Views\Seller\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

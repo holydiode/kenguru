@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+    GoodReport MainReport = ViewBag.MainReport;
+    List<GoodReport> AllReport = ViewBag.AllReport;
+    Layout = "~/Views/Shared/ViewSeller.cshtml";
+}
+    <form>
+        <select action="/" method="post">
+            @for (DateTime start = Convert.ToDateTime(ViewBag.Seller.time); start < DateTime.Now; start = start.AddMonths(1))
+            {
+                <option>
+                    @start.Year/@start.Month/00 - @start.AddMonths(1).Year/@start.AddMonths(1).Month/00
+                </option>
+            }
+        </select>
+        <input type="radio" id="radioButton" value="mail">
+        <label for="contactChoice3">За все время</label>
+        <button type="submit">Сфорипировать отчёт</button>
+    </form> 
+   
+
+
+
+
+    <table>
+        <tr>
+            <td>Заказов вскего</td>
+            <td>@MainReport.orders </td>
+        </tr>
+
+        <tr>
+            <td>Товаров продано</td>
+            <td>@MainReport.sell </td>
+        </tr>
+
+
+        <tr>
+            <td>Стоймость проданного товара</td>
+            <td>@MainReport.money </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td> товар </td>
+            <td> заказов</td>
+            <td> продано </td>
+            <td> стоймость </td>
+        </tr>
+        @foreach (GoodReport report in AllReport)
+        {
+
+            <tr>
+                <td> @report.good.title </td>
+                <td> @report.orders </td>
+                <td> @report.sell </td>
+                <td> @report.money </td>
+            </tr>
+        }
+    </table>
+
