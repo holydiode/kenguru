@@ -87,13 +87,23 @@ namespace Kenguru_four_.Controllers
             return View(ivm);
 
         }
-        public ActionResult ControlVerefication(string email, string hash, string verefi)
+        public RedirectResult ControlVerefication(string email, string hash, string verefi)
         {
-            if (string.Compare(hashed(email + hash), verefi) == 0)
-                Made_seller(email, verefi);
-            //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA its didn't work
-            return View("~/Home");
+            KenguruDB dataBase = new KenguruDB();
+            List<Seller> tryed = dataBase.Sellers.Where(t => String.Compare(t.email, email) == 0).ToList();
+            if (tryed.Count > 0)
+            {
+                return Redirect("~/home");
+            }
 
+            if (string.Compare(hashed(email + hash), verefi) == 0)
+                Made_seller(email, hash);
+
+            tryed = dataBase.Sellers.Where(t => String.Compare(t.email, email) == 0).ToList();
+
+            Session["User"] = new User(tryed[0].id, hash);
+
+            return Redirect("~/seller/property");
         }
 
 
@@ -118,7 +128,6 @@ namespace Kenguru_four_.Controllers
       
         public void SendEmail(string receiver, string subject, string message)
         {
-
             MailAddress senderEmail = new MailAddress("sadar.kengu@yandex.ru", "Садар");
             MailAddress receiverEmail = new MailAddress(receiver, "Receiver");
             string password = "adminadminadmin";

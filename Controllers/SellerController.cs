@@ -157,6 +157,7 @@ namespace Kenguru_four_.Controllers
             int CountCash = 0;
             int CountSelles = 0;
 
+
             KenguruDB dataBase = new KenguruDB();
             List <GoodReport> reports  = new List<GoodReport>();
 
@@ -184,6 +185,8 @@ namespace Kenguru_four_.Controllers
                 reports.Add(goodReport);
 
             }
+
+            ViewBag.Seller = dataBase.Sellers.Find(((User)Session["User"]).id);
             ViewBag.MainReport = new GoodReport(null, CountSelles, CountOrders, CountCash);
             ViewBag.AllReport = reports;
             return View();

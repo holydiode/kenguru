@@ -28,7 +28,6 @@ namespace Kenguru_four_
             modelBuilder.Entity<Good>().HasRequired(g => g.category).WithMany(c => c.goods);
             modelBuilder.Entity<Category>().HasRequired(c => c.parent).WithMany(c => c.subCategories);
 
-
             modelBuilder.Entity<Category>()
                 .Property(e => e.name)
                 .IsUnicode(false);

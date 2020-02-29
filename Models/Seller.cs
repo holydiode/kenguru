@@ -41,14 +41,20 @@ namespace Kenguru_four_
 
         public int? reiting { get; set; }
 
+        public string time { get; set; }
+
+
+
         public Seller()
         {
-
         }
         public Seller(string email, string pasword)
         {
+            this.time = DateTime.Now.ToString();
             this.email = email;
             this.password = pasword;
+            this.reiting = 44;
         }
+
     }
 }
