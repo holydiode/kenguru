@@ -39,7 +39,7 @@ namespace Kenguru_four_
         [StringLength(65535)]
         public string description { get; set; }
 
-        public int? reiting { get; set; }
+        public int? rating { get; set; }
 
         public string time { get; set; }
 
@@ -53,7 +53,7 @@ namespace Kenguru_four_
             this.time = DateTime.Now.ToString();
             this.email = email;
             this.password = pasword;
-            this.reiting = 44;
+            this.rating = 44;
         }
 
     }

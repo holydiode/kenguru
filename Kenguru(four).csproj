@@ -204,6 +204,7 @@
     <Compile Include="HtmlHelpers\EmailService.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\GoodReport.cs" />
+    <Compile Include="Models\OrderRequest.cs" />
     <Compile Include="Models\Seller.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CartController.cs" />

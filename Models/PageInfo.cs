@@ -53,10 +53,10 @@ namespace Kenguru_four_.Models
                     Goods.Sort((x, y) => (int)(y.seles - x.seles));
                     break;
                 case 31:
-                    Goods.Sort((x, y) => (int)(x.seller.reiting - y.seller.reiting));
+                    Goods.Sort((x, y) => (int)(x.seller.rating - y.seller.rating));
                     break;
                 case 32:
-                    Goods.Sort((x, y) => (int)(y.seller.reiting - x.seller.reiting));
+                    Goods.Sort((x, y) => (int)(y.seller.rating - x.seller.rating));
                     break;
             }
 
