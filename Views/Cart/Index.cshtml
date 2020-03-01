@@ -19,9 +19,17 @@
             <tr>
                 <td class="text-center">@line.Quantity</td>
                 <td class="text-left">@line.good.title</td>
-                <td class="text-right">@line.good.price.ToString() + гривень</td>
+                <td class="text-right">@line.good.price.ToString()  гривень</td>
                 <td class="text-right">
-                    @((line.Quantity * line.good.price).ToString() + "гривень");
+                    @((line.Quantity * line.good.price).ToString() + " гривень")
+                </td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        @Html.Hidden("id", line.good.id)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input class="btn btn-sm btn-warning" type="submit" value="Удалить" />
+                    }
                 </td>
             </tr>
         }
@@ -30,7 +38,7 @@
         <tr>
             <td colspan="3" class="text-right">Итого:</td>
             <td class="text-right">
-                @Model.cart.ComputeTotalValue().ToString("# гривень")
+                @Model.cart.ComputeTotalValue().ToString(" гривень")
             </td>
         </tr>
     </tfoot>

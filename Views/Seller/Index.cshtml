@@ -21,16 +21,16 @@
     <div class="reit">
         <div class="field star">
             <div class="star-count">
-                @ViewBag.User.reiting / 100
+                @ViewBag.User.rating / 100
             </div>
             <div class="stars-grid">
-                @for (int i = 0; i < ((int)(10 * ViewBag.User.reiting / 88)); i++)
+                @for (int i = 0; i < ((int)(10 * ViewBag.User.rating / 88)); i++)
                 {
                     <div class="star-point star-point-true">
                     </div>
                 }
 
-                @for (int i = 0; i < 10 - ((int)(10 * ViewBag.User.reiting / 88)); i++)
+                @for (int i = 0; i < 10 - ((int)(10 * ViewBag.User.rating / 88)); i++)
                 {
                     <div class="star-point star-point-false">
                     </div>

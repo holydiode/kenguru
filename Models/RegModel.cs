@@ -12,8 +12,8 @@ namespace Kenguru_four_
         [Required]
         public string email { get; set; }
 
+
         [Required]
         public string password { get; set; }
-
     }
 }

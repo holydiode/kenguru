@@ -34,8 +34,6 @@ namespace Kenguru_four_
             else{
                 return false;
             }
-
         }
-
     }
 }

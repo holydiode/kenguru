@@ -37,7 +37,7 @@ namespace Kenguru_four_.Controllers
 
         public ActionResult Orders()
         {
-            if( Session["User"] == null || ((User)Session["User"]).check() == false )
+            if (Session["User"] == null || ((User)Session["User"]).check() == false)
             {
 
                 return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
@@ -51,11 +51,11 @@ namespace Kenguru_four_.Controllers
 
             List<Order> orders = new List<Order>();
 
-            foreach( Good good in goods)
+            foreach (Good good in goods)
             {
                 if (good.orders != null)
                 {
-                    orders.AddRange(good.orders.Where(t => t.status != (int)StatusOrder.NotPai  &&  t.status != (int)StatusOrder.Cancel ));
+                    orders.AddRange(good.orders.Where(t => t.status != (int)StatusOrder.NotPai && t.status != (int)StatusOrder.Cancel));
                 }
             }
 
@@ -94,7 +94,7 @@ namespace Kenguru_four_.Controllers
             KenguruDB dataBase = new KenguruDB();
             Order order = dataBase.Orders.Find(IdOrder);
 
-            if (order == null || order.good.sellerID != ((User)Session["User"]).id ||  !this.DefenceStatusChange( order.status ,newStatus) )
+            if (order == null || order.good.sellerID != ((User)Session["User"]).id || !this.DefenceStatusChange(order.status, newStatus))
             {
                 return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/seller/orders");
             }
@@ -107,7 +107,7 @@ namespace Kenguru_four_.Controllers
 
         private bool DefenceStatusChange(int? oldStatus, int newStatus)
         {
-            if(oldStatus == (int)StatusOrder.Weit )
+            if (oldStatus == (int)StatusOrder.Weit)
             {
                 if (newStatus == (int)StatusOrder.Cancel)
                 {
@@ -118,7 +118,7 @@ namespace Kenguru_four_.Controllers
                     return (true);
                 }
             }
-            if(oldStatus == (int)StatusOrder.Sent)
+            if (oldStatus == (int)StatusOrder.Sent)
             {
                 if (newStatus == (int)StatusOrder.Weit)
                 {
@@ -129,7 +129,14 @@ namespace Kenguru_four_.Controllers
         }
 
 
-        public ActionResult Report(bool showAll = false, string radius =  "")
+        [HttpPost]
+        public RedirectResult ControlReport(string showAll, string radius)
+        {
+            return Redirect(Url.Action( Url.Content("~/report") , new { showAll = showAll, radius = radius}));
+        }
+
+
+        public ActionResult Report(string showAll = "false", string radius = "")
         {
 
             if (Session["User"] == null || ((User)Session["User"]).check() == false)
@@ -138,25 +145,33 @@ namespace Kenguru_four_.Controllers
             }
 
             DateTime TimeFrom;
-
-            if ( string.Compare(radius, "") == 0)
+            DateTime TimeTo;
+            if (string.Compare(showAll, "true") == 0)
             {
-                TimeFrom = DateTime.Today;
-            }
-            else
-            {
-                TimeFrom = DateTime.Today;
-
+                TimeFrom = DateTime.MinValue;
+                TimeTo = DateTime.MaxValue;
             }
 
-            TimeFrom = new DateTime(TimeFrom.Year, TimeFrom.Month, 01);
-            DateTime TimeTo = new DateTime(TimeFrom.Year, TimeFrom.Month, 01);
-            TimeTo = TimeTo.AddMonths(1);
+            else {
+                if (string.Compare(radius, "") == 0)
+                {
+                    TimeFrom = DateTime.Today;
+                    TimeFrom = new DateTime(TimeFrom.Year, TimeFrom.Month, 01);
+                    TimeTo = new DateTime(TimeFrom.Year, TimeFrom.Month, 01);
+                    TimeTo = TimeTo.AddMonths(1);
+                }
+                else
+                {
+                    string[] points = radius.Split();
+
+                    TimeFrom = Convert.ToDateTime(points[0]);
+                    TimeTo = Convert.ToDateTime(points[2]);
+                }
+            }
 
             int CountOrders = 0;
             int CountCash = 0;
             int CountSelles = 0;
-
 
             KenguruDB dataBase = new KenguruDB();
             List <GoodReport> reports  = new List<GoodReport>();
