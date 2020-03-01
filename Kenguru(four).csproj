@@ -200,10 +200,14 @@
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\GoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PartialController.cs" />
+    <Compile Include="Controllers\SellerStoreController.cs" />
+    <Compile Include="Helpers\GoodsPages.cs" />
     <Compile Include="HtmlHelpers\CatalogHelper.cs" />
     <Compile Include="HtmlHelpers\EmailService.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\GoodReport.cs" />
+    <Compile Include="Models\ViewModels\SearchGoodViewModel.cs" />
     <Compile Include="Models\Seller.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -219,6 +223,9 @@
     <Compile Include="Models\Cart\CartIndexViewModel.cs" />
     <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Models\SellerIVM.cs" />
+    <Compile Include="Models\ViewModels\CatalogViewModel.cs" />
+    <Compile Include="Models\ViewModels\IndexViewModel.cs" />
+    <Compile Include="Models\ViewModels\SellersGoodsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RegModel.cs" />
     <Compile Include="Models\User.cs" />
@@ -231,8 +238,8 @@
     <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\Good.css" />
     <Content Include="Content\Home.css" />
-    <Content Include="Content\js\AppearMenu.js" />
     <Content Include="Content\Seller.css" />
+    <Content Include="Content\SellerStore.css" />
     <Content Include="favicon.ico" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -245,11 +252,14 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\myAjax.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -269,14 +279,18 @@
     <Content Include="Views\Seller\Index.cshtml" />
     <Content Include="Views\Seller\Orders.cshtml" />
     <Content Include="Views\Shared\ViewSeller.cshtml" />
-    <Content Include="Views\Home\SubMenu.cshtml" />
     <Content Include="Views\Seller\Property.cshtml" />
     <Content Include="Views\Seller\OrderInfo.cshtml" />
     <Content Include="Views\Seller\Report.cshtml" />
+    <Content Include="Views\Catalog\SubCategories.cshtml" />
+    <Content Include="Views\Partial\GoodsPages.cshtml" />
+    <Content Include="Views\Catalog\Index.cshtml" />
+    <Content Include="Views\SellerStore\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="UploadFIles\3\" />
+    <Folder Include="UploadFIles\Goods\3\" />
+    <Folder Include="UploadFIles\Sellers\-3\main\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fonts\glyphicons-halflings-regular.woff2" />

@@ -1,24 +1,22 @@
-﻿@model Kenguru_four_.Models.IndexViewModel
-@using Kenguru_four_.Models
+﻿@model IndexViewModel
+@using Kenguru_four_.Models.ViewModels
 @using Kenguru_four_.htmlHelpers
 
-
-<div class="sorting">
-            @Html.ActionLink(CatalogHelper.GetParametrName(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy:(Model.SortBy)% 2 + 1),  new { @class = "parametr parametr-first" })
-            @Html.ActionLink(CatalogHelper.GetParametrPrice(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy:(Model.SortBy%10)% 2 + 11),  new { @class = "parametr" })
-            @Html.ActionLink(CatalogHelper.GetParametrCount(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy:(Model.SortBy%20)% 2 + 21),  new { @class = "parametr" })
-            @Html.ActionLink(CatalogHelper.GetParametrRating(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy:(Model.SortBy%30)% 2 + 31),  new { @class = "parametr" })
-       
-</div>
-<div class="glass-case">
+@{
+    Layout = null;
+}
+    <script type="text/javascript"
+            src="@Url.Content("~/Scripts/myAjax.js")">
+    </script>
+<div id="ajax-content">
     @if (Model != null)
     {
-        foreach (Good curent in Model.Goods)
+        foreach (Good curent in Model.ViewGoods)
         {
             <div class="goods">
 
                 @{
-                    string filePath = Url.Content("~/UploadFiles/" + curent.id + "/main.png");
+                    string filePath = Url.Content("~/UploadFiles/Goods/" + curent.id + "/main.png");
                 }
                 <div class="goods-field goods-intro goods-col" style="background-image: url(@filePath); ">
                 </div>
@@ -32,14 +30,14 @@
                         <div class="goods-seller goods-field">
                             @if (curent.seller != null)
                             {
-                            Продавец:<a> @curent.seller.name </a>
-                        }
+                                @Html.Label("Продавец:")<a> @curent.seller.name </a>
+                            }
                         </div>
                     </div>
 
                 </div>
                 <div class="goods-buttons goods-col">
-                    <a href="~/Good/Index/@curent.id" class="button-main button-sell">
+                    <a href="@Url.Action("Index", "Good", new {id = curent.id })" class="button-main button-sell">
                         Подробнее
                     </a>
                     <!--создает форму, отправка которой добавляет список в корзину-->
@@ -57,8 +55,7 @@
 
         }
         <div class="btn-group text-center">
-
-            @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+            @Ajax.PageLinks(Model.PageInfo, x => Url.Action("GoodsPages", "Partial", new { page = x }))
         </div>
     }
 </div>

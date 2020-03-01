@@ -20,17 +20,14 @@ namespace Kenguru_four_
 
         [StringLength(50)]
         public string title { get; set; }
-
         public int? count { get; set; }
-
         public int? price { get; set; }
 
         [Column("id-category")]
         public int? categoryID { get; set; }
         public virtual Category category { get; set; }
 
-        public int? seles { get; set; }
-
+        public int seles { get; set; }
 
         [Column(TypeName = "text")]
         [StringLength(65535)]

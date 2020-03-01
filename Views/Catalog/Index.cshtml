@@ -1,5 +1,6 @@
-﻿@model IndexViewModel
-@using Kenguru_four_.Models
+﻿@model CatalogViewModel
+@using Kenguru_four_.htmlHelpers
+@using Kenguru_four_.Models.ViewModels
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -10,5 +11,13 @@
 
 <div class="title-request">@ViewBag.InfoTitleLabel</div>
 
-@Html.Partial("~/Views/Partial/GoodsPages.cshtml", Model)
+<div class="sorting">
+    @Html.ActionLink(CatalogHelper.GetParametrName(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy: (Model.SortBy) % 2 + 1), new { @class = "parametr parametr-first" })
+    @Html.ActionLink(CatalogHelper.GetParametrPrice(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy: (Model.SortBy % 10) % 2 + 11), new { @class = "parametr" })
+    @Html.ActionLink(CatalogHelper.GetParametrCount(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy: (Model.SortBy % 20) % 2 + 21), new { @class = "parametr" })
+    @Html.ActionLink(CatalogHelper.GetParametrRating(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy: (Model.SortBy % 30) % 2 + 31), new { @class = "parametr" })
 
+</div>
+<div class="glass-case">
+    @Html.Partial("~/Views/Partial/GoodsPages.cshtml", Model)
+</div>
