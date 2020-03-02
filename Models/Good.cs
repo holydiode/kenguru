@@ -30,7 +30,7 @@ namespace Kenguru_four_
         public float Price { get => ((float)price)/ 100; set => price = (int)Math.Round(value * 100, 0); }
 
         [Column("id-category")]
-        public int? categoryID { get; set; }
+        public int categoryID { get; set; }
         public virtual Category category { get; set; }
         public int seles { get; set; }
 

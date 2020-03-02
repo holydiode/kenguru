@@ -36,19 +36,19 @@ namespace Kenguru_four_.Controllers
             {
                 string[] searchQuery = search.Split(new char[] { ' ', '.', '/', ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
 
-                List<SearchGoodViewModel> curVGoods = new List<SearchGoodViewModel>();
+                List<SearchGoodViewModel> searchGoods = new List<SearchGoodViewModel>();
                 SearchGoodViewModel.sizeQuer = searchQuery.Count();
                 foreach (var item in currGoods)
                 {
-                    curVGoods.Add(new SearchGoodViewModel(item));
+                    searchGoods.Add(new SearchGoodViewModel(item));
                 }
                 ViewBag.Title = search;
                 ViewBag.InfoTitleLabel = "Результаты по запросу: " + search;
                 //массив поисковых запросов
                 SearchGoodViewModel cur;
-                for (int i = 0; i < curVGoods.Count; i++)
+                for (int i = 0; i < searchGoods.Count; i++)
                 {
-                    cur = curVGoods.ElementAt(i);
+                    cur = searchGoods.ElementAt(i);
                     foreach (var word in cur.words)
                     {
                         foreach (var itemSQ in searchQuery)
@@ -59,19 +59,23 @@ namespace Kenguru_four_.Controllers
                     }
                     if (cur.countMatches == 0)
                     {
-                        curVGoods.Remove(cur);
+                        searchGoods.Remove(cur);
                         i--;
                     }
                 }
 
-                curVGoods.Sort((x, y) => y.countMatches - x.countMatches);
+                searchGoods.Sort((x, y) => y.countMatches - x.countMatches);
                 currGoods.Clear();
-                foreach (var item in curVGoods)
+                foreach (var item in searchGoods)
                 {
                     currGoods.Add(item.good);
                 }
+                sortBy = 0;
             }
-            //сортируем товары
+
+            if (sortBy != 0)
+                Helpers.GoodsPages.SortGoods(currGoods, sortBy);
+
             CatalogViewModel viewModel = new CatalogViewModel           
             {
                 PageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = currGoods.Count },
