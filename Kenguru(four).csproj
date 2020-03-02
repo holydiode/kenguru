@@ -207,11 +207,8 @@
     <Compile Include="HtmlHelpers\EmailService.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\GoodReport.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="Models\ViewModels\SearchGoodViewModel.cs" />
     <Compile Include="Models\OrderRequest.cs" />
->>>>>>> d675b5a8fe4dcfb7b15a62142f261afeffd2ba34
     <Compile Include="Models\Seller.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CartController.cs" />
