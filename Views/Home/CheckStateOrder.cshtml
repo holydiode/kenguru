@@ -14,7 +14,7 @@
     <title>Отслеживание заказа</title>
 </head>
 <body>
-    <a class="btn">Вернуться на главную</a>
+    <a href="@Url.Action("Index")" ><div class="btn">Вернуться на главную</div></a>
     <div class="back-content">
         <h2>Введите трек-номер заказа, который вы получили по электронной почте</h2>
             @using (Ajax.BeginForm("FindStateOrder", null,
@@ -25,7 +25,7 @@
             }
         <div id="loading">Идет поиск по базе...</div>
         <div class="order-info">
-            <span>Состояние заказа: </span><span id="state-order"></span>
+            <div id="state-order">Здесь будет информация о вашем заказе</div>
         </div>
     </div>
 
