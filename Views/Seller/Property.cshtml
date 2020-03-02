@@ -3,8 +3,9 @@
     ViewBag.Title = "Property";
     Layout = "~/Views/Shared/ViewSeller.cshtml";
 }
-    <form>
-        <table border="2" align="center">
+    <form align="center">
+        <h3>Настройки личного кабинета</h3>
+        <table>
             <tr>
                 <td>ФИО</td>
                 <td> @Html.TextBox("name")</td>
@@ -22,11 +23,50 @@
 
             <tr>
                 <td>телефон</td>
-                <td> @Html.TextBox("boopa")</td>
+                <td> @Html.TextBox("phone")</td>
             </tr>
+
+            <tr>
+                <td>адрес</td>
+                <td>@Html.TextBox("adress")</td>
+            </tr>
+
+            <tr>
+                <td>Номер караты<br>для начисления средств</td>
+                <td>@Html.TextBox("adress")</td>
+            </tr>
+
             <tr>
                 <td></td>
                 <td><button type="submit">Изменить настройки</button></td>
             </tr>
         </table>
     </form>
+
+
+<form align="center">
+    <h3>Смена пароля</h3>
+    <table>
+        <tr>
+            <td>старый пароль</td>
+            <td>@Html.TextBox("oldPasswor")</td>
+        </tr>
+
+        <tr>
+            <td>новый пароль</td>
+            <td> @Html.TextBox("newPassword") </td>
+        </tr>
+
+        <tr>
+            <td>повторите новый пароль</td>
+            <td> @Html.TextBox("repidPassword")</td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><button type="submit">Изменить паролль</button></td>
+        </tr>
+    </table>
+</form>
+
+

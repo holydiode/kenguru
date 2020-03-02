@@ -12,8 +12,8 @@ namespace Kenguru_four_.Controllers
     {
         KenguruDB db = new KenguruDB();
         private List<Good> currGoods = null;
+        private int pageSize = 10;
 
-        private int pageSize = 4;
 
         public ActionResult Index(int? categoryId = null, int page = 1, int sortBy = 1, string search = null)
         {

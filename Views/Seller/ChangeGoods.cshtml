@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "ChangeGoods";
+    Layout = "~/Views/Shared/ViewSeller.cshtml";
+    List <string> dropList = new List<string>();
+    Good good = ViewBag.Good;
+
+
+    foreach(Category category in ViewBag.Category) {
+        if (category.parent != null)
+        {
+            dropList.Add(category.name);
+        }
+    }
+}
+
+<form align="center">
+    <h3>Настройки личного кабинета</h3>
+    <table>
+
+        <tr>
+            <td>Название товара</td>
+            <td>@Html.TextBox("name", good.title )</td>
+        </tr>
+
+        <tr>
+            <td>Фотогрфия</td>
+            <td> <input type="file" name="photo"> </td>
+        </tr>
+
+        <tr>
+            <td>краткое описание</td>
+            <td>@Html.TextArea("short-discrib", good.short_discribe, 5, 100, null)</td>
+        </tr>
+
+        <tr>
+            <td>полное описание</td>
+            <td>@Html.TextArea("full-discrib", good.description, 7, 100, null)</td>
+        </tr>
+
+        <tr>
+            <td>категория</td>
+            <td>@Html.DropDownList("radius", new SelectList(dropList), good.category.name)</td>
+        </tr>
+
+        <tr>
+            <td>цена за еденицу товара</td>
+            <td>@Html.TextBox("price", good.price)</td>
+        </tr>
+
+
+        <tr>
+            <td></td>
+            <td><button type="submit">Изменить настройки</button></td>
+        </tr>
+
+    </table>
+</form>

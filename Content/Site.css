@@ -13,9 +13,16 @@
     src: url(../fonts/Vollkorn-Black.ttf);
 }
 
+
+textarea {
+    resize: none;
+}
+
+
 html, body {
     height: 100%;
 }
+
 body {
     background-color: #fedc9e;
     font-family: montserrat;

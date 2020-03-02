@@ -282,6 +282,8 @@
     <Content Include="Views\Seller\Property.cshtml" />
     <Content Include="Views\Seller\OrderInfo.cshtml" />
     <Content Include="Views\Seller\Report.cshtml" />
+    <Content Include="Views\Seller\MyGoods.cshtml" />
+    <Content Include="Views\Seller\ChangeGoods.cshtml" />
     <Content Include="Views\Catalog\SubCategories.cshtml" />
     <Content Include="Views\Partial\GoodsPages.cshtml" />
     <Content Include="Views\Catalog\Index.cshtml" />
