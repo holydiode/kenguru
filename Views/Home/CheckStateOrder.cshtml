@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+@{ 
+    <link rel="stylesheet" href="~/Content/Home.css">
+}
+<!DOCTYPE html>
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Отслеживание заказа</title>
+</head>
+<body>
+    <a class="btn">Вернуться на главную</a>
+    <div class="back-content">
+        <h2>Введите трек-номер заказа, который вы получили по электронной почте</h2>
+            @using (Ajax.BeginForm("FindStateOrder", null,
+                new AjaxOptions { UpdateTargetId = "state-order", LoadingElementId = "loading", }, new { @class = "track-block" }))
+            {
+                <input type="text" class="track-field" name="track" placeholder="Введите трек-номер" />
+                <button class="track-button" id="enter-btn" type="submit">🔎</button>
+            }
+        <div id="loading">Идет поиск по базе...</div>
+        <div class="order-info">
+            <span>Состояние заказа: </span><span id="state-order"></span>
+        </div>
+    </div>
+
+</body>
+</html>

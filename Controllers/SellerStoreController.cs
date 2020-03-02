@@ -23,7 +23,7 @@ namespace Kenguru_four_.Controllers
             {
                 allGoods = goods,
                 Seller = seller,
-                PageInfo = new Models.PageInfo
+                PageInfo = new PageInfo
                 {
                     PageNumber = page,
                     PageSize = 2,

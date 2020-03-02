@@ -8,8 +8,10 @@
            return up();
         };
     }
-    function up() {
-        $('html, body').animate({ scrollTop: 0 }, 500);
-        return false;
-    }
+    
 });
+
+function up() {
+    $('html, body').animate({ scrollTop: 0 }, 200);
+    return false;
+}

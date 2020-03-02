@@ -6,29 +6,45 @@
     <link rel="stylesheet" href="~/Content/Home.css">
 }
 
-
-<div class="categories">
-    @{
-        foreach (Category category in Model.Categories.ToList())
-        {
-            if (category.parent == null)
-           {
-                <div id="dropdown-item" class="category">
-                    <a class="category-link" href="@Url.Action("Index", "Catalog", new { categoryId = category.id })">@category.name</a>
-                    @if (category.subCategories.Count != 0)
-                    {
-                        <div id="submenu">
-                            @foreach (Category subCategory in category.subCategories)
-                            {
-                                <div class="category">
-                                    <a class="category-link" href="@Url.Action("Index", "Catalog", new { categoryId = subCategory.id })">@subCategory.name</a>
-                                </div>
-                            }
-                        </div>
-                    }
-                </div>
+<div class="left-menu">
+    <div class="categories">
+        @{
+            foreach (Category category in Model.Categories.ToList())
+            {
+                if (category.parent == null)
+                {
+                    <div id="dropdown-item" class="category">
+                        <a class="category-link" href="@Url.Action("Index", "Catalog", new { categoryId = category.id })">@category.name</a>
+                        @if (category.subCategories.Count != 0)
+                        {
+                            <div id="submenu">
+                                @foreach (Category subCategory in category.subCategories)
+                                {
+                                    <div class="category">
+                                        <a class="category-link" href="@Url.Action("Index", "Catalog", new { categoryId = subCategory.id })">@subCategory.name</a>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
             }
         }
-    }
 
+    </div>
+</div>
+<div class="home-content">
+    <div class="blocks">
+        <a class="block-link" href="@Url.Action("CheckStateOrder")">
+            <div class="avatar">
+                <img src="~/UploadFiles/Home/Search.png" />
+            </div>
+            <div class="title">Отследить заказ по трек-номеру</div>
+        </a>
+        <div class="block-link">
+
+        </div>  <div class="block-link">
+
+        </div>
+    </div>
 </div>
