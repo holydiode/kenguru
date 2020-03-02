@@ -6,6 +6,9 @@ namespace Kenguru_four_
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    public enum GoodStatus {save, publsih, deleted }
+
+
     [Table("kengu.goods")]
     public partial class Good
     {
@@ -28,17 +31,15 @@ namespace Kenguru_four_
         [Column("id-category")]
         public int? categoryID { get; set; }
         public virtual Category category { get; set; }
-
         public int? seles { get; set; }
-
 
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string description { get; set; }
 
-
         [Column("short-discribe", TypeName = "text")]
         [StringLength(65535)]
         public string short_discribe { get; set; }
+        public int status { get; set; }
     }
 }

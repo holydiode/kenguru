@@ -15,7 +15,6 @@ namespace Kenguru_four_.Controllers
         {
             if (Session["User"] == null || ((User)Session["User"]).check() == false) {
                 return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
-
             }
 
             KenguruDB dataBase = new KenguruDB();
@@ -126,6 +125,76 @@ namespace Kenguru_four_.Controllers
                 }
             }
             return false;
+        }
+
+        public ActionResult ChangeGoods(int id = -10)
+        {
+            if (Session["User"] == null || ((User)Session["User"]).check() == false)
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
+            }
+
+
+            KenguruDB dataBase = new KenguruDB();
+
+            ViewBag.Category = dataBase.Categories.Where(t => t.parent != null).ToList();
+
+            ViewBag.Good = dataBase.goods.Find(id);
+
+            if ( ((User)Session["User"]).id != dataBase.goods.Find(id)?.seller.id)
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
+            }
+
+
+            return View();
+        }
+
+
+        public ActionResult MyGoods()
+        {
+            if (Session["User"] == null || ((User)Session["User"]).check() == false)
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
+            }
+
+            KenguruDB dataBase = new KenguruDB();
+
+            ViewBag.Goods = dataBase.Sellers.Find(((User)Session["User"]).id).good.Where(t => t.status != (int)GoodStatus.deleted).ToList();
+
+            return View();
+        }
+
+
+        public RedirectResult RemoveGoods(int id)
+        {
+            if (Session["User"] == null || ((User)Session["User"]).check() == false)
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
+            }
+
+            KenguruDB dataBase = new KenguruDB();
+
+            if (((User)Session["User"]).id != dataBase.goods.Find(id).seller.id)
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/seller/mygoods");
+            }
+
+            Good current = dataBase.goods.Find(id);
+
+            if (current.orders.Count == 0)
+            {
+                dataBase.goods.Remove(current);
+                dataBase.SaveChanges();
+            }
+            else
+            {
+                current.status = (int)GoodStatus.deleted;
+                dataBase.SaveChanges();
+            }
+
+
+            return Redirect(Url.Content("~/seller/MyGoods"));
         }
 
 

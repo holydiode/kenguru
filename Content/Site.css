@@ -13,6 +13,9 @@
     src: url(../fonts/Vollkorn-Black.ttf);
 }
 
+textarea {
+    resize: none;
+}
 
 body {
     background-color: #fedc9e;

@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "MyGoods";
+    Layout = "~/Views/Shared/ViewSeller.cshtml";
+    string[] Statuses = new string[3] {"Не опубликовано","Опубликовано","Удалено"};
+}
+
+    <div class="table">
+        <div class="row-table row-first">
+            <div class="">
+                наименование
+            </div>
+            <div class="">
+                категория
+            </div>
+            <div class="">
+                цена
+            </div>
+            <div class="">
+                продано
+            </div>
+            <div class="">
+                статус
+            </div>
+            <div class="">
+            </div>
+            <div class="">
+            </div>
+        </div>
+
+        @foreach (Good good in ViewBag.Goods)
+        {
+            <div class="row-table">
+
+                <div class="">
+                    @good.title
+                </div>
+
+                <div class="">
+                    @good.category.name
+                </div>
+
+                <div class="">
+                    @good.price
+                </div>
+
+                <div class="">
+                    @good.seles
+                </div>
+
+                <div class="">
+                    @Statuses[good.status]
+                </div>
+
+                <div class="">
+                    <a href="@Url.Action( Url.Content("~/changeGoods"), new {id = good.id} )"> редактировать</a>
+                </div>
+                <div class="">
+                    <a href="@Url.Action( Url.Content("~/RemoveGoods"), new {id = good.id} )"> удалить</a>
+                </div>
+            </div>
+        }
+    </div>
+
