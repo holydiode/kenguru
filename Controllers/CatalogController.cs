@@ -1,9 +1,9 @@
 ﻿using Kenguru_four_.Models;
+using Kenguru_four_.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Kenguru_four_.Controllers
@@ -13,6 +13,7 @@ namespace Kenguru_four_.Controllers
         KenguruDB db = new KenguruDB();
         private List<Good> currGoods = null;
         private int pageSize = 10;
+
 
         public ActionResult Index(int? categoryId = null, int page = 1, int sortBy = 1, string search = null)
         {
@@ -28,22 +29,23 @@ namespace Kenguru_four_.Controllers
 
                 ViewBag.Title = ViewBag.InfoTitleLabel =  category.name;
             }
+           
             currGoods = db.goods.Where(x => categoryId == null || x.categoryID == categoryId).ToList();     //запросим товары по категории или все
             //обработка поискового запроса (если он есть)
             if (search != null)
             {
                 string[] searchQuery = search.Split(new char[] { ' ', '.', '/', ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
 
-                List<ViewGood> curVGoods = new List<ViewGood>();
-                ViewGood.sizeQuer = searchQuery.Count();
+                List<SearchGoodViewModel> curVGoods = new List<SearchGoodViewModel>();
+                SearchGoodViewModel.sizeQuer = searchQuery.Count();
                 foreach (var item in currGoods)
                 {
-                    curVGoods.Add(new ViewGood(item));
+                    curVGoods.Add(new SearchGoodViewModel(item));
                 }
                 ViewBag.Title = search;
                 ViewBag.InfoTitleLabel = "Результаты по запросу: " + search;
                 //массив поисковых запросов
-                ViewGood cur;
+                SearchGoodViewModel cur;
                 for (int i = 0; i < curVGoods.Count; i++)
                 {
                     cur = curVGoods.ElementAt(i);
@@ -69,24 +71,17 @@ namespace Kenguru_four_.Controllers
                     currGoods.Add(item.good);
                 }
             }
-            
-
-
-            //индекс самого верхнего элемента, отображаемого на текущей странице
-            int startIndex = (page - 1) * pageSize;
-            //количество элементов на текущей странице
-            int count = (startIndex + pageSize) < currGoods.Count ? pageSize : currGoods.Count - startIndex;
-            //это все мы отправим в представление
-            IndexViewModel viewModel = new IndexViewModel           
+            //сортируем товары
+            CatalogViewModel viewModel = new CatalogViewModel           
             {
                 PageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = currGoods.Count },
                 SortBy = sortBy,
                 Search = search,
-                Goods = currGoods.GetRange(startIndex, count),
-                CategoryId = categoryId
+                allGoods = currGoods,
+                CategoryId = categoryId,
             };
-            //сортируем товары
-            viewModel.SortGoods();      
+            Helpers.GoodsPages.SetPage(viewModel, page);
+            TempData["IndexViewModel"] = viewModel;
             return View(viewModel);
         }
         public bool isEquals(string a, string b)
