@@ -33,7 +33,7 @@
         </div>
         <div class="time-create">
             @{
-                string time = Convert.ToDateTime(Model.Seller.time).ToShortDateString();
+                string time = Model.Seller.Time.ToShortDateString();
             }
             <span>На сайте с @time</span>
         </div>

@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="">
-                    @good.price
+                    @good.Price
                 </div>
 
                 <div class="">
@@ -53,10 +53,10 @@
                 </div>
 
                 <div class="">
-                    <a href="@Url.Action( Url.Content("~/changeGoods"), new {id = good.id} )"> редактировать</a>
+                    <a href="@Url.Action( Url.Content("~/changeGoods"), new {id = good.id} )">изменить</a>
                 </div>
                 <div class="">
-                    <a href="@Url.Action( Url.Content("~/RemoveGoods"), new {id = good.id} )"> удалить</a>
+                    <a href="@Url.Action( Url.Content("~/RemoveGoods"), new {id = good.id} )">удалить</a>
                 </div>
             </div>
         }

@@ -43,14 +43,15 @@ namespace Kenguru_four_
 
         public string time { get; set; }
 
-
+        [NotMapped]
+        public DateTime Time { get => Convert.ToDateTime(time); set => time = value.ToString(); }
 
         public Seller()
         {
         }
         public Seller(string email, string pasword)
         {
-            this.time = DateTime.Now.ToString();
+            this.Time = DateTime.Now;
             this.email = email;
             this.password = pasword;
             this.rating = 44;

@@ -24,7 +24,10 @@ namespace Kenguru_four_
         [StringLength(50)]
         public string title { get; set; }
         public int? count { get; set; }
-        public int? price { get; set; }
+        public int price { get; set; }
+
+        [NotMapped]
+        public float Price { get => ((float)price)/ 100; set => price = (int)Math.Round(value * 100, 0); }
 
         [Column("id-category")]
         public int? categoryID { get; set; }

@@ -8,7 +8,7 @@
     List<string> dropList = new List<string>();
 
 
-    for (DateTime start = Convert.ToDateTime(ViewBag.Seller.time); start < DateTime.Now; start = start.AddMonths(1))
+    for (DateTime start = ViewBag.Seller.Time; start < DateTime.Now; start = start.AddMonths(1))
     {
         dropList.Add(
             start.Year + "/" + @String.Format("{0:d2}", start.Month) + "/01 - " +

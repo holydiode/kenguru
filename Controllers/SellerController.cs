@@ -197,6 +197,37 @@ namespace Kenguru_four_.Controllers
             return Redirect(Url.Content("~/seller/MyGoods"));
         }
 
+        [HttpPost]
+        public RedirectResult ChangeGood(int id, string name, HttpPostedFile photo, string price)
+        {
+            if (Session["User"] == null || ((User)Session["User"]).check() == false)
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
+            }
+
+            KenguruDB dataBase = new KenguruDB();
+
+            if (((User)Session["User"]).id != dataBase.goods.Find(id)?.seller.id)
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
+            }
+
+            Good good = dataBase.goods.Find(id);
+
+            if (photo != null)
+            {
+                string path = Server.MapPath("~/UploadFIles/Goods/" + id.ToString() + "/fileName/main.png");
+                photo.SaveAs(path);
+            }
+
+
+            good.title = name;
+            good.Price = float.Parse(price);
+            dataBase.SaveChanges();
+
+            return Redirect(Url.Content("~/seller/MyGoods"));
+        }
+
 
         [HttpPost]
         public RedirectResult ControlReport(string showAll, string radius)
@@ -232,7 +263,6 @@ namespace Kenguru_four_.Controllers
                 else
                 {
                     string[] points = radius.Split();
-
                     TimeFrom = Convert.ToDateTime(points[0]);
                     TimeTo = Convert.ToDateTime(points[2]);
                 }
@@ -251,7 +281,7 @@ namespace Kenguru_four_.Controllers
             {
                 DateTime boop;
 
-                List<Order> orders = good.orders.Where(t => TimeFrom <=  (boop = Convert.ToDateTime(t.time)) && Convert.ToDateTime(t.time) < TimeTo).ToList();
+                List<Order> orders = good.orders.Where(t => TimeFrom <=  t.Time && t.Time < TimeTo).ToList();
 
                 GoodReport goodReport = new GoodReport(good, 0, 0, 0);
 
