@@ -207,8 +207,8 @@
     <Compile Include="HtmlHelpers\EmailService.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\GoodReport.cs" />
+    <Compile Include="Models\ViewModels\PageInfo.cs" />
     <Compile Include="Models\ViewModels\SearchGoodViewModel.cs" />
-    <Compile Include="Models\OrderRequest.cs" />
     <Compile Include="Models\Seller.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -222,7 +222,6 @@
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Models\Cart\Cart.cs" />
     <Compile Include="Models\Cart\CartIndexViewModel.cs" />
-    <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Models\SellerIVM.cs" />
     <Compile Include="Models\ViewModels\CatalogViewModel.cs" />
     <Compile Include="Models\ViewModels\IndexViewModel.cs" />
@@ -287,10 +286,12 @@
     <Content Include="Views\Partial\GoodsPages.cshtml" />
     <Content Include="Views\Catalog\Index.cshtml" />
     <Content Include="Views\SellerStore\Index.cshtml" />
+    <Content Include="Views\Home\CheckStateOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadFIles\Goods\3\" />
+    <Folder Include="UploadFIles\Home\" />
     <Folder Include="UploadFIles\Sellers\-3\main\" />
   </ItemGroup>
   <ItemGroup>

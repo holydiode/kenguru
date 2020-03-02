@@ -5,9 +5,12 @@
 @{
     Layout = null;
 }
-    <script type="text/javascript"
-            src="@Url.Content("~/Scripts/myAjax.js")">
-    </script>
+@section links{
+    <link rel="stylesheet" href="~/Content/Site.css">
+}
+<script type="text/javascript"
+        src="@Url.Content("~/Scripts/myAjax.js")">
+</script>
 <div id="ajax-content">
     @if (Model != null)
     {
@@ -54,7 +57,7 @@
             </div>
 
         }
-        <div class="btn-group text-center">
+        <div class="btn-group">
             @Ajax.PageLinks(Model.PageInfo, x => Url.Action("GoodsPages", "Partial", new { page = x }))
         </div>
     }
