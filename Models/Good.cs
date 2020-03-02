@@ -29,7 +29,7 @@ namespace Kenguru_four_
         [Column("id-category")]
         public int? categoryID { get; set; }
         public virtual Category category { get; set; }
-        public int? seles { get; set; }
+        public int seles { get; set; }
 
 
         [Column(TypeName = "text")]
