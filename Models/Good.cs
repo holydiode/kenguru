@@ -24,7 +24,7 @@ namespace Kenguru_four_
         [StringLength(50)]
         public string title { get; set; }
         public int? count { get; set; }
-        public int price { get; set; }
+        public int? price { get; set; }
 
         [NotMapped]
         public float Price { get => ((float)price)/ 100; set => price = (int)Math.Round(value * 100, 0); }
@@ -43,5 +43,30 @@ namespace Kenguru_four_
         [StringLength(65535)]
         public string short_discribe { get; set; }
         public int status { get; set; }
+
+
+
+
+        public Good ReBild()
+        {
+            Good copy = new Good();
+            copy.sellerID = this.sellerID;
+            copy.title = string.Copy(this.title);
+            copy.count = this.count;
+            copy.price = this.price;
+            copy.categoryID = this.categoryID;
+            copy.seles = this.seles;
+            copy.description = string.Copy(this.description);
+            copy.short_discribe = string.Copy(this.short_discribe);
+            this.status = (int)GoodStatus.deleted;
+            copy.status = (int)GoodStatus.save;
+
+            KenguruDB database = new KenguruDB();
+            database.goods.Add(copy);
+            database.SaveChanges();
+
+            return copy;
+        }
+
     }
 }
