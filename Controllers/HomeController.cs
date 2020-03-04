@@ -19,23 +19,13 @@ namespace Kenguru_four_.Controllers
         {
             return View();
         }
-        public string FindStateOrder(string track)
+        public ActionResult FindStateOrder(string track)
         {
             KenguruDB db = new KenguruDB();
             var order = db.Orders.Where(x => x.track == track).ToList();
-            if (order.Count == 0)
-                return "Не найдено";
-            switch (order[0].status)
-            {
-                case (int)StatusOrder.Weit:
-                    return "Товар ожидает отправки";
-                case (int)StatusOrder.Sent:
-                    return "Товар ожидает доставки";
-                case (int)StatusOrder.Complit:
-                    return "Товар доставлен";
-                default:
-                    return "А хрен знает";
-            }
+            if (order.Count == 0) 
+                return  Content("Заказ с данным трек-номером не найден");
+            return View("~/Views/Partial/OrderInfo.cshtml", order[0]);
         }
     }
 }
