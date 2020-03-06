@@ -19,11 +19,6 @@ textarea {
 }
 
 
-html, body {
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
-}
 
 body {
     background-color: #fedc9e;
@@ -85,6 +80,7 @@ a:hover{
 .header {
     position: fixed;
     top: 0;
+    left:0;
     background-color: #fcde5b;
     width: 100%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.5);
