@@ -5,6 +5,8 @@
     List <string> dropList = new List<string>();
     Good good = ViewBag.Good;
 
+    string error = ViewBag.Error;
+
 
     foreach(Category category in ViewBag.Category) {
         if (category.parent != null)
@@ -14,46 +16,116 @@
     }
 }
 
-    <form align="center" action="/seller/ChangeGood" method="post">
+    @if(error.Length > 0)
+    {
+        <h1>
+            @error
+        </h1>
+    }
+
+
+    @using (Html.BeginForm("ChangeGood", "Seller", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
         @Html.Hidden("id", good.id)
         <h3>Настройки личного кабинета</h3>
         <table>
 
             <tr>
                 <td>Название товара</td>
-                <td>@Html.TextBox("name", good.title)</td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td>@Html.TextBox("name", good.title)</td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                    <td>@good.title</td>
+                }
             </tr>
 
             <tr>
                 <td>Фотогрфия</td>
-                <td> <input type="file" name="photo"></td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td> <input type="file" name="photo"> </td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                }
             </tr>
 
             <tr>
-                <td>краткое описание</td>
-                <td>@Html.TextArea("short-discrib", good.short_discribe, 5, 100, null)</td>
+                <td>краткое описание<br>(не более 450 символов)</td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td>@Html.TextArea("shortDiscrib", good.short_discribe, 5, 100, null)</td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                    <td>@good.short_discribe</td>
+                }
+
             </tr>
+
+
 
             <tr>
                 <td>полное описание</td>
-                <td>@Html.TextArea("full-discrib", good.description, 7, 100, null)</td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td>@Html.TextArea("fullDiscrib", good.description, 7, 100, null)</td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                    <td>@good.description</td>
+                }
             </tr>
 
             <tr>
                 <td>категория</td>
-                <td>@Html.DropDownList("category", new SelectList(dropList), good.category.name)</td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td>@Html.DropDownList("category", new SelectList(dropList), good.category?.name)</td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                    <td>@good.category.name</td>
+                }
             </tr>
 
             <tr>
+
                 <td>цена за еденицу товара</td>
-                <td>@Html.TextBox("price", good.Price)</td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td>@Html.TextBox("price", good.Price)</td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                    <td>@good.Price</td>
+                }
+
             </tr>
 
+            @if (good.status == (int)GoodStatus.save)
+            {
+                <tr>
+                    <td></td>
+                    <td><button type="submit" name="action" value="save">Сохранить</button></td>
+                </tr>
 
-            <tr>
-                <td></td>
-                <td><button type="submit">Изменить настройки</button></td>
-            </tr>
+                <tr>
+                    <td></td>
+                    <td><button type="submit" name="action" value="public">Сохранить и опубликовать</button></td>
+                </tr>
+            }
+            @if (good.status == (int)GoodStatus.publsih)
+            {
+                <tr>
+                    <td></td>
+                    <td><a href="@Url.Action(Url.Content("~/unpublish"), new { id = good.id }) ">Убрать из публикации <br> для редактирования</a></td>
+                </tr>
+            }
+
 
         </table>
-    </form>
+    }
