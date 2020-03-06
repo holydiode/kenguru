@@ -9,6 +9,6 @@ namespace Kenguru_four_.Models.ViewModels
     {
         public PageInfo PageInfo { get; set; }
         public List<Good> ViewGoods { get; set; }
-        public List<Good> allGoods { get; set; }
+        public IQueryable<Good> AppropriateGoods { get; set; }
     }
 }

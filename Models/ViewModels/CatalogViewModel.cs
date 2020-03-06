@@ -10,6 +10,5 @@ namespace Kenguru_four_.Models.ViewModels
         public int SortBy { get; set; }
         public string Search { get; set; }
         public int? CategoryId { get; set; }
-       
     }
 }

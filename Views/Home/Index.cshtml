@@ -14,14 +14,14 @@
                 if (category.parent == null)
                 {
                     <div id="dropdown-item" class="category">
-                        <a class="category-link" href="@Url.Action("Index", "Catalog", new { categoryId = category.id })">@category.name</a>
+                        <a class="category-link" href="@Url.Action("Index", "Catalog", new { categoryId = category.id, sortBy = 1 })">@category.name</a>
                         @if (category.subCategories.Count != 0)
                         {
                             <div id="submenu">
                                 @foreach (Category subCategory in category.subCategories)
                                 {
                                     <div class="category">
-                                        <a class="category-link" href="@Url.Action("Index", "Catalog", new { categoryId = subCategory.id })">@subCategory.name</a>
+                                        <a class="category-link" href="@Url.Action("Index", "Catalog", new { categoryId = subCategory.id, sortBy = 1 })">@subCategory.name</a>
                                     </div>
                                 }
                             </div>

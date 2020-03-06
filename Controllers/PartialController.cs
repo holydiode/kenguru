@@ -13,9 +13,17 @@ namespace Kenguru_four_.Controllers
         public ActionResult GoodsPages(int page)
         {
             IndexViewModel model = (IndexViewModel)TempData["IndexViewModel"];
-            Helpers.GoodsPages.SetPage(model, page);
+            model.ViewGoods = model.AppropriateGoods.Skip((page - 1) * 10).Take(10).ToList();
+            model.PageInfo.PageNumber = page;
             TempData["IndexViewModel"] = model;
-            return PartialView(model);
+            return PartialView("~/Views/Partial/GoodsPages.cshtml",model);
+        }
+        public ActionResult SortGoodsPages(int sortBy)
+        {
+            IndexViewModel model = (IndexViewModel)TempData["IndexViewModel"];
+            model.AppropriateGoods = Helpers.GoodsPages.SortGoods(model.AppropriateGoods, sortBy);
+            TempData["IndexViewModel"] = model;
+            return GoodsPages(1);
         }
     }
 }

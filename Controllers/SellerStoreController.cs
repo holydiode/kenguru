@@ -15,23 +15,20 @@ namespace Kenguru_four_.Controllers
         {
             KenguruDB db = new KenguruDB();
             Seller seller = db.Sellers.Find(sellerId);
-            var goods = db.goods.Where(x => (x.sellerID == sellerId)).ToList();
-
-            goods.Sort((x, y) => y.seles - x.seles);        //сортируем товары по количеству продаж
+            var goods = db.goods.Where(x => (x.sellerID == sellerId)).OrderBy(x => x.seles);
 
             SellersGoodsViewModel sellersGoods = new SellersGoodsViewModel
             {
-                allGoods = goods,
                 Seller = seller,
                 PageInfo = new PageInfo
                 {
                     PageNumber = page,
                     PageSize = 2,
-                    TotalItems = goods.Count
-                }
+                    TotalItems = goods.Count()
+                },
+                 AppropriateGoods = goods
             };
-            Helpers.GoodsPages.SetPage(sellersGoods, page);
-
+            sellersGoods.ViewGoods = goods.Skip((page - 1) * 10).Take(10).ToList();
             ViewBag.Title = ViewBag.InfoTitleLabel = "Витрина " + seller.name;
             TempData["IndexViewModel"] = sellersGoods;
             return View(sellersGoods);

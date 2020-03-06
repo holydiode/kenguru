@@ -5,8 +5,8 @@ namespace Kenguru_four_.Models
     //представление товара с коэффициентом его релевантности запросу
     public class SearchGoodViewModel 
     {
-        public SearchGoodViewModel(Good god) { 
-            good = god;
+        public SearchGoodViewModel(Good good) { 
+            this.good = good;
             words = good.title.Split(new char[] { ' ', '.', '/', ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
         }
         public Good good { get; set; }
@@ -14,9 +14,9 @@ namespace Kenguru_four_.Models
         //переопределение метода сравнения по совпалению товара запросу
         //для того, чтобы можно было отсортировать 
      
-        //количество соответсвий товара поисковым запросам
+        //количество соответствий товара поисковым запросам
         public int countMatches = 0;
-        public static int sizeQuer;
+        public static int sizeQuery;
         public string[] words;
 
     }

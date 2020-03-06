@@ -11,80 +11,51 @@ namespace Kenguru_four_.Controllers
     public class CatalogController : Controller
     {
         KenguruDB db = new KenguruDB();
-        private List<Good> currGoods = null;
+        private IQueryable<Good> appropriateGoods = null;
         private int pageSize = 10;
 
 
-        public ActionResult Index(int? categoryId = null, int page = 1, int sortBy = 1, string search = null)
+        public ActionResult Index(int? categoryId = null, int page = 1, int sortBy = 0, string search = null)
         {
+            appropriateGoods = db.goods;
+            CatalogViewModel viewModel = new CatalogViewModel
+            {
+                PageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = 0 },
+                SortBy = sortBy,
+                Search = search,
+                CategoryId = categoryId,
+            };
+            //обработка категории, если она запрашивается
             if (categoryId != null)
             {
                 Category category = db.Categories.Find(categoryId);
 
                 if (category == null)            //нет такой категории
                     return HttpNotFound();
-
                 if (category.subCategories.Count != 0)          //у категории есть подкатегории, выводим их
                     return View("SubCategories", category);
 
-                ViewBag.Title = ViewBag.InfoTitleLabel =  category.name;
+                appropriateGoods = db.goods.Where(x => x.categoryID == categoryId); //запросим товары по категории
+                ViewBag.Title = ViewBag.InfoTitleLabel = category.name;
             }
-           
-            currGoods = db.goods.Where(x => categoryId == null || x.categoryID == categoryId).ToList();     //запросим товары по категории или все
-            //обработка поискового запроса (если он есть)
-            if (search != null)
+            if(search != null)
             {
-                string[] searchQuery = search.Split(new char[] { ' ', '.', '/', ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
-
-                List<SearchGoodViewModel> searchGoods = new List<SearchGoodViewModel>();
-                SearchGoodViewModel.sizeQuer = searchQuery.Count();
-                foreach (var item in currGoods)
-                {
-                    searchGoods.Add(new SearchGoodViewModel(item));
-                }
-                ViewBag.Title = search;
-                ViewBag.InfoTitleLabel = "Результаты по запросу: " + search;
-                //массив поисковых запросов
-                SearchGoodViewModel cur;
-                for (int i = 0; i < searchGoods.Count; i++)
-                {
-                    cur = searchGoods.ElementAt(i);
-                    foreach (var word in cur.words)
-                    {
-                        foreach (var itemSQ in searchQuery)
-                        {
-                            if (isEquals(word, itemSQ) == true)
-                                cur.countMatches++;
-                        }
-                    }
-                    if (cur.countMatches == 0)
-                    {
-                        searchGoods.Remove(cur);
-                        i--;
-                    }
-                }
-
-                searchGoods.Sort((x, y) => y.countMatches - x.countMatches);
-                currGoods.Clear();
-                foreach (var item in searchGoods)
-                {
-                    currGoods.Add(item.good);
-                }
-                sortBy = 0;
+                ViewBag.Title = ViewBag.InfoTitleLabel = "Результаты по запросу \"" + search + "\"";
             }
 
-            if (sortBy != 0)
-                Helpers.GoodsPages.SortGoods(currGoods, sortBy);
+            //выберем набор для текущей страницы
+            int startIndex = (page - 1) * pageSize;
 
-            CatalogViewModel viewModel = new CatalogViewModel           
-            {
-                PageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = currGoods.Count },
-                SortBy = sortBy,
-                Search = search,
-                allGoods = currGoods,
-                CategoryId = categoryId,
-            };
-            Helpers.GoodsPages.SetPage(viewModel, page);
+            //если есть поисковый запрос
+            if (sortBy == 0)
+                appropriateGoods = Helpers.GoodsPages.SortGoods(appropriateGoods, search).AsQueryable();
+            else
+                appropriateGoods = Helpers.GoodsPages.SortGoods(appropriateGoods, sortBy);
+            viewModel.ViewGoods = appropriateGoods.Skip(startIndex).Take(pageSize).ToList();
+
+            viewModel.AppropriateGoods = appropriateGoods;
+            viewModel.PageInfo.TotalItems = appropriateGoods.Count();
+
             TempData["IndexViewModel"] = viewModel;
             return View(viewModel);
         }
@@ -93,10 +64,11 @@ namespace Kenguru_four_.Controllers
             Regex rg, rgRev;
             rg = new Regex(@b, RegexOptions.IgnoreCase);
             rgRev = new Regex(@a, RegexOptions.IgnoreCase);
-            if(rg.Match(a).Length > 1 || rgRev.Match(b).Length > 1)
-            return true;
+            if (rg.Match(a).Length > 1 || rgRev.Match(b).Length > 1)
+                return true;
             return false;
         }
+
 
 
 

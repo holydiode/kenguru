@@ -10,14 +10,20 @@
 }
 
 <div class="title-request">@ViewBag.InfoTitleLabel</div>
-
-<div class="sorting">
-    @Html.ActionLink(CatalogHelper.GetParametrName(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy: (Model.SortBy) % 2 + 1), new { @class = "parametr parametr-first" })
-    @Html.ActionLink(CatalogHelper.GetParametrPrice(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy: (Model.SortBy % 10) % 2 + 11), new { @class = "parametr" })
-    @Html.ActionLink(CatalogHelper.GetParametrCount(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy: (Model.SortBy % 20) % 2 + 21), new { @class = "parametr" })
-    @Html.ActionLink(CatalogHelper.GetParametrRating(Model.SortBy), "Index", CatalogHelper.NewValues(Model, sortBy: (Model.SortBy % 30) % 2 + 31), new { @class = "parametr" })
-
-</div>
-<div class="glass-case">
-    @Html.Partial("~/Views/Partial/GoodsPages.cshtml", Model)
+<div class="loading-container">
+    <div id="loading"></div>
+    <div class="sorting">
+        @Ajax.ActionLink("Наименование", "SortGoodsPages", "Partial",
+        new { sortBy = 1 }, new AjaxOptions { UpdateTargetId = "ajax-content" },
+        new { @class = "parametr parametr-first" })
+        @Ajax.ActionLink("Цена", "SortGoodsPages", "Partial",
+        new { sortBy = 11 }, new AjaxOptions { UpdateTargetId = "ajax-content" },
+        new { @class = "parametr" })
+        @Ajax.ActionLink("Рейтинг продавца", "SortGoodsPages", "Partial",
+        new { sortBy = 31 }, new AjaxOptions { UpdateTargetId = "ajax-content" },
+        new { @class = "parametr" })
+    </div>
+    <div class="glass-case">
+        @Html.Partial("~/Views/Partial/GoodsPages.cshtml", Model)
+    </div>
 </div>

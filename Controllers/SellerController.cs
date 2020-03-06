@@ -222,7 +222,7 @@ namespace Kenguru_four_.Controllers
 
 
             good.title = name;
-            good.Price = float.Parse(price);
+            good.PriceInRubles = float.Parse(price);
             dataBase.SaveChanges();
 
             return Redirect(Url.Content("~/seller/MyGoods"));
@@ -279,8 +279,6 @@ namespace Kenguru_four_.Controllers
 
             foreach(Good good in goods)
             {
-                DateTime boop;
-
                 List<Order> orders = good.orders.Where(t => TimeFrom <=  t.Time && t.Time < TimeTo).ToList();
 
                 GoodReport goodReport = new GoodReport(good, 0, 0, 0);

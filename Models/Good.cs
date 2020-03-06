@@ -27,7 +27,7 @@ namespace Kenguru_four_
         public int price { get; set; }
 
         [NotMapped]
-        public float Price { get => ((float)price)/ 100; set => price = (int)Math.Round(value * 100, 0); }
+        public float PriceInRubles { get => ((float)price)/ 100; set => price = (int)Math.Round(value * 100, 0); }
 
         [Column("id-category")]
         public int categoryID { get; set; }
