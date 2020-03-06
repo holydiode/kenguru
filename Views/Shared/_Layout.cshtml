@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/Site.css">
     <link rel="stylesheet" href="~/Content/Auth.css">
+    <link rel="stylesheet" href="~/Content/ErrorStyles.css">
     @RenderSection("links", false)
 
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -30,8 +31,8 @@
             <a class="button-main bascet" href="/Cart/Index">
                 Корзина
             </a>
-            
-            @Html.Action("Summary", "Сart")
+            <!--рисует корзину сверху на каждой сранице-->
+            @Html.Action("Summary", "Cart")
         </div>
     </div>
 

@@ -124,7 +124,6 @@ namespace Kenguru_four_.Controllers
             EmailService emailService = new EmailService();
             emailService.SendEmail(email, "Подтверждение почтового адреса(2)", message);
         }
-
       
         public void SendEmail(string receiver, string subject, string message)
         {
