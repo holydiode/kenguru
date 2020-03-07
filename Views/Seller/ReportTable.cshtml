@@ -1,0 +1,45 @@
+﻿@{
+    GoodReport MainReport = ViewBag.MainReport;
+    List<GoodReport> AllReport = ViewBag.AllReport;
+    Layout = null;
+
+}
+
+<table>
+    <tr>
+        <td>Заказов вскего</td>
+        <td>@MainReport.orders </td>
+    </tr>
+
+    <tr>
+        <td>Товаров продано</td>
+        <td>@MainReport.sell</td>
+    </tr>
+
+    <tr>
+        <td>Стоймость проданного товара</td>
+        <td>@MainReport.money </td>
+    </tr>
+
+</table>
+
+<table>
+    <tr>
+        <td> товар </td>
+        <td> заказов</td>
+        <td> продано </td>
+        <td> стоймость </td>
+    </tr>
+    @foreach (GoodReport report in AllReport)
+    
+    {
+        <tr>
+            <td> @report.good.title </td>
+            <td> @report.orders </td>
+            <td> @report.sell </td>
+            <td> @report.money </td>
+        </tr>
+    }
+
+</table>
+

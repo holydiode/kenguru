@@ -1,5 +1,4 @@
-﻿using Kenguru_four_.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,7 +13,8 @@ namespace Kenguru_four_.Controllers
         // GET: Seller
         public ActionResult Index()
         {
-            if (Session["User"] == null || ((User)Session["User"]).check() == false) {
+            if (Session["User"] == null || ((User)Session["User"]).check() == false)
+            {
                 return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
             }
 
@@ -74,7 +74,8 @@ namespace Kenguru_four_.Controllers
 
             Order order = dataBase.Orders.Find(IdOrder);
 
-            if (order == null || order.good.sellerID != ((User)Session["User"]).id || order.status == (int)StatusOrder.Cancel || order.status == (int)StatusOrder.NotPai) {
+            if (order == null || order.good.sellerID != ((User)Session["User"]).id || order.status == (int)StatusOrder.Cancel || order.status == (int)StatusOrder.NotPai)
+            {
                 return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/seller/orders");
             }
 
@@ -144,7 +145,7 @@ namespace Kenguru_four_.Controllers
 
             ViewBag.Error = error;
 
-            if ( ((User)Session["User"]).id != dataBase.goods.Find(id)?.seller.id)
+            if (((User)Session["User"]).id != dataBase.goods.Find(id)?.seller.id)
             {
                 return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
             }
@@ -216,12 +217,19 @@ namespace Kenguru_four_.Controllers
             dataBase.goods.Add(good);
 
             dataBase.SaveChanges();
-            
-
 
             return Redirect(Url.Action(Url.Content("~/ChangeGoods"), new { id = good.id }));
-
         }
+
+        public FileResult GlobalDwownload()
+        {
+            string file_path = Server.MapPath("~/UploadFIles/template.xlsx");
+            string file_type = "application/vnd.ms-excel";
+            string file_name = "template.xlsx";
+            return File(file_path, file_type, file_name);
+        }
+
+
 
 
         public RedirectResult Unpublish(int id)
@@ -253,7 +261,7 @@ namespace Kenguru_four_.Controllers
 
 
             dataBase.SaveChanges();
-            return Redirect(Url.Action(Url.Content("~/ChangeGoods"), new { id = id}));
+            return Redirect(Url.Action(Url.Content("~/ChangeGoods"), new { id = id }));
         }
 
         [HttpPost]
@@ -283,7 +291,7 @@ namespace Kenguru_four_.Controllers
                 photo.SaveAs(path + "/main.png");
             }
 
-            if(shortDiscrib == null && fullDiscrib != null ||
+            if (shortDiscrib == null && fullDiscrib != null ||
                shortDiscrib.Length <= 0 && fullDiscrib.Length > 0)
             {
                 shortDiscrib = string.Copy(fullDiscrib);
@@ -305,7 +313,7 @@ namespace Kenguru_four_.Controllers
             good.title = name;
             try
             {
-                good.Price = float.Parse(price.Replace('.', ','));
+                good.PriceInRubles = float.Parse(price.Replace('.', ','));
             }
             catch (FormatException e)
             {
@@ -316,12 +324,12 @@ namespace Kenguru_four_.Controllers
             good.category = dataBase.Categories.Where(t => string.Compare(t.name, category) == 0).FirstOrDefault();
             dataBase.SaveChanges();
 
-            if(string.Compare(action, "public") == 0)
+            if (string.Compare(action, "public") == 0)
             {
                 string error = TryToPublic(good);
-                if(error != null)
+                if (error != null)
                 {
-                    return Redirect(Url.Action(Url.Content("~/ChangeGoods"), new {id = id, error = error}));
+                    return Redirect(Url.Action(Url.Content("~/ChangeGoods"), new { id = id, error = error }));
                 }
                 else
                 {
@@ -340,18 +348,19 @@ namespace Kenguru_four_.Controllers
             {
                 return ("Отсутствует название товара");
             }
-            if (good.price == null || good.price <= 0) {
+            if (good.price == null || good.price <= 0)
+            {
                 return ("Некорктно выйстваленна цена товара");
             }
             if (good.categoryID == null)
             {
                 return ("Категория товара не задана");
             }
-            if(good.short_discribe == null && good.description == null || good.short_discribe.Length <= 0 && good.description.Length <= 0)
+            if (good.short_discribe == null && good.description == null || good.short_discribe.Length <= 0 && good.description.Length <= 0)
             {
                 return ("Краткое и полное описание товара отсутсвует");
             }
-            if(System.IO.File.Exists(Server.MapPath("~/UploadFIles/Goods/" + good.id.ToString() + "/main.png")) == false)
+            if (System.IO.File.Exists(Server.MapPath("~/UploadFIles/Goods/" + good.id.ToString() + "/main.png")) == false)
             {
                 return ("отсутсвует изображение товара");
             }
@@ -361,16 +370,8 @@ namespace Kenguru_four_.Controllers
             }
         }
 
-
-
         [HttpPost]
-        public RedirectResult ControlReport(string showAll, string radius)
-        {
-            return Redirect(Url.Action( Url.Content("~/report") , new { showAll = showAll, radius = radius}));
-        }
-
-
-        public ActionResult Report(string showAll = "false", string radius = "")
+        public ActionResult ReportTable(string showAll, string radius)
         {
 
             if (Session["User"] == null || ((User)Session["User"]).check() == false)
@@ -386,7 +387,8 @@ namespace Kenguru_four_.Controllers
                 TimeTo = DateTime.MaxValue;
             }
 
-            else {
+            else
+            {
                 if (string.Compare(radius, "") == 0)
                 {
                     TimeFrom = DateTime.Today;
@@ -407,17 +409,19 @@ namespace Kenguru_four_.Controllers
             int CountSelles = 0;
 
             KenguruDB dataBase = new KenguruDB();
-            List <GoodReport> reports  = new List<GoodReport>();
+
+            List<GoodReport> reports = new List<GoodReport>();
 
             List<Good> goods = dataBase.Sellers.Find(((User)Session["User"]).id).good.ToList();
 
-            foreach(Good good in goods)
+
+            foreach (Good good in goods)
             {
-                List<Order> orders = good.orders.Where(t => TimeFrom <=  t.Time && t.Time < TimeTo).ToList();
+                List<Order> orders = good.orders.Where(t => TimeFrom <= t.Time && t.Time < TimeTo).ToList();
 
                 GoodReport goodReport = new GoodReport(good, 0, 0, 0);
 
-                foreach(Order order in orders)
+                foreach (Order order in orders)
                 {
                     goodReport.orders += 1;
                     goodReport.sell += (int)order.count;
@@ -433,6 +437,25 @@ namespace Kenguru_four_.Controllers
             ViewBag.Seller = dataBase.Sellers.Find(((User)Session["User"]).id);
             ViewBag.MainReport = new GoodReport(null, CountSelles, CountOrders, CountCash);
             ViewBag.AllReport = reports;
+
+
+            return View();
+        }
+
+
+        public ActionResult Report()
+        {
+
+            if (Session["User"] == null || ((User)Session["User"]).check() == false)
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/auth/enter");
+            }
+
+            KenguruDB dataBase = new KenguruDB();
+            ViewBag.Seller = dataBase.Sellers.Find(((User)Session["User"]).id);
+
+
+
             return View();
         }
 

@@ -17,9 +17,9 @@
 }
 
 
-    .seller-button:hover {
-        color: #facb78 !important;
-    }
+.seller-button:hover {
+    color: #facb78 !important;
+}
 
 
 .last-button {
@@ -167,16 +167,35 @@ table {
     display:inline-block;
     margin-right:20px;
 }
-    table tr td {
-        border: 2px solid #378052;
-        padding:5px;
-    }
-    .button-main{
-        display:block;
-        margin-bottom:10px;
-    }
-    .status-order{
-        font-size:120%;
-        text-align:center;
-        margin-bottom:20px;
-    }
+table tr td {
+    border: 2px solid #378052;
+    padding:5px;
+}
+.button-main{
+    display:block;
+    margin-bottom:10px;
+}
+.status-order{
+    font-size:120%;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+
+.waiting {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center
+}
+
+.intro {
+    height: 200px;
+    width: 250px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #1c4f32;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}

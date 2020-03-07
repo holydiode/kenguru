@@ -46,11 +46,16 @@
                 <td>Фотогрфия</td>
                 @if (good.status == (int)GoodStatus.save)
                 {
-                    <td> <input type="file" name="photo"> </td>
+                    <td> <input type="file" name="photo" accept="image/*" > </td>
                 }
                 @if (good.status == (int)GoodStatus.publsih)
                 {
+                    <td>
+                        <div class="intro" style="background-image: url(@Url.Content("~/UploadFiles/Goods/" + good.id + "/main.png");">
+                        </div>
+                    </td>
                 }
+
             </tr>
 
             <tr>
@@ -93,17 +98,15 @@
             </tr>
 
             <tr>
-
                 <td>цена за еденицу товара</td>
                 @if (good.status == (int)GoodStatus.save)
                 {
-                    <td>@Html.TextBox("price", good.Price)</td>
+                    <td>@Html.TextBox("price", good.PriceInRubles)</td>
                 }
                 @if (good.status == (int)GoodStatus.publsih)
                 {
-                    <td>@good.Price</td>
+                    <td>@good.PriceInRubles</td>
                 }
-
             </tr>
 
             @if (good.status == (int)GoodStatus.save)

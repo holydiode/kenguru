@@ -206,7 +206,8 @@ a:hover{
 
 .goods-intro {
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+    background-position:center;
     flex: 1 1 0px;
 }
 
