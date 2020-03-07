@@ -17,10 +17,7 @@
     function OnBegin() {
         $("#result").html("");
     }
-
 </script>
-
-
 
 
 @using (Ajax.BeginForm("ReportTable", new AjaxOptions { UpdateTargetId = "result", LoadingElementId = "loadimg", LoadingElementDuration = 1, OnBegin = "OnBegin" } ))
