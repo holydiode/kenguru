@@ -47,7 +47,7 @@ namespace Kenguru_four_.Controllers
             int startIndex = (page - 1) * pageSize;
 
             //если есть поисковый запрос
-            if (sortBy == 0)
+            if (sortBy == 0 && search != null)
                 appropriateGoods = Helpers.GoodsPages.SortGoods(appropriateGoods, search).AsQueryable();
             else
                 appropriateGoods = Helpers.GoodsPages.SortGoods(appropriateGoods, sortBy);

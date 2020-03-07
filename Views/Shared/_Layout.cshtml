@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/Content/Site.css">
+    <link rel="stylesheet" href="~/Content/ErrorStyles.css">
     @RenderSection("links", false)
 
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -25,6 +26,8 @@
             <a class="button-main bascet" href="/Cart/Index">
                 Корзина
             </a>
+            <!--рисует корзину сверху на каждой сранице-->
+          <!--  @Html.Action("Summary", "Cart") -->
 
         </div>
     </div>

@@ -25,7 +25,7 @@ namespace Kenguru_four_.Controllers
             var order = db.Orders.Where(x => x.track == track).ToList();
             if (order.Count == 0) 
                 return  Content("Заказ с данным трек-номером не найден");
-            return View("~/Views/Partial/OrderInfo.cshtml", order[0]);
+            return View("~/Views/Partial/OrderInfo.cshtml", order);
         }
     }
 }

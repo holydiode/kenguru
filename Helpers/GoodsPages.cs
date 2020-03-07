@@ -30,7 +30,7 @@ namespace Kenguru_four_.Helpers
                 case 32:
                     return Goods.OrderByDescending(x => x.seller.rating);
                 default:
-                    return null;
+                    return Goods.OrderBy(x => x.title);
             }
 
         }

@@ -227,6 +227,7 @@
     <Compile Include="Helpers\GoodsPages.cs" />
     <Compile Include="HtmlHelpers\CatalogHelper.cs" />
     <Compile Include="HtmlHelpers\EmailService.cs" />
+    <Compile Include="Infrastructure\Binders\CartModelBinder.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Permition.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Models\Cart\Cart.cs" />
     <Compile Include="Models\Cart\CartIndexViewModel.cs" />
     <Compile Include="Models\SellerIVM.cs" />
+    <Compile Include="Models\Cart\OrderDetails.cs" />
     <Compile Include="Models\ViewModels\CatalogViewModel.cs" />
     <Compile Include="Models\ViewModels\IndexViewModel.cs" />
     <Compile Include="Models\ViewModels\SellersGoodsViewModel.cs" />
@@ -260,6 +262,7 @@
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\ErrorStyles.css" />
     <Content Include="Content\Good.css" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\Seller.css" />
@@ -306,6 +309,12 @@
     <Content Include="Views\Seller\Property.cshtml" />
     <Content Include="Views\Seller\OrderInfo.cshtml" />
     <Content Include="Views\Seller\Report.cshtml" />
+    <Content Include="Views\Cart\Summary.cshtml" />
+    <Content Include="Views\Cart\OrderDetails.cshtml" />
+    <Content Include="Views\Cart\Completed.cshtml" />
+    <Content Include="Views\Cart\CompleteOrderView.cshtml" />
+    <Content Include="Views\ErrorPageView.cshtml" />
+
     <Content Include="Views\Seller\MyGoods.cshtml" />
     <Content Include="Views\Seller\ChangeGoods.cshtml" />
     <Content Include="Views\Catalog\SubCategories.cshtml" />

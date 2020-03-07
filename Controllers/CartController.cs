@@ -12,49 +12,77 @@ namespace Kenguru_four_.Controllers
         KenguruDB dataBase = new KenguruDB();
         
         // GET: Cart
-        public ViewResult Index(string returnUrl)
+        public ViewResult Index(Cart cart, string returnUrl)
         {
             return View(new CartIndexViewModel
             {
-                cart = GetCart(),
+                cart = cart,
                 ReturnUrl = returnUrl
             });
         }
+
      [HttpPost]
-        public RedirectToRouteResult AddToCart(int id, string returnUrl)
+        public RedirectToRouteResult AddToCart(Cart cart, int id, string returnUrl)
         {
             Good god = dataBase.goods.FirstOrDefault(g => g.id == id);
             if(god != null) {
-                GetCart().AddItem(god, 1);
+                cart.AddItem(god, 1);
             }
             return RedirectToAction("index", new { returnUrl });
         }
-        public RedirectToRouteResult RemoveFromCart(int id, string returnUrl)
+        public RedirectToRouteResult RemoveFromCart(Cart cart, int id, string returnUrl)
         {
             Good god = dataBase.goods.FirstOrDefault(g => g.id == id);
             if (god != null)
             {
-                GetCart().RemoveLine(god);
+                cart.RemoveLine(god);
             }
             return RedirectToAction("index", new { returnUrl });
         }
-        //использует средства состояния сеанса
-        public Cart GetCart()
-        {
-            //извлекаем объект из состояния сеанса, если мы положили его туда раньше
-            Cart cart = (Cart)Session["Cart"];
-            if(cart == null)
-            {
-                //добавляем оьбъект в состояние сеанса
-                cart = new Cart();
-                Session["Cart"] = cart;
-            }
-            return cart;
-        }
+       
         //рисует на всех страницах инфу о корзине
-        public PartialViewResult Summary()
+        public PartialViewResult Summary(Cart cart)
         {
-            return PartialView(GetCart());
+            return PartialView(cart);
+        }
+        //
+        public ViewResult OrderDetails (Cart cart, OrderDetails ordDetails)
+        {
+            //обработка на пустую корзину
+            if(cart == null || cart.Lines.Count() == 0)
+                return View("~/Views/ErrorPageView.cshtml");
+
+            if (ModelState.IsValid)
+            {
+                //преобразоваие товаров из корзины в заказы, отправка всего на бд и в кассу
+                KenguruDB dB = new KenguruDB();
+                foreach (var item in cart.Lines)
+                {
+                    //текущее время определяется до цикла, чтобы оно было одинаково для всех заказов
+                    string curTime = DateTime.Now.ToString();
+                    //поменять потом на нормальный
+                    int curTrack = curTime.GetHashCode();
+                    dB.Orders.Add(new Order
+                    {
+                        adress = ordDetails.Adresss,
+                        count = item.Quantity,
+                        email = ordDetails.email,
+                        goodID = item.good.id,
+                        phone = ordDetails.phone,
+                        price = item.good.price,
+                        status = (int?)StatusOrder.NotPai,
+                        time = curTime,
+                        track = curTrack.ToString(),
+                    });
+
+                    dB.SaveChanges();
+                    
+                }
+                
+                return View("CompleteOrderView");
+            }
+            return View(new OrderDetails());
+
         }
     }
 }
