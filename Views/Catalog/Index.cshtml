@@ -1,5 +1,6 @@
-﻿@model IndexViewModel
-@using Kenguru_four_.Models
+﻿@model CatalogViewModel
+@using Kenguru_four_.htmlHelpers
+@using Kenguru_four_.Models.ViewModels
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,6 +10,20 @@
 }
 
 <div class="title-request">@ViewBag.InfoTitleLabel</div>
-
-@Html.Partial("~/Views/Partial/GoodsPages.cshtml", Model)
-
+<div class="loading-container">
+    <div id="loading"></div>
+    <div class="sorting">
+        @Ajax.ActionLink("Наименование", "SortGoodsPages", "Partial",
+        new { sortBy = 1 }, new AjaxOptions { UpdateTargetId = "ajax-content" },
+        new { @class = "parametr parametr-first" })
+        @Ajax.ActionLink("Цена", "SortGoodsPages", "Partial",
+        new { sortBy = 11 }, new AjaxOptions { UpdateTargetId = "ajax-content" },
+        new { @class = "parametr" })
+        @Ajax.ActionLink("Рейтинг продавца", "SortGoodsPages", "Partial",
+        new { sortBy = 31 }, new AjaxOptions { UpdateTargetId = "ajax-content" },
+        new { @class = "parametr" })
+    </div>
+    <div class="glass-case">
+        @Html.Partial("~/Views/Partial/GoodsPages.cshtml", Model)
+    </div>
+</div>

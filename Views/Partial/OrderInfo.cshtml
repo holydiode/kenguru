@@ -1,0 +1,19 @@
+﻿@model Order
+@{
+    Layout = null;
+}
+<div class="title">Товар: @Model.good.title</div>
+<div class="count">Количество заказано: @Model.count</div>
+<div class="time">Время заказа: @Model.Time.ToString()</div>
+<div class="status">
+    Статус:
+    @switch (Model.status)
+    {
+        case (int)StatusOrder.Weit:
+            <span>Товар ожидает отправки</span>break;
+        case (int)StatusOrder.Sent:
+            <span>Товар ожидает доставки</span>break;
+        case (int)StatusOrder.Complit:
+            <span>Товар доставлен</span>break;
+    }
+</div>

@@ -1,0 +1,44 @@
+﻿@using Kenguru_four_.Models.ViewModels
+@model SellersGoodsViewModel
+@section links{
+    <link rel="stylesheet" href="~/Content/SellerStore.css">
+}
+<div class="seller-content">
+    <div class="seller-info">
+        <div class="avatar">
+            @{
+                string filePath = Url.Content("~/UploadFiles/Sellers/" + Model.Seller.id + "/main.png");
+            }
+            <img src=@filePath alt="Фото продано" />
+        </div>
+        <div class="name item">@Model.Seller.name</div>
+        <div class="reit item">
+            <span class="star-count ">
+                @Model.Seller.rating
+            </span>
+            <span class="stars-grid">
+                @for (int i = 0; i < ((int)Math.Round((double)Model.Seller.rating / 10)); i++)
+                {
+                    <span class="star-point star-point-true">
+                    </span>
+                }
+
+                @for (int i = 0; i < 10 - ((int)Math.Round((double)Model.Seller.rating / 10)); i++)
+                {
+                    <div class="star-point star-point-false">
+                    </div>
+                }
+            </span>
+
+        </div>
+        <div class="time-create">
+            @{
+                string time = Model.Seller.Time.ToShortDateString();
+            }
+            <span>На сайте с @time</span>
+        </div>
+    </div>
+    <div class="seller-goods">
+        @Html.Partial("~/Views/Partial/GoodsPages.cshtml", Model)
+    </div>
+</div>

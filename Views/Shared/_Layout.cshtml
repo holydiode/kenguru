@@ -4,8 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Подключаем Bootstrap CSS -->
-    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/Site.css">
     <link rel="stylesheet" href="~/Content/Auth.css">
     <link rel="stylesheet" href="~/Content/ErrorStyles.css">
@@ -17,22 +15,21 @@
 
     <div class="header">
         <div class="header-content">
-            <a href="/Home/Index" class="logo">
+            <a href="/Home/Index" style="text-decoration: none;" class="logo">
                 <div class="logo-title">Садар</div>
             </a>
 
-            <div class="search-block">
-                <form method="get" style="height:40px" action="@Url.Action("Index", "Catalog")">
-                    <input type="text" class="search-field" name="search" placeholder="Поиск по сайту" value="@RenderSection("search", false)">
-                    <button class="serch-button" type="submit">🔎</button>
-                </form>
-            </div>
+            <form method="get" class="search-block" style="height:40px" action="@Url.Action("Index", "Catalog")">
+                <input type="text" class="search-field" name="search" placeholder="Поиск по сайту" value="@RenderSection("search", false)">
+                <button class="search-button" type="submit">🔎</button>
+            </form>
 
             <a class="button-main bascet" href="/Cart/Index">
                 Корзина
             </a>
             <!--рисует корзину сверху на каждой сранице-->
-            @Html.Action("Summary", "Cart")
+          <!--  @Html.Action("Summary", "Cart") -->
+
         </div>
     </div>
 

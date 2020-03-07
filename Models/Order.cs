@@ -30,6 +30,9 @@ namespace Kenguru_four_
 
         public string time { get; set; }
 
+        [NotMapped]
+        public DateTime Time { get =>  Convert.ToDateTime(time); set => time = value.ToString(); }
+
         [StringLength(15)]
         public string phone { get; set; }
 

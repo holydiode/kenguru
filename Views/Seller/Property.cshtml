@@ -3,23 +3,70 @@
     ViewBag.Title = "Property";
     Layout = "~/Views/Shared/ViewSeller.cshtml";
 }
+    <form align="center">
+        <h3>Настройки личного кабинета</h3>
+        <table>
+            <tr>
+                <td>ФИО</td>
+                <td> @Html.TextBox("name")</td>
+            </tr>
 
-    <table border="2" align="center">
+            <tr>
+                <td>описание</td>
+                <td>@Html.TextArea("discrib", null, 5, 20, null)</td>
+            </tr>
+
+            <tr>
+                <td>Фотогрфия</td>
+                <td> <input type="file" name="photo"> </td>
+            </tr>
+
+            <tr>
+                <td>телефон</td>
+                <td> @Html.TextBox("phone")</td>
+            </tr>
+
+            <tr>
+                <td>адрес</td>
+                <td>@Html.TextBox("adress")</td>
+            </tr>
+
+            <tr>
+                <td>Номер караты<br>для начисления средств</td>
+                <td>@Html.TextBox("adress")</td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><button type="submit">Изменить настройки</button></td>
+            </tr>
+        </table>
+    </form>
+
+
+<form align="center">
+    <h3>Смена пароля</h3>
+    <table>
         <tr>
-            <td>ФИО</td><td></td>
+            <td>старый пароль</td>
+            <td>@Html.TextBox("oldPasswor")</td>
         </tr>
 
         <tr>
-            <td>описание</td><td></td>
+            <td>новый пароль</td>
+            <td> @Html.TextBox("newPassword") </td>
         </tr>
 
         <tr>
-            <td>Фотогрфия</td><td></td>
+            <td>повторите новый пароль</td>
+            <td> @Html.TextBox("repidPassword")</td>
         </tr>
 
         <tr>
-            <td>телефон</td><td></td>
+            <td></td>
+            <td><button type="submit">Изменить паролль</button></td>
         </tr>
-
     </table>
+</form>
+
 

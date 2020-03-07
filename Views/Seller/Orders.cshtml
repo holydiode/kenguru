@@ -2,6 +2,8 @@
     Layout = "~/Views/Shared/ViewSeller.cshtml";
     ViewBag.Title = "Orders";
 }
+
+
 <div class="table">
     <div class="row-table row-first">
         <div class="">
@@ -57,7 +59,6 @@
             <div class="">
                 <a href="@Url.Action( Url.Content("~/orderinfo"), new {IdOrder = order.id} )"> подробнее </a>
             </div>
-
         </div>
     }
 </div>

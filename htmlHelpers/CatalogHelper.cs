@@ -1,15 +1,10 @@
-﻿using Kenguru_four_.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using Kenguru_four_.Models.ViewModels;
 
 namespace Kenguru_four_.htmlHelpers
 {
     public static class CatalogHelper
     {
-        public static object NewValues(IndexViewModel model, int? categoryId = null, int? page = null, int? sortBy = null, string search = null)
+        public static object NewValues(CatalogViewModel model, int? categoryId = null, int? page = null, int? sortBy = null, string search = null)
         {
             if (page == null)
                 page = model.PageInfo.PageNumber;

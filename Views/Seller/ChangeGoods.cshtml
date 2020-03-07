@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "ChangeGoods";
+    Layout = "~/Views/Shared/ViewSeller.cshtml";
+    List <string> dropList = new List<string>();
+    Good good = ViewBag.Good;
+
+    string error = ViewBag.Error;
+
+
+    foreach(Category category in ViewBag.Category) {
+        if (category.parent != null)
+        {
+            dropList.Add(category.name);
+        }
+    }
+}
+
+    @if(error.Length > 0)
+    {
+        <h1>
+            @error
+        </h1>
+    }
+
+
+    @using (Html.BeginForm("ChangeGood", "Seller", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.Hidden("id", good.id)
+        <h3>Настройки личного кабинета</h3>
+        <table>
+
+            <tr>
+                <td>Название товара</td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td>@Html.TextBox("name", good.title)</td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                    <td>@good.title</td>
+                }
+            </tr>
+
+            <tr>
+                <td>Фотогрфия</td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td> <input type="file" name="photo" accept="image/*" > </td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                    <td>
+                        <div class="intro" style="background-image: url(@Url.Content("~/UploadFiles/Goods/" + good.id + "/main.png");">
+                        </div>
+                    </td>
+                }
+
+            </tr>
+
+            <tr>
+                <td>краткое описание<br>(не более 450 символов)</td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td>@Html.TextArea("shortDiscrib", good.short_discribe, 5, 100, null)</td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                    <td>@good.short_discribe</td>
+                }
+
+            </tr>
+
+
+
+            <tr>
+                <td>полное описание</td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td>@Html.TextArea("fullDiscrib", good.description, 7, 100, null)</td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                    <td>@good.description</td>
+                }
+            </tr>
+
+            <tr>
+                <td>категория</td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td>@Html.DropDownList("category", new SelectList(dropList), good.category?.name)</td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                    <td>@good.category.name</td>
+                }
+            </tr>
+
+            <tr>
+                <td>цена за еденицу товара</td>
+                @if (good.status == (int)GoodStatus.save)
+                {
+                    <td>@Html.TextBox("price", good.PriceInRubles)</td>
+                }
+                @if (good.status == (int)GoodStatus.publsih)
+                {
+                    <td>@good.PriceInRubles</td>
+                }
+            </tr>
+
+            @if (good.status == (int)GoodStatus.save)
+            {
+                <tr>
+                    <td></td>
+                    <td><button type="submit" name="action" value="save">Сохранить</button></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><button type="submit" name="action" value="public">Сохранить и опубликовать</button></td>
+                </tr>
+            }
+            @if (good.status == (int)GoodStatus.publsih)
+            {
+                <tr>
+                    <td></td>
+                    <td><a href="@Url.Action(Url.Content("~/unpublish"), new { id = good.id }) ">Убрать из публикации <br> для редактирования</a></td>
+                </tr>
+            }
+
+
+        </table>
+    }

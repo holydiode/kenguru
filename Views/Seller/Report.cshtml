@@ -1,62 +1,52 @@
 ﻿
 @{
-    ViewBag.Title = "Report";
-    GoodReport MainReport = ViewBag.MainReport;
-    List<GoodReport> AllReport = ViewBag.AllReport;
+    List<string> dropList = new List<string>();
     Layout = "~/Views/Shared/ViewSeller.cshtml";
+
+    for (DateTime start = ViewBag.Seller.Time; start < DateTime.Now; start = start.AddMonths(1))
+    {
+        dropList.Add(
+            start.Year + "/" + @String.Format("{0:d2}", start.Month) + "/01 - " +
+            start.AddMonths(1).Year + "/" + @String.Format("{0:d2}", start.AddMonths(1).Month) + "/01"
+        );
+    }
+    dropList.Reverse();
 }
-    <form>
-        <select action="/" method="post">
-            @for (DateTime start = Convert.ToDateTime(ViewBag.Seller.time); start < DateTime.Now; start = start.AddMonths(1))
-            {
-                <option>
-                    @start.Year/@start.Month/00 - @start.AddMonths(1).Year/@start.AddMonths(1).Month/00
-                </option>
-            }
-        </select>
-        <input type="radio" id="radioButton" value="mail">
-        <label for="contactChoice3">За все время</label>
-        <button type="submit">Сфорипировать отчёт</button>
-    </form> 
-   
+
+<script type="text/javascript">
+    function OnBegin() {
+        $("#result").html("");
+    }
+
+</script>
 
 
 
 
-    <table>
-        <tr>
-            <td>Заказов вскего</td>
-            <td>@MainReport.orders </td>
-        </tr>
-
-        <tr>
-            <td>Товаров продано</td>
-            <td>@MainReport.sell </td>
-        </tr>
+@using (Ajax.BeginForm("ReportTable", new AjaxOptions { UpdateTargetId = "result", LoadingElementId = "loadimg", LoadingElementDuration = 1, OnBegin = "OnBegin" } ))
+{
+    @Html.DropDownList("radius", new SelectList(dropList))
+    @Html.CheckBox("showAll", false)
+    <label for="contactChoice3" >За все время</label>
+    <input type="submit"/>
+}
 
 
-        <tr>
-            <td>Стоймость проданного товара</td>
-            <td>@MainReport.money </td>
-        </tr>
-    </table>
+<div id="loadimg" style="display:none;">
+    <div class = "waiting">
+        <img src="https://i.gifer.com/y4.gif">
+        <h2>Данные загружаются</h2>
+    </div>
+</div>
 
-    <table>
-        <tr>
-            <td> товар </td>
-            <td> заказов</td>
-            <td> продано </td>
-            <td> стоймость </td>
-        </tr>
-        @foreach (GoodReport report in AllReport)
-        {
 
-            <tr>
-                <td> @report.good.title </td>
-                <td> @report.orders </td>
-                <td> @report.sell </td>
-                <td> @report.money </td>
-            </tr>
-        }
-    </table>
+<div id="result">
+</div>
+
+
+@Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+
+
+
 

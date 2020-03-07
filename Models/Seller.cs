@@ -39,18 +39,20 @@ namespace Kenguru_four_
         [StringLength(65535)]
         public string description { get; set; }
 
-        public int? rating { get; set; }
+
+        public int rating { get; set; }
 
         public string time { get; set; }
 
-
+        [NotMapped]
+        public DateTime Time { get => Convert.ToDateTime(time); set => time = value.ToString(); }
 
         public Seller()
         {
         }
         public Seller(string email, string pasword)
         {
-            this.time = DateTime.Now.ToString();
+            this.Time = DateTime.Now;
             this.email = email;
             this.password = pasword;
             this.rating = 44;
