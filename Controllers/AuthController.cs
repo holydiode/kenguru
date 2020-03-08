@@ -27,12 +27,13 @@ namespace Kenguru_four_.Controllers
         {
             string hash = hashed(hashed(password));
 
-            if (ControlUser(email, hash)) {
+            if (ControlUser(email, hash))
+            {
                 return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/seller");
             }
             else
             {
-                return Redirect(Url.Action("/Enter", new {warning = true}));
+                return Redirect(Url.Action("/Enter", new { warning = true }));
             }
         }
 
@@ -111,6 +112,7 @@ namespace Kenguru_four_.Controllers
         {
             ViewBag.worning = worning;
             return View();
+        }
         public ActionResult Index()
         {
             return RedirectToAction("Enter");
@@ -174,7 +176,7 @@ namespace Kenguru_four_.Controllers
             EmailService emailService = new EmailService();
             emailService.SendEmail(email, "Подтверждение почтового адреса(2)", message);
         }
-      
+
         public void SendEmail(string receiver, string subject, string message)
         {
             MailAddress senderEmail = new MailAddress("sadar.kengu@yandex.ru", "Садар");
