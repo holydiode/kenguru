@@ -1,47 +1,48 @@
-﻿
+﻿@model Kenguru_four_.Models.SellerIVM
+
 @{
     ViewBag.Title = "Property";
     Layout = "~/Views/Shared/ViewSeller.cshtml";
 }
-    <form align="center">
-        <h3>Настройки личного кабинета</h3>
-        <table>
-            <tr>
-                <td>ФИО</td>
-                <td> @Html.TextBox("name")</td>
-            </tr>
+<form align="center">
+    <h3>Настройки личного кабинета</h3>
+    <table>
+        <tr>
+            <td>ФИО</td>
+            <td> @Html.TextBox("name")</td>
+        </tr>
 
-            <tr>
-                <td>описание</td>
-                <td>@Html.TextArea("discrib", null, 5, 20, null)</td>
-            </tr>
+        <tr>
+            <td>описание</td>
+            <td>@Html.TextArea("discrib", null, 5, 20, null)</td>
+        </tr>
 
-            <tr>
-                <td>Фотогрфия</td>
-                <td> <input type="file" name="photo"> </td>
-            </tr>
+        <tr>
+            <td>Фотогрфия</td>
+            <td> <input type="file" name="photo"> </td>
+        </tr>
 
-            <tr>
-                <td>телефон</td>
-                <td> @Html.TextBox("phone")</td>
-            </tr>
+        <tr>
+            <td>телефон</td>
+            <td> @Html.TextBox("phone")</td>
+        </tr>
 
-            <tr>
-                <td>адрес</td>
-                <td>@Html.TextBox("adress")</td>
-            </tr>
+        <tr>
+            <td>адрес</td>
+            <td>@Html.TextBox("adress")</td>
+        </tr>
 
-            <tr>
-                <td>Номер караты<br>для начисления средств</td>
-                <td>@Html.TextBox("adress")</td>
-            </tr>
+        <tr>
+            <td>Номер караты<br>для начисления средств</td>
+            <td>@Html.TextBox("adress")</td>
+        </tr>
 
-            <tr>
-                <td></td>
-                <td><button type="submit">Изменить настройки</button></td>
-            </tr>
-        </table>
-    </form>
+        <tr>
+            <td></td>
+            <td><button type="submit">Изменить настройки</button></td>
+        </tr>
+    </table>
+</form>
 
 
 <form align="center">
@@ -64,7 +65,9 @@
 
         <tr>
             <td></td>
-            <td><button type="submit">Изменить паролль</button></td>
+            <td>
+                @Html.ActionLink("Изменить пароль", "Property", null, new { @class = "btn btn-primary" })
+            </td>
         </tr>
     </table>
 </form>

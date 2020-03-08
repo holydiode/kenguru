@@ -1,7 +1,7 @@
 ﻿<meta charset="utf-8" />
 @model Kenguru_four_.Models.SellerIVM
 @{
-    ViewBag.Title = "Авторизация";
+    ViewBag.Title = "Регистрация";
 }
 @section links{
     <link rel="stylesheet" href="~/Content/Auth.css">
@@ -11,18 +11,18 @@
     <form method="post">
         <div class="authHeader">
             <div class="title">
-                <label>Авторизация</label>
+                <label>Регистрация</label>
             </div>
             <div class="close">x</div>
         </div>
         <div class="login">
             <div class="desc-auth">
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.seller.email)
+                    @Html.LabelFor(model => model.email)
                 </div>
                 <div name="email" class=" editor-field textbox" required>
-                    @Html.EditorFor(model => model.seller.email, new { @class = "form-control", @required = "required" })
-                    @Html.ValidationMessageFor(model => model.seller.email)
+                    @Html.EditorFor(model => model.email, new { @class = "form-control", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.email)
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="submitDiv">
-            <button type="submit" class="submitBtn">Войти</button>
+            <button type="submit" class="submitBtn">Регистрация</button>
         </div>
     </form>
 </div>

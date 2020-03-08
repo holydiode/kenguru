@@ -26,7 +26,6 @@ namespace Kenguru_four_.Controllers
         public RedirectResult ControlEnter(string email, string password)
         {
             string hash = hashed(hashed(password));
-
             if (ControlUser(email, hash)) {
                 return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/seller");
             }
@@ -74,13 +73,13 @@ namespace Kenguru_four_.Controllers
             {
                 var emails = db.Sellers.Select(x => x.email);
                 foreach(string email in emails)
-                    if(email == ivm.seller.email)
+                    if(email == ivm.email)
                     {
-                        ModelState.AddModelError("ivm.seller.email", "Пользователь с таким именем уже зарегестрирован");
+                        ModelState.AddModelError("ivm.mail", "Пользователь с таким именем уже зарегестрирован");
                         return View(ivm);
                     }
 
-                PrepareVereficationEmail(ivm.seller.email, ivm.password);
+                PrepareVereficationEmail(ivm.email, ivm.password);
                 return View("GoToMail");
             }
          

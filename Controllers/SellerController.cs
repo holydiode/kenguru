@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kenguru_four_.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,11 +29,18 @@ namespace Kenguru_four_.Controllers
         {
             if (Session["User"] == null || ((User)Session["User"]).check() == false)
             {
-
                 return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
             }
             return View();
         }
+        //изменение настроек
+        public ActionResult changeProp(SellerIVM sivm)
+        {
+
+            return View();
+        }
+        //изменение пароля 
+
 
 
         public ActionResult Orders()

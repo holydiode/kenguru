@@ -75,10 +75,11 @@ namespace Kenguru_four_.Controllers
                         track = curTrack.ToString(),
                     });
 
-                    dB.SaveChanges();
                     
                 }
-                
+                dB.SaveChanges();
+
+
                 return View("CompleteOrderView");
             }
             return View(new OrderDetails());
