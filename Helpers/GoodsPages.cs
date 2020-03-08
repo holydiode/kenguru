@@ -26,9 +26,9 @@ namespace Kenguru_four_.Helpers
                 case 22:
                     return Goods.OrderByDescending(x => x.seles);
                 case 31:
-                    return Goods.OrderBy(x => x.seller.rating);
-                case 32:
                     return Goods.OrderByDescending(x => x.seller.rating);
+                case 32:
+                    return Goods.OrderBy(x => x.seller.rating);
                 default:
                     return Goods.OrderBy(x => x.title);
             }
