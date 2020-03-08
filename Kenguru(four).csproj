@@ -314,7 +314,6 @@
     <Content Include="Views\Cart\Completed.cshtml" />
     <Content Include="Views\Cart\CompleteOrderView.cshtml" />
     <Content Include="Views\ErrorPageView.cshtml" />
-
     <Content Include="Views\Seller\MyGoods.cshtml" />
     <Content Include="Views\Seller\ChangeGoods.cshtml" />
     <Content Include="Views\Catalog\SubCategories.cshtml" />
@@ -326,6 +325,12 @@
     <Content Include="Views\Seller\GlobalDwownload.cshtml" />
     <Content Include="Views\Seller\ReportTable.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Auth\Enter.cshtml" />
+    <Content Include="Views\Auth\Admin.cshtml" />
+    <Content Include="Views\Shared\ViewAdmin.cshtml" />
+    <Content Include="Views\Admin\Breack.cshtml" />
+    <Content Include="Views\Admin\Orders.cshtml" />
+    <Content Include="Views\Admin\Seller.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

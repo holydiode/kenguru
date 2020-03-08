@@ -18,6 +18,7 @@ namespace Kenguru_four_
         public virtual DbSet<Good> goods { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Seller> Sellers { get; set; }
+        public virtual DbSet<Admin> Admins {get; set;}
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Авторизация";
+}
+
+<div class="pazmiv"></div>
+<div class="authWindow">
+    <form method="post" action="/Auth/ControlEnterAdmin">
+        <div class="authHeader">
+            <div class="title">
+                <label>Авторизация админа</label>
+            </div>
+            <div class="close">x</div>
+        </div>
+
+        @if (ViewBag.worning)
+        {
+
+            <div class="authHeader">
+                <div class="title">
+                    <label>Непраильно введениа почта или пароль</label>
+                </div>
+                <div class="close">x</div>
+            </div>
+        }
+
+        <div class="login">
+            <div class="desc-auth">
+                <label>логин</label>
+            </div>
+            <input name="username" class="textbox" />
+        </div>
+        <div class="password">
+            <div class="desc-auth">
+                <label>Пароль</label>
+            </div>
+            <input name="password" class="textbox" />
+        </div>
+        <div class="submitDiv">
+            <button type="submit" class="submitBtn">Войти</button>
+        </div>
+    </form>
+</div>

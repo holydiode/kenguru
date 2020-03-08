@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Seller";
+    Layout = "~/Views/Shared/ViewAdmin.cshtml";
+}
+
+<div class="table">
+    <div class="row-table row-first">
+        <div class="">
+            Имя
+        </div>
+        <div class="">
+            Дата регистрации
+        </div>
+        <div class="">
+            Рейтинг
+        </div>
+        <div class="">
+            Количесиво товров
+        </div>
+        <div class="">
+            Почта
+        </div>
+        <div class="">
+            Телефон
+        </div>
+        <div class="">
+        </div>
+    </div>
+
+    @foreach (Seller seller in ViewBag.Sellers)
+    {
+        <div class="row-table">
+            <div class="">
+                @seller.name
+            </div>
+
+            <div class="">
+                @seller.Time.ToShortDateString()
+            </div>
+
+            <div class="">
+                @seller.rating/100
+            </div>
+
+            <div class="">
+                @seller.good.Count
+            </div>
+
+            <div class="">
+                @seller.email
+            </div>
+
+            <div class="">
+                @seller.phone
+            </div>
+
+            <div class="">
+                <a href="@Url.Action( Url.Content("~/orderinfo"), new {IdOrder = 0} )"> подробнее </a>
+            </div>
+
+        </div>
+    }
+</div>
+
+
+
+

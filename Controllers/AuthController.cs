@@ -36,6 +36,46 @@ namespace Kenguru_four_.Controllers
             }
         }
 
+
+        [HttpPost]
+        public RedirectResult ControlEnterAdmin(string username, string password)
+        {
+            string hash = hashed(hashed(password));
+
+            if (ControlAdmin(username, hash))
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/admin");
+            }
+            else
+            {
+                return Redirect(Url.Action("/Enter", new { warning = true }));
+            }
+        }
+
+        public bool ControlAdmin(string username, string hash)
+        {
+            KenguruDB database = new KenguruDB();
+            List<Admin> admins = database.Admins.Where(t => string.Compare(t.login, username) == 0).ToList();
+            if (admins.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                Admin user = admins[0];
+                if (string.Compare(user.password, hash) == 0)
+                {
+                    Session["admin"] = user;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+
         public bool ControlUser(string email, string hash)
         {
             KenguruDB database = new KenguruDB();
@@ -59,12 +99,19 @@ namespace Kenguru_four_.Controllers
             }
         }
 
+
+
         public ActionResult Enter(bool worning = false)
         {
             ViewBag.worning = worning;
             return View();
         }
 
+        public ActionResult Admin(bool worning = false)
+        {
+            ViewBag.worning = worning;
+            return View();
+        }
 
         public ActionResult Index(SellerIVM ivm)
         {
@@ -105,7 +152,6 @@ namespace Kenguru_four_.Controllers
 
             return Redirect("~/seller/property");
         }
-
 
         private string PrepareVereficationLink(string email, string hash)
         {
@@ -150,6 +196,7 @@ namespace Kenguru_four_.Controllers
             {
                 smtp.Send(mess);
             }
+
         }
 
         public void Made_seller(string email, string hash)
