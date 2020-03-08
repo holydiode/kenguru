@@ -230,6 +230,7 @@
     <Compile Include="Infrastructure\Binders\CartModelBinder.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Permition.cs" />
     <Compile Include="Models\GoodReport.cs" />
     <Compile Include="Models\ViewModels\PageInfo.cs" />
     <Compile Include="Models\ViewModels\SearchGoodViewModel.cs" />
@@ -298,7 +299,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Auth\Index.cshtml" />
+    <Content Include="Views\Auth\Registration.cshtml" />
     <Content Include="Views\Auth\GoToMail.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Good\Index.cshtml" />
@@ -313,7 +314,6 @@
     <Content Include="Views\Cart\Completed.cshtml" />
     <Content Include="Views\Cart\CompleteOrderView.cshtml" />
     <Content Include="Views\ErrorPageView.cshtml" />
-
     <Content Include="Views\Seller\MyGoods.cshtml" />
     <Content Include="Views\Seller\ChangeGoods.cshtml" />
     <Content Include="Views\Catalog\SubCategories.cshtml" />
@@ -325,6 +325,12 @@
     <Content Include="Views\Seller\GlobalDwownload.cshtml" />
     <Content Include="Views\Seller\ReportTable.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Auth\Enter.cshtml" />
+    <Content Include="Views\Auth\Admin.cshtml" />
+    <Content Include="Views\Shared\ViewAdmin.cshtml" />
+    <Content Include="Views\Admin\Breack.cshtml" />
+    <Content Include="Views\Admin\Orders.cshtml" />
+    <Content Include="Views\Admin\Seller.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

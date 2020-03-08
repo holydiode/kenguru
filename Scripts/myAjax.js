@@ -16,26 +16,27 @@
             event.preventDefault();
             var url = $(this).attr('href');
             $('#ajax-content').load(url);
+
             var oldSelect = document.getElementsByClassName("parametr select")[0];
-            if (oldSelect === undefined || oldSelect != this) {
-                if (oldSelect !== undefined) {
-                    oldSelect.classList.remove("select");
-                    oldSelect.textContent = oldSelect.textContent.substring(0, oldSelect.textContent.length - 2);
-                }
+
+            var sortBy = findSortBy(url);
+
+            if (oldSelect === undefined)
                 this.classList.add("select");
+            else if (oldSelect != this) {
+                oldSelect.classList.remove("select");
+                this.classList.add("select");
+                oldSelect.textContent = oldSelect.textContent.substring(0, oldSelect.textContent.length - 2);
+                $(oldSelect).attr("href", replaceSortBy($(oldSelect).attr('href'), Math.floor(findSortBy($(oldSelect).attr('href')) / 10) * 10 + 1));
+            }
+            else
+                this.textContent = this.textContent.substring(0, this.textContent.length - 2);
+            $(this).attr("href", replaceSortBy(url, getNewSortBy(sortBy)));
+            if (sortBy % 10 == 1)
                 this.textContent += " ▼";
-            }
-            else {
-                if (oldSelect.textContent.split(" ").pop() == "▼") {
-                    oldSelect.textContent = oldSelect.textContent.replace(" ▼", "");
-                    oldSelect.textContent += " ▲";
-                }
-                else {
-                    oldSelect.textContent = oldSelect.textContent.replace(" ▲", "");
-                    oldSelect.textContent += " ▼";
-                }
-            }
-            $(this).attr("href", replaceSortBy($(this).attr('href'), getNewSortBy(findSortBy($(this).attr('href')))));
+            else
+                this.textContent += " ▲";
+
         };
     }
 
@@ -54,14 +55,10 @@ function findSortBy(query) {
 }
 
 function getNewSortBy(oldSortBy) {
-    if (oldSortBy < 10)
-        return oldSortBy % 2 + 1;
-    else if (oldSortBy < 20)
-        return (oldSortBy % 10) % 2 + 11;
-    else if (oldSortBy < 30)
-        return (oldSortBy % 20) % 2 + 21;
-    else if (oldSortBy < 40)
-        return (oldSortBy % 30) % 2 + 31;
+    if (oldSortBy % 10 == 2)
+        return Math.floor(oldSortBy / 10) * 10 + 1;
+    else
+        return Math.floor(oldSortBy / 10) * 10 + 2;
 }
 
 function replaceSortBy(query, newValue) {
@@ -73,4 +70,3 @@ function up() {
     return false;
 }
 
- 

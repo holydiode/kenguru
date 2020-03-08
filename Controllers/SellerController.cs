@@ -47,7 +47,6 @@ namespace Kenguru_four_.Controllers
         {
             if (Session["User"] == null || ((User)Session["User"]).check() == false)
             {
-
                 return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/Auth/Enter");
             }
 
@@ -110,6 +109,7 @@ namespace Kenguru_four_.Controllers
 
             order.status = newStatus;
             dataBase.SaveChanges();
+
 
             return Redirect(Url.Action(Url.Content("~/orderinfo"), new { IdOrder = order.id }));
         }
@@ -461,8 +461,6 @@ namespace Kenguru_four_.Controllers
 
             KenguruDB dataBase = new KenguruDB();
             ViewBag.Seller = dataBase.Sellers.Find(((User)Session["User"]).id);
-
-
 
             return View();
         }

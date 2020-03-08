@@ -26,14 +26,56 @@ namespace Kenguru_four_.Controllers
         public RedirectResult ControlEnter(string email, string password)
         {
             string hash = hashed(hashed(password));
-            if (ControlUser(email, hash)) {
+
+            if (ControlUser(email, hash))
+            {
                 return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/seller");
             }
             else
             {
-                return Redirect(Url.Action("/Enter", new {warning = true}));
+                return Redirect(Url.Action("/Enter", new { warning = true }));
             }
         }
+
+
+        [HttpPost]
+        public RedirectResult ControlEnterAdmin(string username, string password)
+        {
+            string hash = hashed(hashed(password));
+
+            if (ControlAdmin(username, hash))
+            {
+                return Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + "/admin");
+            }
+            else
+            {
+                return Redirect(Url.Action("/Enter", new { warning = true }));
+            }
+        }
+
+        public bool ControlAdmin(string username, string hash)
+        {
+            KenguruDB database = new KenguruDB();
+            List<Admin> admins = database.Admins.Where(t => string.Compare(t.login, username) == 0).ToList();
+            if (admins.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                Admin user = admins[0];
+                if (string.Compare(user.password, hash) == 0)
+                {
+                    Session["admin"] = user;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
 
         public bool ControlUser(string email, string hash)
         {
@@ -41,7 +83,16 @@ namespace Kenguru_four_.Controllers
             List<Seller> users = database.Sellers.Where(t => string.Compare(t.email, email) == 0).ToList();
             if (users.Count == 0)
             {
-                return false;
+                var emails = db.Sellers.Select(x => x.email);
+                foreach(string email in emails)
+                    if(email == ivm.email)
+                    {
+                        ModelState.AddModelError("ivm.mail", "Пользователь с таким именем уже зарегестрирован");
+                        return View(ivm);
+                    }
+
+                PrepareVereficationEmail(ivm.email, ivm.password);
+                return View("GoToMail");
             }
             else
             {
@@ -58,34 +109,46 @@ namespace Kenguru_four_.Controllers
             }
         }
 
+
+
         public ActionResult Enter(bool worning = false)
         {
             ViewBag.worning = worning;
             return View();
         }
 
+        public ActionResult Admin(bool worning = false)
+        {
+            ViewBag.worning = worning;
+            return View();
+        }
+        public ActionResult Index()
+        {
+            return RedirectToAction("Enter");
+        }
 
-        public ActionResult Index(SellerIVM ivm)
+        public ActionResult Registration(SellerIVM ivm)
         {
             KenguruDB db = new KenguruDB();
-      
-            if (ModelState.IsValid )
+
+            if (ModelState.IsValid)
             {
                 var emails = db.Sellers.Select(x => x.email);
-                foreach(string email in emails)
-                    if(email == ivm.email)
+                foreach (string email in emails)
+                    if (email == ivm.seller.email)
                     {
-                        ModelState.AddModelError("ivm.mail", "Пользователь с таким именем уже зарегестрирован");
+                        ModelState.AddModelError("ivm.seller.email", "Пользователь с таким именем уже зарегестрирован");
                         return View(ivm);
                     }
 
-                PrepareVereficationEmail(ivm.email, ivm.password);
+                PrepareVereficationEmail(ivm.seller.email, ivm.password);
                 return View("GoToMail");
             }
-         
+
             return View(ivm);
 
         }
+
         public RedirectResult ControlVerefication(string email, string hash, string verefi)
         {
             KenguruDB dataBase = new KenguruDB();
@@ -105,7 +168,6 @@ namespace Kenguru_four_.Controllers
             return Redirect("~/seller/property");
         }
 
-
         private string PrepareVereficationLink(string email, string hash)
         {
             string verefi = hashed(email + hash);
@@ -123,7 +185,7 @@ namespace Kenguru_four_.Controllers
             EmailService emailService = new EmailService();
             emailService.SendEmail(email, "Подтверждение почтового адреса(2)", message);
         }
-      
+
         public void SendEmail(string receiver, string subject, string message)
         {
             MailAddress senderEmail = new MailAddress("sadar.kengu@yandex.ru", "Садар");
@@ -149,6 +211,7 @@ namespace Kenguru_four_.Controllers
             {
                 smtp.Send(mess);
             }
+
         }
 
         public void Made_seller(string email, string hash)

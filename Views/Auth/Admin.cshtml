@@ -1,16 +1,13 @@
 ﻿@{
     ViewBag.Title = "Авторизация";
 }
-@section links{
-<link rel="stylesheet" href="~/Content/Auth.css">
-}
 
 <div class="pazmiv"></div>
 <div class="authWindow">
-    <form method="post" action="/Auth/ControlEnter">
+    <form method="post" action="/Auth/ControlEnterAdmin">
         <div class="authHeader">
             <div class="title">
-                <label>Авторизация</label>
+                <label>Авторизация админа</label>
             </div>
             <div class="close">x</div>
         </div>
@@ -18,26 +15,25 @@
         @if (ViewBag.worning)
         {
 
-        <div class="authHeader">
-            <div class="title">
-                <label>Непраильно введениа почта или пароль</label>
+            <div class="authHeader">
+                <div class="title">
+                    <label>Непраильно введениа почта или пароль</label>
+                </div>
+                <div class="close">x</div>
             </div>
-            <div class="close">x</div>
-        </div>
-
         }
 
         <div class="login">
             <div class="desc-auth">
-                <label>Номер телефона или e-mail</label>
+                <label>логин</label>
             </div>
-            <input name="email" class="text-box" />
+            <input name="username" class="textbox" />
         </div>
         <div class="password">
             <div class="desc-auth">
                 <label>Пароль</label>
             </div>
-            <input name="password" class="text-box" />
+            <input name="password" class="textbox" />
         </div>
         <div class="submitDiv">
             <button type="submit" class="submitBtn">Войти</button>

@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/ViewAdmin.cshtml";
+}
+
+
+<div class="table">
+    <div class="row-table row-first">
+        <div class="">
+            Дата
+        </div>
+        <div class="">
+            Наименование
+        </div>
+        <div class="">
+            Количество
+        </div>
+        <div class="">
+            Стоимость
+        </div>
+        <div class="">
+            Адрес доставки
+        </div>
+        <div class="">
+            Статус
+        </div>
+        <div class="">
+        </div>
+    </div>
+
+    @foreach (Order order in ViewBag.Orders)
+    {
+        <div class="row-table">
+
+            <div class="">
+                @order.time
+            </div>
+
+            <div class="">
+                @order.good.title
+            </div>
+
+            <div class="">
+                @order.count
+            </div>
+
+            <div class="">
+                @order.good.price
+            </div>
+
+            <div class="">
+                @order.adress
+            </div>
+
+            <div class="">
+                @order.status
+            </div>
+
+            <div class="">
+                <a href="@Url.Action( Url.Content("~/orderinfo"), new {IdOrder = order.id} )"> подробнее </a>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
