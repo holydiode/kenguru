@@ -128,7 +128,7 @@ namespace Kenguru_four_.Controllers
                 foreach (string email in emails)
                     if (email == ivm.email)
                     {
-                        ModelState.AddModelError("ivm.seller.email", "Пользователь с таким именем уже зарегестрирован");
+                        ModelState.AddModelError("ivm.email", "Пользователь с таким именем уже зарегестрирован");
                         return View(ivm);
                     }
 
